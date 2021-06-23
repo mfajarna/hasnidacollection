@@ -10,6 +10,8 @@ import Akun from './Akun';
 import ItemDetail from './ItemDetail';
 import OrderSummary from './OrderSummary';
 import SuccessOrder from './SuccessOrder';
+import NotificationOrder from './NotificationOrder';
+import OrderDetail from './OrderDetail';
 
 export {
   SplashScreen,
@@ -24,4 +26,6 @@ export {
   ItemDetail,
   OrderSummary,
   SuccessOrder,
+  NotificationOrder,
+  OrderDetail,
 };

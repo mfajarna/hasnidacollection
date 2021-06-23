@@ -22,6 +22,15 @@ import Ic_star_off from './ic_star_off.svg';
 import Ic_back_white from './ic_back_white.svg';
 import Ic_btn_add from './ic_btn_add.svg';
 import Ic_btn_min from './ic_btn_min.svg';
+import Ic_arrow_right from './ic_arrow_right.svg';
+import Ic_edit from './ic_edit.svg';
+import Ic_home_address from './ic_home_address.svg';
+import Ic_security from './ic_security.svg';
+import Ic_payments from './ic_payments.svg';
+import Ic_rate from './ic_rate.svg';
+import Ic_help_center from './ic_help_center.svg';
+import Ic_privacy from './ic_privacy.svg';
+import Ic_terms from './ic_terms.svg';
 
 export {
   Ic_arrow_back,
@@ -48,4 +57,13 @@ export {
   Ic_back_white,
   Ic_btn_add,
   Ic_btn_min,
+  Ic_arrow_right,
+  Ic_edit,
+  Ic_home_address,
+  Ic_security,
+  Ic_payments,
+  Ic_rate,
+  Ic_terms,
+  Ic_privacy,
+  Ic_help_center,
 };

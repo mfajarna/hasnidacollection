@@ -4,7 +4,7 @@ import {DummyImg1} from '../../assets';
 import {Headers, ItemListFood, ItemValue} from '../../components/molecules';
 import {Button} from '../../components/atoms';
 
-const OrderSummary = ({navigation}) => {
+const OrderDetail = () => {
   return (
     <View style={styles.container}>
       <Headers
@@ -43,18 +43,25 @@ const OrderSummary = ({navigation}) => {
           <ItemValue label="Kota" value="Cimahi" />
           <ItemValue label="Kode Pos" value="40288" />
         </View>
+
+        <View style={styles.content}>
+          <Text style={styles.label}>Order Status:</Text>
+          <ItemValue label="#FM2091023" value="Terbayar" valueColor="#1ABC9C" />
+        </View>
       </ScrollView>
       <View style={styles.button}>
         <Button
-          text="Bayar Sekarang"
+          text="Cancel My Order"
           onPress={() => navigation.replace('SuccessOrder')}
+          color="#D9435E"
+          textColor="white"
         />
       </View>
     </View>
   );
 };
 
-export default OrderSummary;
+export default OrderDetail;
 
 const styles = StyleSheet.create({
   container: {

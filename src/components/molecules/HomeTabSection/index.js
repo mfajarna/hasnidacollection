@@ -11,8 +11,7 @@ const renderTabBar = props => (
     indicatorStyle={{
       backgroundColor: '#020202',
       height: 3,
-      width: '15%',
-      marginLeft: '3%',
+      alignItems: 'space-around',
     }}
     style={{
       backgroundColor: 'white',
@@ -21,7 +20,10 @@ const renderTabBar = props => (
       borderBottomColor: '#F2F2F2',
       borderBottomWidth: 1,
     }}
-    tabStyle={{width: 'auto'}}
+    contentContainerStyle={{
+      justifyContent: 'space-around',
+    }}
+    tabStyle={{elevation: 0}}
     renderLabel={({route, focused, color}) => (
       <Text
         style={{
@@ -39,16 +41,25 @@ const NewSection = () => {
   return (
     <View style={{paddingTop: 8, paddingHorizontal: 24}}>
       <ItemListFood
+        type="product"
+        name="Sepatu HnM"
+        price="150.000.000"
         rating={3}
         image={DummyImg1}
         onPress={() => navigation.navigate('ItemDetail')}
       />
       <ItemListFood
+        type="product"
+        name="Sepatu HnM"
+        price="150.000.000"
         rating={3}
         image={DummyImg2}
         onPress={() => navigation.navigate('ItemDetail')}
       />
       <ItemListFood
+        type="product"
+        name="Sepatu HnM"
+        price="150.000.000"
         rating={3}
         image={DummyImg3}
         onPress={() => navigation.navigate('ItemDetail')}
@@ -64,11 +75,17 @@ const PopularSection = () => {
       style={{paddingTop: 8, paddingHorizontal: 24}}
       onPress={() => navigation.navigate('ItemDetail')}>
       <ItemListFood
+        type="product"
+        name="Sepatu HnM"
+        price="150.000.000"
         rating={3}
         image={DummyImg1}
         onPress={() => navigation.navigate('ItemDetail')}
       />
       <ItemListFood
+        type="product"
+        name="Sepatu HnM"
+        price="150.000.000"
         rating={3}
         image={DummyImg2}
         onPress={() => navigation.navigate('ItemDetail')}
@@ -82,26 +99,41 @@ const RecommendedSection = () => {
   return (
     <View style={{paddingTop: 8, paddingHorizontal: 24}}>
       <ItemListFood
+        type="product"
+        name="Sepatu HnM"
+        price="150.000.000"
         rating={3}
         image={DummyImg1}
         onPress={() => navigation.navigate('ItemDetail')}
       />
       <ItemListFood
+        type="product"
+        name="Sepatu HnM"
+        price="150.000.000"
         rating={3}
         image={DummyImg2}
         onPress={() => navigation.navigate('ItemDetail')}
       />
       <ItemListFood
+        type="product"
+        name="Sepatu HnM"
+        price="150.000.000"
         rating={3}
         image={DummyImg3}
         onPress={() => navigation.navigate('ItemDetail')}
       />
       <ItemListFood
+        type="product"
+        name="Sepatu HnM"
+        price="150.000.000"
         rating={3}
         image={DummyImg1}
         onPress={() => navigation.navigate('ItemDetail')}
       />
       <ItemListFood
+        type="product"
+        name="Sepatu HnM"
+        price="150.000.000"
         rating={3}
         image={DummyImg1}
         onPress={() => navigation.navigate('ItemDetail')}

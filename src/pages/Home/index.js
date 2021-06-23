@@ -1,10 +1,16 @@
 import React from 'react';
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import {Ic_bell, Ic_message} from '../../assets/icons';
 import {Fitur, Gap, Kategori, SearchInput} from '../../components/atoms';
 import {HomeTabSection} from '../../components/molecules';
 
-const Home = () => {
+const Home = ({onPress, navigation}) => {
   return (
     <View style={styles.pages}>
       <View style={styles.nav}>
@@ -12,7 +18,12 @@ const Home = () => {
           <SearchInput />
         </View>
         <View style={styles.icon}>
-          <Ic_bell />
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => navigation.navigate('NotificationOrder')}>
+            <Ic_bell />
+          </TouchableOpacity>
+
           <Gap width={14} />
           <Ic_message />
         </View>

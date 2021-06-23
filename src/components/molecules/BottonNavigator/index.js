@@ -92,15 +92,13 @@ const styles = StyleSheet.create({
     paddingTop: 13,
     paddingBottom: 8,
     backgroundColor: 'white',
-    paddingLeft: 50,
   },
   label: {
     fontSize: 12,
     fontFamily: 'Nunito-Regular',
-    marginRight: 15,
-    marginLeft: -3,
+    textAlign: 'center',
   },
   nav: {
-    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 });
