@@ -1,8 +1,26 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import {Button, Gap, Headers, TextInput} from '../../components';
+import {useSelector, useDispatch} from 'react-redux';
+import {useForm} from '../../utils';
 
 const Signup = ({navigation}) => {
+  const[form, setForm] = useForm({
+    name: '',
+    email: '',
+    password: '',
+  });
+
+  const dispatch = useDispatch();
+
+  const onSubmit = () => {
+    console.log(form);
+    dispatch({
+      type: 'SET_REGISTER',
+      value: form
+    })
+    navigation.navigate('SignupAddress')
+  }
   return (
     <View style={styles.page}>
       <Headers
@@ -18,15 +36,23 @@ const Signup = ({navigation}) => {
             </View>
           </View>
         </View>
-        <TextInput label="Nama Lengkap" placeholder="Masukan Nama Lengkap" />
+        <TextInput 
+        label="Nama Lengkap" 
+        placeholder="Masukan Nama Lengkap" 
+        value={form.name} 
+        onChangeText={(value) => setForm('name', value)} />
         <Gap height={16} />
-        <TextInput label="Email" placeholder="Masukan Email anda" />
+        <TextInput label="Email" placeholder="Masukan Email anda"
+        value={form.email} 
+        onChangeText={(value) => setForm('email', value)} />
         <Gap height={16} />
-        <TextInput label="Password" placeholder="Masukan password anda" />
+        <TextInput label="Password" placeholder="Masukan password anda"
+        value={form.password} 
+        onChangeText={(value) => setForm('password', value)} secureTextEntry />
         <Gap height={20} />
         <Button
           text="Continue"
-          onPress={() => navigation.navigate('SignupAddress')}
+          onPress={onSubmit}
         />
       </View>
     </View>
