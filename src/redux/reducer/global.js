@@ -19,7 +19,7 @@ export const globalReducer = (state=initGlobalState, action) => {
     {
         return{
             ...state,
-            isLoading: action.value.isLoading,
+            isLoading: action.value,
         }
     }
 
