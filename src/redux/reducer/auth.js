@@ -3,6 +3,14 @@ const initStateRegister = {
     email: '',
     password: '',
     password_confirmation: '',
+    
+}
+
+const initPhoto = {
+    uri: '',
+    type: '',
+    name: '',
+    isUploadPhoto: false,
 }
 
 export const registerReducer = (state=initStateRegister, action) => {
@@ -16,6 +24,27 @@ export const registerReducer = (state=initStateRegister, action) => {
             password: action.value.password,
             password_confirmation: action.value.password,
         } 
+    }
+
+    return state
+}
+ 
+export const photoReducer = (state= initPhoto, action) => {
+    if(action.type === 'SET_PHOTO')
+    {
+        return {
+            ...state,
+            uri: action.value.uri,
+            type: action.value.type,
+            name: action.value.name
+        }
+    }
+    if(action.type === 'SET_UPLOAD_STATUS')
+    {
+        return {
+            ...state,
+            isUploadPhoto: action.value
+        }
     }
 
     return state

@@ -2,8 +2,9 @@ import axios from 'axios';
 import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import {Button, Gap, Headers, Select, TextInput} from '../../components';
-import {useForm} from '../../utils';
+import {Button, Gap, Headers, TextInput} from '../../components';
+import {useForm, showMessage} from '../../utils';
+
 
 const SignupAddress = ({navigation}) => {
 
@@ -13,28 +14,45 @@ const SignupAddress = ({navigation}) => {
     houseNumber: '',
     city: ''
   });
-
   const dispatch = useDispatch();
-  const registerReducer = useSelector(state => state.registerReducer)
+  const {registerReducer, photoReducer} = useSelector(state => state)
+
 
   const onSubmit = () => {
+    console.log('form: ', form);
     const data = {
       ...form,
       ...registerReducer
     }
-
-    console.log('data register: ',data)
-
+    dispatch({type:'SET_LOADING', value: true});
     axios.post('http://ecommerce.iottelnet.com/api/register', data)
-    .then((res) => {
-      navigation.replace('SuccessSignup')
-      console.log(res.data)
-    }).catch((err) => {
-      console.log(err)
-    });
-    
-  }
+    .then(res => {
+      const urlUpload = 'http://ecommerce.iottelnet.com/api/user/photo';
+      console.log('data success', res.data);
 
+      if(photoReducer.isUploadPhoto){
+        const photoForUpload = new FormData();
+        photoForUpload.append('file', photoReducer);
+
+        axios.post(urlUpload,photoForUpload,{
+          headers: {
+            Authorization:`${res.data.data.token_type} ${res.data.data.access_token}`,
+            'Content-Type': 'multipart/form-data',
+          }
+        }).then(resUpload => {
+          console.log('Respon Upload', resUpload)
+        }).catch(uploadErr => {
+          showMessage('Upload Tidak berhasil');
+        })
+      }
+      dispatch({type:'SET_LOADING', value: false});
+      showMessage('Register Success', 'success');
+      navigation.replace('SuccessSignup');
+    }).catch(err => {
+      dispatch({type: 'SET_LOADING', value: false});
+      showMessage(err.message);
+    });
+  }
   return (
     <ScrollView contentContainerStyle={{ flexGrow:1 }}>
     <View style={styles.page}>
