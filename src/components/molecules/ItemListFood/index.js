@@ -1,17 +1,19 @@
 import React from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
-import {Rating} from '..';
+import {Number, Rating} from '..';
 
 const ItemListFood = ({
   image,
   onPress,
   items,
+  stock,
   rating,
   price,
   type,
   name,
   date,
   status,
+  number,
 }) => {
   const renderContent = () => {
     switch (type) {
@@ -20,10 +22,11 @@ const ItemListFood = ({
           <>
             <View style={{flex: 1}}>
               <Text style={styles.title}>{name}</Text>
-              <Text style={styles.desc}>Stok : 90</Text>
-              <Text style={styles.desc}>IDR {price}</Text>
+              <Number number={price} style={styles.desc} />
+              <Text style={styles.desc}>Stock: {stock}</Text>
+              {/* <Text style={styles.desc}>IDR {price}</Text> */}
             </View>
-            <Rating rating={rating} />
+            <Rating number={rating} />
           </>
         );
 
@@ -32,7 +35,8 @@ const ItemListFood = ({
           <>
             <View style={{flex: 1}}>
               <Text style={styles.title}>{name}</Text>
-              <Text style={styles.desc}>IDR {price}</Text>
+              <Number number={price} />
+              {/* <Text style={styles.desc}>IDR {price}</Text> */}
             </View>
 
             <Text style={styles.items}>Jumlah: {items} items</Text>
@@ -44,7 +48,7 @@ const ItemListFood = ({
             <View style={{flex: 1}}>
               <Text style={styles.title}>{name}</Text>
               <Text style={styles.desc}>
-                {items} items . IDR {price}
+                {items} items . <Number number={price} />
               </Text>
             </View>
           </>
@@ -55,7 +59,7 @@ const ItemListFood = ({
             <View style={{flex: 1}}>
               <Text style={styles.title}>{name}</Text>
               <Text style={styles.desc}>
-                {items} items . IDR {price}
+                {items} items . <Number number={price} />
               </Text>
             </View>
             <View>
@@ -69,8 +73,8 @@ const ItemListFood = ({
           <>
             <View style={{flex: 1}}>
               <Text style={styles.title}>{name}</Text>
-              <Text style={styles.desc}>Stok : 90</Text>
-              <Text style={styles.desc}>IDR {price}</Text>
+              <Text style={styles.desc}>{stock}</Text>
+              <Number number={price} style={styles.desc} />
             </View>
             <Rating />
           </>

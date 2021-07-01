@@ -16,8 +16,7 @@ const SignupAddress = ({navigation}) => {
   });
   const dispatch = useDispatch();
   const {registerReducer, photoReducer} = useSelector(state => state)
-
-
+    
   const onSubmit = () => {
     console.log('form: ', form);
     const data = {
@@ -33,7 +32,7 @@ const SignupAddress = ({navigation}) => {
       <Headers
         title="Alamat"
         subTitle="Pastikan memasukan data yang valid"
-        onBack={() => {}}
+        onBack={() => navigation.goBack()}
       />
       <View style={styles.container}>
         <TextInput label="No Handphone" placeholder="Masukan No Handphone" value={form.phoneNumber} onChangeText={(value) => setForm('phoneNumber', value)} />

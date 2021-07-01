@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ImageBackground,
   StyleSheet,
@@ -7,13 +7,20 @@ import {
   View,
 } from 'react-native';
 import {DummyImg1, Ic_back_white} from '../../assets';
-import {Button, Counter, Rating} from '../../components';
+import {Button, Counter, Number, Rating} from '../../components';
 
-const ItemDetail = ({navigation}) => {
+const ItemDetail = ({navigation, route}) => {
+
+  const {name, picturePath, description, stock, rate, price} = route.params;
+  const [totalItem, setTotalItem] = useState(1);
+
+  const onCounterChange = (value) => {
+    setTotalItem(value);
+  }
   return (
     <View style={styles.pages}>
-      <ImageBackground source={DummyImg1} style={styles.cover}>
-        <TouchableOpacity style={styles.back}>
+      <ImageBackground source={{ uri: picturePath }} style={styles.cover}>
+        <TouchableOpacity style={styles.back} onPress={() => navigation.goBack()}>
           <Ic_back_white />
         </TouchableOpacity>
       </ImageBackground>
@@ -21,23 +28,21 @@ const ItemDetail = ({navigation}) => {
         <View style={styles.mainContent}>
           <View style={styles.productContainer}>
             <View>
-              <Text style={styles.title}>Sepatu HnM</Text>
-              <Rating />
+              <Text style={styles.title}>{name}</Text>
+              <Rating number={rate} />
             </View>
-            <Counter />
+            <Counter onValueChange={onCounterChange} />
           </View>
           <Text style={styles.desc}>
-            Sepatu dengan kualitas tinggi dan juga mantap untuk digunakan
-            sehari-hari, sepatu ini memiliki berbagai varian warna seperti
-            hitam, merah dan abu-abu
+            {description}
           </Text>
           <Text style={styles.label}>Stok:</Text>
-          <Text style={styles.desc}>90</Text>
+          <Text style={styles.desc}>{stock}</Text>
         </View>
         <View style={styles.footer}>
           <View style={styles.priceContainer}>
             <Text style={styles.labelTotal}>Total Harga:</Text>
-            <Text style={styles.priceTotal}>IDR. 20.000.000</Text>
+            <Number number={totalItem * price} style={styles.priceTotal}/>
           </View>
           <View style={styles.button}>
             <Button

@@ -9,7 +9,9 @@ import EmptyOrder from './EmptyOrder';
 import OrderTabSection from './OrderTabSection';
 import ProfileTabSection from './ProfileTabSection';
 import ItemListMenu from './ItemListMenu';
-import Loading from './Loading'
+import Loading from './Loading';
+import WelcomeUser from './WelcomeUser'
+import Number from './Number';
 
 export {
   Headers,
@@ -23,5 +25,7 @@ export {
   OrderTabSection,
   ProfileTabSection,
   ItemListMenu,
-  Loading
+  Loading,
+  WelcomeUser,
+  Number
 };

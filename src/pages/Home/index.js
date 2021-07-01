@@ -1,34 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   StyleSheet,
   Text,
   View,
   ScrollView,
-  TouchableOpacity,
 } from 'react-native';
-import {Ic_bell, Ic_message} from '../../assets/icons';
+
 import {Fitur, Gap, Kategori, SearchInput} from '../../components/atoms';
-import {HomeTabSection} from '../../components/molecules';
+import {HomeTabSection, WelcomeUser} from '../../components/molecules';
 
 const Home = ({onPress, navigation}) => {
   return (
     <View style={styles.pages}>
       <View style={styles.nav}>
         <View style={styles.header}>
-          <SearchInput />
-        </View>
-        <View style={styles.icon}>
-          <TouchableOpacity
-            activeOpacity={0.7}
-            onPress={() => navigation.navigate('NotificationOrder')}>
-            <Ic_bell />
-          </TouchableOpacity>
-
-          <Gap width={14} />
-          <Ic_message />
+          <WelcomeUser />
         </View>
       </View>
-      <Gap height={24} />
+      <Gap height={10} />
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
         <Text style={styles.text}>Mau belanja apa</Text>
         <Text style={styles.text}>hari ini ?</Text>
@@ -84,14 +73,12 @@ export default Home;
 const styles = StyleSheet.create({
   nav: {
     flexDirection: 'row',
-    paddingHorizontal: 20,
   },
   page: {
     flex: 1,
     paddingHorizontal: 20,
   },
   header: {
-    paddingTop: 16,
     flex: 1,
   },
   pages: {

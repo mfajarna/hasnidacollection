@@ -1,19 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 import {ImgPhoto} from '../../assets';
 import {ProfileTabSection} from '../../components/molecules';
+import { getData } from '../../utils/storage';
 
 const Akun = () => {
+
+  const [userProfile,setUserProfile] = useState({});
+    useEffect(() =>  {
+        getData('userProfile').then(res => {
+            setUserProfile(res);
+        })
+    }, []);
+
   return (
     <View style={styles.page}>
       <View style={styles.profileDetail}>
         <View style={styles.photo}>
           <View style={styles.borderPhoto}>
-            <Image source={ImgPhoto} style={styles.photoContainer} />
+            <Image source={{ uri: userProfile.profile_photo_path }} style={styles.photoContainer} />
           </View>
         </View>
-        <Text style={styles.name}>Muhammad Fajar</Text>
-        <Text style={styles.email}>mfajarna@gmail.com</Text>
+        <Text style={styles.name}>{userProfile.name}</Text>
+        <Text style={styles.email}>{userProfile.email}</Text>
       </View>
       <View style={styles.content}>
         <ProfileTabSection />

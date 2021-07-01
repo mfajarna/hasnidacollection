@@ -1,8 +1,9 @@
-import axios from 'axios';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import { useDispatch } from 'react-redux';
 import {Button, Gap, Headers, TextInput} from '../../components';
-import {useForm} from '../../utils';
+import { signInAction } from '../../redux/action/auth';
+import {getData, useForm} from '../../utils';
 
 const Signin = ({navigation}) => {
   const [form, setForm] = useForm({
@@ -10,15 +11,10 @@ const Signin = ({navigation}) => {
     password: '',
   });
 
+  const dispatch = useDispatch();
+
   const onSubmit = () => {
-    axios
-      .post('http://ecommerce.iottelnet.com/api/login', form)
-      .then(res => {
-        console.log('success', res);
-      })
-      .catch(err => {
-        console.log('error', err);
-      });
+    dispatch(signInAction(form, navigation))
   };
 
   return (

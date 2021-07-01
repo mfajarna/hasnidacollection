@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import {
   Ic_arrow_right,
   Ic_edit,
@@ -12,7 +13,7 @@ import {
   Ic_terms,
 } from '../../../assets';
 
-const ItemListMenu = ({text}) => {
+const ItemListMenu = ({text, onPress}) => {
   const Icon = () => {
     if (text === 'Edit Profile') {
       return <Ic_edit />;
@@ -42,14 +43,15 @@ const ItemListMenu = ({text}) => {
   };
 
   return (
+    <TouchableOpacity onPress={onPress}>
     <View style={styles.container}>
       <View style={styles.label}>
         <Icon />
         <Text style={styles.text}>{text}</Text>
       </View>
-
       <Ic_arrow_right />
     </View>
+    </TouchableOpacity>
   );
 };
 

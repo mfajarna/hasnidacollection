@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
+import { Ic_bell, Ic_message } from '../../../assets';
 
 const SearchInput = () => {
   return (
@@ -7,6 +8,16 @@ const SearchInput = () => {
       <TextInput
         style={styles.input}
         placeholder="Pakaian terlaris ..."></TextInput>
+          <View style={styles.icon}>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => navigation.navigate('NotificationOrder')}>
+            <Ic_bell />
+          </TouchableOpacity>
+
+          <Gap width={14} />
+          <Ic_message />
+        </View>
     </View>
   );
 };
@@ -24,4 +35,9 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   container: {},
+    icon: {
+    flexDirection: 'row',
+    paddingTop: 20,
+    paddingLeft: 10,
+  },
 });
