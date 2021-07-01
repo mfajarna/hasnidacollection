@@ -12,7 +12,9 @@ const SignupAddress = ({navigation}) => {
     phoneNumber: '',
     address: '',
     houseNumber: '',
-    city: ''
+    city: '',
+    postal_code: '',
+    kecamatan: '',
   });
   const dispatch = useDispatch();
   const {registerReducer, photoReducer} = useSelector(state => state)
@@ -27,13 +29,14 @@ const SignupAddress = ({navigation}) => {
     dispatch(signUpAction(data,photoReducer,navigation))
   }
   return (
-    <ScrollView contentContainerStyle={{ flexGrow:1 }}>
+    
     <View style={styles.page}>
       <Headers
         title="Alamat"
         subTitle="Pastikan memasukan data yang valid"
         onBack={() => navigation.goBack()}
       />
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <View style={styles.container}>
         <TextInput label="No Handphone" placeholder="Masukan No Handphone" value={form.phoneNumber} onChangeText={(value) => setForm('phoneNumber', value)} />
         <Gap height={16} />
@@ -41,15 +44,20 @@ const SignupAddress = ({navigation}) => {
         <Gap height={16} />
         <TextInput label="No Rumah" placeholder="Masukan No Rumah anda" value={form.houseNumber} onChangeText={(value) => setForm('houseNumber', value)} />
         <Gap height={16} />
-        <TextInput label="Kota" placeholder="Masukan nama kota" value={form.city} onChangeText={(value) => setForm('city', value)} />
+        <TextInput label="Kecamatan/Desa" placeholder="Masukan nama kecamatan/desa" value={form.kecamatan} onChangeText={(value) => setForm('kecamatan', value)} />
+        <Gap height={16} />
+        <TextInput label="Kota/Kab" placeholder="Masukan nama kota/kab" value={form.city} onChangeText={(value) => setForm('city', value)} />
+        <Gap height={16} />
+        <TextInput label="Kode Pos" placeholder="Masukan Kode Pos" value={form.postal_code} onChangeText={(value) => setForm('postal_code', value)} />
         <Gap height={20} />
         <Button
           text="Sign up now"
           onPress={onSubmit}
         />
       </View>
+      </ScrollView>
     </View>
-    </ScrollView>
+ 
   );
 };
 

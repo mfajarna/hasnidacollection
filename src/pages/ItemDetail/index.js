@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ImageBackground,
   StyleSheet,
@@ -6,17 +6,47 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {DummyImg1, Ic_back_white} from '../../assets';
+import {Ic_back_white} from '../../assets';
 import {Button, Counter, Number, Rating} from '../../components';
+import { getData } from '../../utils/storage';
 
 const ItemDetail = ({navigation, route}) => {
 
   const {name, picturePath, description, stock, rate, price} = route.params;
   const [totalItem, setTotalItem] = useState(1);
+  const [userProfile, setUserProfile] = useState({});
 
+  useEffect(() => {
+    getData('userProfile').then(res => {
+      setUserProfile(res)
+    })
+  }, [])
   const onCounterChange = (value) => {
     setTotalItem(value);
   }
+
+  const onOrder = () => {
+    const totalPrice = totalItem * price
+    const tax = 10 / 100 * totalPrice;
+    const total = totalPrice + tax;
+    
+    const data = {
+      item: {
+        name: name,
+        price: price,
+        picturePath: picturePath,
+      },
+      transaction: {
+        totalItem : totalItem,
+        totalPrice : totalPrice,
+        jasa: tax,
+        total: total
+      },
+      userProfile
+    }
+    navigation.navigate('OrderSummary', data);
+  }
+
   return (
     <View style={styles.pages}>
       <ImageBackground source={{ uri: picturePath }} style={styles.cover}>
@@ -47,7 +77,7 @@ const ItemDetail = ({navigation, route}) => {
           <View style={styles.button}>
             <Button
               text="Order Now"
-              onPress={() => navigation.navigate('OrderSummary')}
+              onPress={onOrder}
             />
           </View>
         </View>

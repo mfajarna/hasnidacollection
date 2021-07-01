@@ -4,43 +4,46 @@ import {DummyImg1} from '../../assets';
 import {Headers, ItemListFood, ItemValue} from '../../components/molecules';
 import {Button} from '../../components/atoms';
 
-const OrderSummary = ({navigation}) => {
+const OrderSummary = ({navigation, route}) => {
+
+  const {item, transaction, userProfile} = route.params;
+
   return (
     <View style={styles.container}>
       <Headers
         title="Pembayaran"
         subTitle="Silahkan cek pembayaran pesananmu"
-        onBack={() => {}}
+        onBack={() => navigation.goBack()}
       />
       <ScrollView>
         <View style={styles.content}>
-          <Text style={styles.label}>Order Barang</Text>
+          <Text style={styles.label}>Informasi Order</Text>
           <ItemListFood
             type="order-summary"
-            name="Sepatu HnM"
-            price="1.000.000"
-            items={4}
-            image={DummyImg1}
-            items={14}
+            name={item.name}
+            price={item.price}
+            items={transaction.totalItem}
+            image={{ uri: item.picturePath }}
           />
           <Text style={styles.label}>Informasi Transaksi</Text>
-          <ItemValue label="Sepatu HnM" value="IDR 2.000.000" />
-          <ItemValue label="Kurir Pengiriman" value="SiCepat-BEST" />
-          <ItemValue label="No. Resi" value="022303004185806" />
+          <ItemValue label={item.name} value={transaction.totalPrice} type="currency" />
+          <ItemValue label="Jasa 5%" value={transaction.jasa} type="currency"  />
+          <ItemValue label="No. Transaksi" value="022303004185806" />
           <ItemValue
             label="Total Harga"
-            value="IDR 23.000.000"
+            value={transaction.total}
             valueColor="#1ABC9C"
+            type="currency" 
           />
         </View>
 
         <View style={styles.content}>
           <Text style={styles.label}>Informasi Pembeli:</Text>
-          <ItemValue label="Nama" value="Muhammad Fajar" />
-          <ItemValue label="No. Handphone" value="0822 8332 8833" />
-          <ItemValue label="Alamat" value="Komp Permata Cimahi Raya Cimahi" />
-          <ItemValue label="No Rumah" value="N16 no 7" />
-          <ItemValue label="Kota" value="Cimahi" />
+          <ItemValue label="Nama" value={userProfile.name} />
+          <ItemValue label="No. Handphone" value={userProfile.phoneNumber}/>
+          <ItemValue label="Alamat" value={userProfile.address} />
+          <ItemValue label="No Rumah" value={userProfile.houseNumber} />
+          <ItemValue label="Kota" value={userProfile.city} />
           <ItemValue label="Kode Pos" value="40288" />
         </View>
       </ScrollView>
