@@ -26,7 +26,7 @@ const OrderDetail = () => {
           <Text style={styles.label}>Informasi Transaksi</Text>
           <ItemValue label="Sepatu HnM" value="IDR 2.000.000" />
           <ItemValue label="Kurir Pengiriman" value="SiCepat-BEST" />
-          <ItemValue label="No. Resi" value="022303004185806" />
+          <ItemValue label="No. Transaksi" value="022303004185806" />
           <ItemValue
             label="Total Harga"
             value="IDR 23.000.000"

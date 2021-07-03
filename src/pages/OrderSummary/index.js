@@ -5,8 +5,18 @@ import {Headers, ItemListFood, ItemValue} from '../../components/molecules';
 import {Button} from '../../components/atoms';
 
 const OrderSummary = ({navigation, route}) => {
-
   const {item, transaction, userProfile} = route.params;
+
+  const no_transaksi = () => {
+    const date = new Date();
+
+    const today =
+      date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+
+    const transaksi = `HSND${today}`;
+
+    console.log(transaksi);
+  };
 
   return (
     <View style={styles.container}>
@@ -23,24 +33,28 @@ const OrderSummary = ({navigation, route}) => {
             name={item.name}
             price={item.price}
             items={transaction.totalItem}
-            image={{ uri: item.picturePath }}
+            image={{uri: item.picturePath}}
           />
           <Text style={styles.label}>Informasi Transaksi</Text>
-          <ItemValue label={item.name} value={transaction.totalPrice} type="currency" />
-          <ItemValue label="Jasa 5%" value={transaction.jasa} type="currency"  />
+          <ItemValue
+            label={item.name}
+            value={transaction.totalPrice}
+            type="currency"
+          />
+          <ItemValue label="Jasa 5%" value={transaction.jasa} type="currency" />
           <ItemValue label="No. Transaksi" value="022303004185806" />
           <ItemValue
             label="Total Harga"
             value={transaction.total}
             valueColor="#1ABC9C"
-            type="currency" 
+            type="currency"
           />
         </View>
 
         <View style={styles.content}>
           <Text style={styles.label}>Informasi Pembeli:</Text>
           <ItemValue label="Nama" value={userProfile.name} />
-          <ItemValue label="No. Handphone" value={userProfile.phoneNumber}/>
+          <ItemValue label="No. Handphone" value={userProfile.phoneNumber} />
           <ItemValue label="Alamat" value={userProfile.address} />
           <ItemValue label="No Rumah" value={userProfile.houseNumber} />
           <ItemValue label="Kota" value={userProfile.city} />
@@ -48,10 +62,7 @@ const OrderSummary = ({navigation, route}) => {
         </View>
       </ScrollView>
       <View style={styles.button}>
-        <Button
-          text="Bayar Sekarang"
-          onPress={() => navigation.replace('SuccessOrder')}
-        />
+        <Button text="Bayar Sekarang" onPress={no_transaksi} />
       </View>
     </View>
   );
