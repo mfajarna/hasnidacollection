@@ -31,6 +31,7 @@ import Ic_rate from './ic_rate.svg';
 import Ic_help_center from './ic_help_center.svg';
 import Ic_privacy from './ic_privacy.svg';
 import Ic_terms from './ic_terms.svg';
+import Ic_beauty_care from './ic_beauty_care.svg';
 
 export {
   Ic_arrow_back,
@@ -66,4 +67,5 @@ export {
   Ic_terms,
   Ic_privacy,
   Ic_help_center,
+  Ic_beauty_care,
 };

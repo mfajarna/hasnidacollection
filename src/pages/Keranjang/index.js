@@ -1,20 +1,26 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import {EmptyOrder, Headers, OrderTabSection} from '../../components/molecules';
-
+import {getOrders} from '../../redux/action/order';
 
 const Keranjang = () => {
- const [isEmpty] = useState(false);
+  const [isEmpty] = useState(false);
+  const dispatch = useDispatch();
+  const {orders} = useSelector(state => state.orderReducer);
+
+  useEffect(() => {
+    dispatch(getOrders());
+  }, []);
+
+  console.log('list orders: ', orders);
   return (
     <View style={styles.page}>
-      {isEmpty ? (
+      {orders.length < 1 ? (
         <EmptyOrder />
       ) : (
         <View style={styles.content}>
-          <Headers
-            title="Keranjang"
-            subTitle="Cek pesananmu disini"
-          />
+          <Headers title="Keranjang" subTitle="Cek pesananmu disini" />
           <View style={styles.tabContainer}>
             <OrderTabSection />
           </View>
@@ -27,7 +33,7 @@ const Keranjang = () => {
 export default Keranjang;
 
 const styles = StyleSheet.create({
-   page: {
+  page: {
     flex: 1,
   },
   content: {

@@ -1,6 +1,12 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {Ic_pakaian, Ic_hijab, Ic_heels, Ic_tas} from '../../../assets/icons';
+import {
+  Ic_pakaian,
+  Ic_hijab,
+  Ic_heels,
+  Ic_tas,
+  Ic_beauty_care,
+} from '../../../assets/icons';
 
 const Kategori = ({onPress, label}) => {
   const Icon = () => {
@@ -15,6 +21,9 @@ const Kategori = ({onPress, label}) => {
     }
     if (label === 'TAS') {
       return <Ic_tas />;
+    }
+    if (label === 'BEAUTY') {
+      return <Ic_beauty_care />;
     }
     return <Ic_pakaian />;
   };

@@ -54,6 +54,7 @@ const ItemListFood = ({
           </>
         );
       case 'past-orders':
+        const formatedDate = new Date(date).toLocaleDateString();
         return (
           <>
             <View style={{flex: 1}}>
@@ -63,7 +64,7 @@ const ItemListFood = ({
               </Text>
             </View>
             <View>
-              <Text style={styles.date}>{date}</Text>
+              <Text style={styles.date}>{formatedDate}</Text>
               <Text style={styles.status}>{status}</Text>
             </View>
           </>

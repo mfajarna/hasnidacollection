@@ -1,10 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, Text, View, ScrollView} from 'react-native';
 
 import {Fitur, Gap, Kategori, SearchInput} from '../../components/atoms';
 import {HomeTabSection, WelcomeUser} from '../../components/molecules';
@@ -46,18 +41,23 @@ const Home = ({onPress, navigation}) => {
           <Text style={styles.textFitur}>Pilih Kategori</Text>
           <Gap height={12} />
           <View style={styles.kategori}>
-            <View style={styles.kategoriItem}>
-              <Kategori label="PAKAIAN" />
-            </View>
-            <View style={styles.kategoriItem}>
-              <Kategori label="HEELS" />
-            </View>
-            <View style={styles.kategoriItem}>
-              <Kategori label="HIJAB" />
-            </View>
-            <View style={styles.kategoriItem}>
-              <Kategori label="TAS" />
-            </View>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+              <View style={styles.kategoriItem}>
+                <Kategori label="PAKAIAN" />
+              </View>
+              <View style={styles.kategoriItem}>
+                <Kategori label="HEELS" />
+              </View>
+              <View style={styles.kategoriItem}>
+                <Kategori label="HIJAB" />
+              </View>
+              <View style={styles.kategoriItem}>
+                <Kategori label="TAS" />
+              </View>
+              <View style={styles.kategoriItem}>
+                <Kategori label="BEAUTY" />
+              </View>
+            </ScrollView>
           </View>
         </View>
         <View style={styles.tabContainer}>
@@ -110,10 +110,11 @@ const styles = StyleSheet.create({
   kategori: {
     flexDirection: 'row',
     marginBottom: 20,
+    justifyContent: 'space-between',
   },
   kategoriItem: {
-    flex: 1,
     paddingRight: 5,
+    width: 77,
   },
   tabContainer: {
     flex: 1,

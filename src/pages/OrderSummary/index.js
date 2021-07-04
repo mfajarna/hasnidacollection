@@ -1,11 +1,20 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {DummyImg1} from '../../assets';
 import {Headers, ItemListFood, ItemValue} from '../../components/molecules';
 import {Button} from '../../components/atoms';
+import {getData} from '../../utils/storage';
+import axios from 'axios';
 
 const OrderSummary = ({navigation, route}) => {
   const {item, transaction, userProfile} = route.params;
+  const [token, setToken] = useState('');
+
+  useEffect(() => {
+    getData('token').then(res => {
+      setToken(res.value);
+    });
+  });
 
   const no_transaksi = () => {
     const date = new Date();
@@ -16,6 +25,33 @@ const OrderSummary = ({navigation, route}) => {
     const transaksi = `HSND${today}`;
 
     console.log(transaksi);
+  };
+
+  const onCheckout = () => {
+    const data = {
+      collection_id: item.id,
+      user_id: userProfile.id,
+      quantity: transaction.totalItem,
+      total: transaction.total,
+      status: 'PENDING',
+    };
+
+    axios
+      .post('http://ecommerce.iottelnet.com/api/checkout', data, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then(res => {
+        console.log('Data Checkout', res);
+      })
+      .catch(err => {
+        console.log('err ', err);
+      });
+
+    console.log(data);
+
+    navigation.replace('SuccessOrder');
   };
 
   return (
@@ -57,12 +93,13 @@ const OrderSummary = ({navigation, route}) => {
           <ItemValue label="No. Handphone" value={userProfile.phoneNumber} />
           <ItemValue label="Alamat" value={userProfile.address} />
           <ItemValue label="No Rumah" value={userProfile.houseNumber} />
-          <ItemValue label="Kota" value={userProfile.city} />
-          <ItemValue label="Kode Pos" value="40288" />
+          <ItemValue label="Kota/Kab" value={userProfile.city} />
+          <ItemValue label="Kecamatan" value={userProfile.kecamatan} />
+          <ItemValue label="Kode Pos" value={userProfile.postal_code} />
         </View>
       </ScrollView>
       <View style={styles.button}>
-        <Button text="Bayar Sekarang" onPress={no_transaksi} />
+        <Button text="Bayar Sekarang" onPress={onCheckout} />
       </View>
     </View>
   );

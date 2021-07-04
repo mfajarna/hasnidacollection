@@ -4,6 +4,9 @@ import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import {ItemListFood} from '..';
 import {DummyImg1, DummyImg2, DummyImg3} from '../../../assets';
 import {useNavigation} from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
+import {useEffect} from 'react';
+import {getInProgress, getPastOrders} from '../../../redux/action/order';
 
 const renderTabBar = props => (
   <TabBar
@@ -38,69 +41,59 @@ const renderTabBar = props => (
 
 const InProgress = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const {inProgress} = useSelector(state => state.orderReducer);
+  useEffect(() => {
+    dispatch(getInProgress());
+  }, []);
+
   return (
     <View style={{paddingTop: 8, paddingHorizontal: 24}}>
-      <ItemListFood
-        rating={3}
-        image={DummyImg1}
-        onPress={() => navigation.navigate('OrderDetail')}
-        inProgress
-        type="in-progress"
-        items={3}
-        price="2.000.000"
-        name="Sepatu HnM"
-      />
-      <ItemListFood
-        rating={3}
-        image={DummyImg2}
-        onPress={() => navigation.navigate('OrderDetail')}
-        inProgress
-        type="in-progress"
-        items={2}
-        price="4.000.000"
-        name="Baju HnM"
-      />
-      <ItemListFood
-        rating={3}
-        image={DummyImg3}
-        onPress={() => navigation.navigate('OrderDetail')}
-        inProgress
-        type="in-progress"
-        items={1}
-        price="1.500.000"
-        name="Tas Gucci"
-      />
+      {inProgress.map(order => {
+        return (
+          <ItemListFood
+            key={order.id}
+            rating={order.collection.rate}
+            image={{uri: order.collection.picturePath}}
+            onPress={() => navigation.navigate('OrderDetail')}
+            inProgress
+            type="in-progress"
+            items={order.quantity}
+            price={order.total}
+            name={order.collection.name}
+          />
+        );
+      })}
     </View>
   );
 };
 
 const PastOrders = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const {pastOrders} = useSelector(state => state.orderReducer);
+  useEffect(() => {
+    dispatch(getPastOrders());
+  }, []);
+
   return (
-    <View
-      style={{paddingTop: 8, paddingHorizontal: 24}}
-      onPress={() => navigation.navigate('OrderDetail')}>
-      <ItemListFood
-        rating={3}
-        image={DummyImg1}
-        onPress={() => navigation.navigate('OrderDetail')}
-        type="past-orders"
-        items={1}
-        price="1.500.000"
-        name="Tas Gucci"
-        date="Jun 12, 14:00"
-      />
-      <ItemListFood
-        rating={3}
-        image={DummyImg2}
-        onPress={() => navigation.navigate('OrderDetail')}
-        type="past-orders"
-        items={1}
-        price="1.500.000"
-        name="Tas Gucci"
-        date="Jun 12, 14:00"
-        status="Cancelled"
-      />
+    <View style={{paddingTop: 8, paddingHorizontal: 24}}>
+      {pastOrders.map(order => {
+        return (
+          <ItemListFood
+            key={order.id}
+            rating={order.collection.rate}
+            image={{uri: order.collection.picturePath}}
+            onPress={() => navigation.navigate('OrderDetail')}
+            type="past-orders"
+            items={order.quantity}
+            price={order.total}
+            name={order.collection.name}
+            date={order.created_at}
+            status={order.status}
+          />
+        );
+      })}
     </View>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   ImageBackground,
   StyleSheet,
@@ -8,49 +8,51 @@ import {
 } from 'react-native';
 import {Ic_back_white} from '../../assets';
 import {Button, Counter, Number, Rating} from '../../components';
-import { getData } from '../../utils/storage';
+import {getData} from '../../utils/storage';
 
 const ItemDetail = ({navigation, route}) => {
-
-  const {name, picturePath, description, stock, rate, price} = route.params;
+  const {id, name, picturePath, description, stock, rate, price} = route.params;
   const [totalItem, setTotalItem] = useState(1);
   const [userProfile, setUserProfile] = useState({});
 
   useEffect(() => {
     getData('userProfile').then(res => {
-      setUserProfile(res)
-    })
-  }, [])
-  const onCounterChange = (value) => {
+      setUserProfile(res);
+    });
+  }, []);
+  const onCounterChange = value => {
     setTotalItem(value);
-  }
+  };
 
   const onOrder = () => {
-    const totalPrice = totalItem * price
-    const tax = 10 / 100 * totalPrice;
+    const totalPrice = totalItem * price;
+    const tax = (10 / 100) * totalPrice;
     const total = totalPrice + tax;
-    
+
     const data = {
       item: {
+        id: id,
         name: name,
         price: price,
         picturePath: picturePath,
       },
       transaction: {
-        totalItem : totalItem,
-        totalPrice : totalPrice,
+        totalItem: totalItem,
+        totalPrice: totalPrice,
         jasa: tax,
-        total: total
+        total: total,
       },
-      userProfile
-    }
+      userProfile,
+    };
     navigation.navigate('OrderSummary', data);
-  }
+  };
 
   return (
     <View style={styles.pages}>
-      <ImageBackground source={{ uri: picturePath }} style={styles.cover}>
-        <TouchableOpacity style={styles.back} onPress={() => navigation.goBack()}>
+      <ImageBackground source={{uri: picturePath}} style={styles.cover}>
+        <TouchableOpacity
+          style={styles.back}
+          onPress={() => navigation.goBack()}>
           <Ic_back_white />
         </TouchableOpacity>
       </ImageBackground>
@@ -63,22 +65,17 @@ const ItemDetail = ({navigation, route}) => {
             </View>
             <Counter onValueChange={onCounterChange} />
           </View>
-          <Text style={styles.desc}>
-            {description}
-          </Text>
+          <Text style={styles.desc}>{description}</Text>
           <Text style={styles.label}>Stok:</Text>
           <Text style={styles.desc}>{stock}</Text>
         </View>
         <View style={styles.footer}>
           <View style={styles.priceContainer}>
             <Text style={styles.labelTotal}>Total Harga:</Text>
-            <Number number={totalItem * price} style={styles.priceTotal}/>
+            <Number number={totalItem * price} style={styles.priceTotal} />
           </View>
           <View style={styles.button}>
-            <Button
-              text="Order Now"
-              onPress={onOrder}
-            />
+            <Button text="Order Now" onPress={onOrder} />
           </View>
         </View>
       </View>
