@@ -12,6 +12,7 @@ import OrderSummary from './OrderSummary';
 import SuccessOrder from './SuccessOrder';
 import NotificationOrder from './NotificationOrder';
 import OrderDetail from './OrderDetail';
+import CategoryPakaian from './CategoryPakaian';
 
 export {
   SplashScreen,
@@ -28,4 +29,5 @@ export {
   SuccessOrder,
   NotificationOrder,
   OrderDetail,
+  CategoryPakaian,
 };

@@ -54,7 +54,7 @@ const ItemListFood = ({
           </>
         );
       case 'past-orders':
-        const formatedDate = new Date(date).toLocaleDateString();
+        const formatedDate = new Date(date).toDateString();
         return (
           <>
             <View style={{flex: 1}}>

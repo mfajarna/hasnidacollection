@@ -10,8 +10,9 @@ import OrderTabSection from './OrderTabSection';
 import ProfileTabSection from './ProfileTabSection';
 import ItemListMenu from './ItemListMenu';
 import Loading from './Loading';
-import WelcomeUser from './WelcomeUser'
+import WelcomeUser from './WelcomeUser';
 import Number from './Number';
+import PakaianTabSection from './PakaianTabSection';
 
 export {
   Headers,
@@ -27,5 +28,6 @@ export {
   ItemListMenu,
   Loading,
   WelcomeUser,
-  Number
+  Number,
+  PakaianTabSection,
 };

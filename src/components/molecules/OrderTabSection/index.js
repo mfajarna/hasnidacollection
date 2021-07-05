@@ -6,7 +6,11 @@ import {DummyImg1, DummyImg2, DummyImg3} from '../../../assets';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {useEffect} from 'react';
-import {getInProgress, getPastOrders} from '../../../redux/action/order';
+import {
+  getConfirmation,
+  getInProgress,
+  getPastOrders,
+} from '../../../redux/action/order';
 
 const renderTabBar = props => (
   <TabBar
@@ -48,23 +52,25 @@ const InProgress = () => {
   }, []);
 
   return (
-    <View style={{paddingTop: 8, paddingHorizontal: 24}}>
-      {inProgress.map(order => {
-        return (
-          <ItemListFood
-            key={order.id}
-            rating={order.collection.rate}
-            image={{uri: order.collection.picturePath}}
-            onPress={() => navigation.navigate('OrderDetail')}
-            inProgress
-            type="in-progress"
-            items={order.quantity}
-            price={order.total}
-            name={order.collection.name}
-          />
-        );
-      })}
-    </View>
+    <ScrollView>
+      <View style={{paddingTop: 8, paddingHorizontal: 24}}>
+        {inProgress.map(order => {
+          return (
+            <ItemListFood
+              key={order.id}
+              rating={order.collection.rate}
+              image={{uri: order.collection.picturePath}}
+              onPress={() => navigation.navigate('OrderDetail')}
+              inProgress
+              type="in-progress"
+              items={order.quantity}
+              price={order.total}
+              name={order.collection.name}
+            />
+          );
+        })}
+      </View>
+    </ScrollView>
   );
 };
 
@@ -98,18 +104,50 @@ const PastOrders = () => {
   );
 };
 
+const Konfirmation = () => {
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const {confirmation} = useSelector(state => state.orderReducer);
+  useEffect(() => {
+    dispatch(getConfirmation());
+  }, []);
+
+  return (
+    <ScrollView>
+      <View style={{paddingTop: 8, paddingHorizontal: 24}}>
+        {confirmation.map(order => {
+          return (
+            <ItemListFood
+              key={order.id}
+              rating={order.collection.rate}
+              image={{uri: order.collection.picturePath}}
+              onPress={() => navigation.navigate('OrderDetail')}
+              type="in-progress"
+              items={order.quantity}
+              price={order.total}
+              name={order.collection.name}
+            />
+          );
+        })}
+      </View>
+    </ScrollView>
+  );
+};
+
 const initialLayout = {width: Dimensions.get('window').width};
 
 const OrderTabSection = () => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     {key: 'first', title: 'In Progress'},
-    {key: 'second', title: 'Past Orders'},
+    {key: 'second', title: 'Confirmation'},
+    {key: 'third', title: 'Past Orders'},
   ]);
 
   const renderScene = SceneMap({
     first: InProgress,
-    second: PastOrders,
+    second: Konfirmation,
+    third: PastOrders,
   });
   return (
     <TabView

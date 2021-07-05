@@ -43,7 +43,10 @@ const Home = ({onPress, navigation}) => {
           <View style={styles.kategori}>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               <View style={styles.kategoriItem}>
-                <Kategori label="PAKAIAN" />
+                <Kategori
+                  label="PAKAIAN"
+                  onPress={() => navigation.navigate('CategoryPakaian')}
+                />
               </View>
               <View style={styles.kategoriItem}>
                 <Kategori label="HEELS" />

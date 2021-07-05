@@ -54,3 +54,24 @@ export const getPastOrders = () => dispatch => {
       });
   });
 };
+
+export const getConfirmation = () => dispatch => {
+  getData('token').then(resToken => {
+    axios
+      .get(
+        'http://ecommerce.iottelnet.com/api/transaction?status=ON_DELIVERY',
+        {
+          headers: {
+            Authorization: resToken.value,
+          },
+        },
+      )
+      .then(res => {
+        console.log('get Confirmation Orders: ', res);
+        dispatch({type: 'SET_CONFIRMATION', value: res.data.data.data});
+      })
+      .catch(err => {
+        console.log('err', err);
+      });
+  });
+};

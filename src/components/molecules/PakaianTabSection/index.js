@@ -6,6 +6,7 @@ import {DummyImg1, DummyImg2, DummyImg3} from '../../../assets';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {getCollectionDataByTypes} from '../../../redux/action/home';
+import { getPakaianDataByTypes } from '../../../redux/action';
 
 const renderTabBar = props => (
   <TabBar
@@ -42,15 +43,15 @@ const NewSection = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  const {newCollection} = useSelector(state => state.homeReducer);
+  const {newPakaian} = useSelector(state => state.pakaianReducer);
 
   useEffect(() => {
-    dispatch(getCollectionDataByTypes('new_collection'));
+    dispatch(getPakaianDataByTypes('New Collection'));
   }, []);
 
   return (
     <View style={{paddingTop: 8, paddingHorizontal: 24}}>
-      {newCollection.map(itemNew => {
+      {newPakaian.map(itemNew => {
         return (
           <ItemListFood
             key={itemNew.id}
@@ -71,10 +72,10 @@ const NewSection = () => {
 const PopularSection = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const {popular} = useSelector(state => state.homeReducer);
+  const {popular} = useSelector(state => state.pakaianReducer);
 
   useEffect(() => {
-    dispatch(getCollectionDataByTypes('popular'));
+    dispatch(getPakaianDataByTypes('Popular'));
   }, []);
   return (
     <View style={{paddingTop: 8, paddingHorizontal: 24}}>
@@ -99,10 +100,10 @@ const PopularSection = () => {
 const RecommendedSection = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const {recommended} = useSelector(state => state.homeReducer);
+  const {recommended} = useSelector(state => state.pakaianReducer);
 
   useEffect(() => {
-    dispatch(getCollectionDataByTypes('recommended'));
+    dispatch(getPakaianDataByTypes('Recommended'));
   }, []);
   return (
     <View style={{paddingTop: 8, paddingHorizontal: 24}}>
@@ -126,7 +127,7 @@ const RecommendedSection = () => {
 
 const initialLayout = {width: Dimensions.get('window').width};
 
-const HomeTabSection = () => {
+const PakaianTabSection = () => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     {key: 'first', title: 'New Collection'},
@@ -151,6 +152,6 @@ const HomeTabSection = () => {
   );
 };
 
-export default HomeTabSection;
+export default PakaianTabSection;
 
 const styles = StyleSheet.create({});

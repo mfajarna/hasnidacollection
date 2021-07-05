@@ -2,6 +2,7 @@ const initOrder = {
   orders: [],
   inProgress: [],
   pastOrders: [],
+  confirmation: [],
 };
 
 export const orderReducer = (state = initOrder, action) => {
@@ -16,6 +17,13 @@ export const orderReducer = (state = initOrder, action) => {
     return {
       ...state,
       inProgress: action.value,
+    };
+  }
+
+  if (action.type === 'SET_CONFIRMATION') {
+    return {
+      ...state,
+      confirmation: action.value,
     };
   }
 
