@@ -49,16 +49,16 @@ const Home = ({onPress, navigation}) => {
                 />
               </View>
               <View style={styles.kategoriItem}>
-                <Kategori label="HEELS" />
+                <Kategori label="HEELS"  onPress={() => navigation.navigate('CategoryHeels') } />
               </View>
               <View style={styles.kategoriItem}>
-                <Kategori label="HIJAB" />
+                <Kategori label="HIJAB" onPress={() => navigation.navigate('CategoryHijab') } />
               </View>
               <View style={styles.kategoriItem}>
-                <Kategori label="TAS" />
+                <Kategori label="TAS" onPress={() => navigation.navigate('CategoryTas') }/>
               </View>
               <View style={styles.kategoriItem}>
-                <Kategori label="BEAUTY" />
+                <Kategori label="BEAUTY" onPress={() => navigation.navigate('CategoryBeauty') } />
               </View>
             </ScrollView>
           </View>

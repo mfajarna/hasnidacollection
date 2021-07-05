@@ -13,6 +13,10 @@ import Loading from './Loading';
 import WelcomeUser from './WelcomeUser';
 import Number from './Number';
 import PakaianTabSection from './PakaianTabSection';
+import HeelsTabSection from './HeelsTabSection';
+import HijabTabSection from './HijabTabSection';
+import BeautyTabSection from './BeautyTabSection';
+import TasTabSection from './TasTabSection';
 
 export {
   Headers,
@@ -30,4 +34,8 @@ export {
   WelcomeUser,
   Number,
   PakaianTabSection,
+  HeelsTabSection,
+  HijabTabSection,
+  BeautyTabSection,
+  TasTabSection
 };

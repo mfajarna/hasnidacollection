@@ -13,6 +13,10 @@ import SuccessOrder from './SuccessOrder';
 import NotificationOrder from './NotificationOrder';
 import OrderDetail from './OrderDetail';
 import CategoryPakaian from './CategoryPakaian';
+import CategoryHeels from './CategoryHeels';
+import CategoryHijab from './CategoryHijab';
+import CategoryTas from './CategoryTas';
+import CategoryBeauty from './CategoryBeauty';
 
 export {
   SplashScreen,
@@ -30,4 +34,8 @@ export {
   NotificationOrder,
   OrderDetail,
   CategoryPakaian,
+  CategoryHeels,
+  CategoryHijab,
+  CategoryTas,
+  CategoryBeauty
 };

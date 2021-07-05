@@ -17,6 +17,10 @@ import {
   NotificationOrder,
   OrderDetail,
   CategoryPakaian,
+  CategoryHeels,
+  CategoryHijab,
+  CategoryTas,
+  CategoryBeauty,
 } from '../pages';
 import {BottomNavigator} from '../components';
 
@@ -95,6 +99,26 @@ const Router = () => {
       <Stack.Screen
         name="CategoryPakaian"
         component={CategoryPakaian}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="CategoryHeels"
+        component={CategoryHeels}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="CategoryHijab"
+        component={CategoryHijab}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="CategoryTas"
+        component={CategoryTas}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="CategoryBeauty"
+        component={CategoryBeauty}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
