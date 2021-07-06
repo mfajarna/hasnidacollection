@@ -67,7 +67,7 @@ const Signup = ({navigation}) => {
           <TouchableOpacity onPress={addPhoto}>
             <View style={styles.borderPhoto}>
               {photo ? <Image source={photo} style={styles.photoImage} /> : <View style={styles.photoContainer}>
-                <Text style={styles.addPhoto}>Add Photo</Text>
+                <Text style={styles.addPhoto}>+ Photo</Text>
               </View>}
               
             </View>
