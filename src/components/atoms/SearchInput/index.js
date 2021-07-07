@@ -1,10 +1,11 @@
 import React from 'react';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Ic_bell, Ic_message } from '../../../assets';
+import Gap from '../Gap';
 
 const SearchInput = () => {
-  return (
-    <View style={styles.container}>
+  return (    <View style={styles.container}>
       <TextInput
         style={styles.input}
         placeholder="Pakaian terlaris ..."></TextInput>
@@ -14,7 +15,6 @@ const SearchInput = () => {
             onPress={() => navigation.navigate('NotificationOrder')}>
             <Ic_bell />
           </TouchableOpacity>
-
           <Gap width={14} />
           <Ic_message />
         </View>

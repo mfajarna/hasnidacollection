@@ -21,6 +21,7 @@ import {
   CategoryHijab,
   CategoryTas,
   CategoryBeauty,
+  Pembelian,
 } from '../pages';
 import {BottomNavigator} from '../components';
 
@@ -119,6 +120,11 @@ const Router = () => {
       <Stack.Screen
         name="CategoryBeauty"
         component={CategoryBeauty}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Pembelian"
+        component={Pembelian}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

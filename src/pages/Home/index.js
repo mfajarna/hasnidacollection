@@ -26,7 +26,7 @@ const Home = ({onPress, navigation}) => {
               <Fitur label="Lelang Barang" />
             </View>
             <View style={styles.content}>
-              <Fitur label="Pembelian" />
+              <Fitur label="Pembelian" onPress={() => navigation.navigate('Pembelian')} />
             </View>
           </View>
           <View style={styles.fitur}>
@@ -63,9 +63,7 @@ const Home = ({onPress, navigation}) => {
             </ScrollView>
           </View>
         </View>
-        <View style={styles.tabContainer}>
-          <HomeTabSection />
-        </View>
+
       </ScrollView>
     </View>
   );
