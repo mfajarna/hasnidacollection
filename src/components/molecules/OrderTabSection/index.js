@@ -60,8 +60,7 @@ const InProgress = () => {
               key={order.id}
               rating={order.collection.rate}
               image={{uri: order.collection.picturePath}}
-              onPress={() => navigation.navigate('OrderDetail')}
-              inProgress
+              onPress={() => navigation.navigate('OrderDetail', order)}
               type="in-progress"
               items={order.quantity}
               price={order.total}
@@ -90,7 +89,7 @@ const PastOrders = () => {
             key={order.id}
             rating={order.collection.rate}
             image={{uri: order.collection.picturePath}}
-            onPress={() => navigation.navigate('OrderDetail')}
+            onPress={() => navigation.navigate('OrderDetail', order)}
             type="past-orders"
             items={order.quantity}
             price={order.total}
@@ -121,7 +120,7 @@ const Konfirmation = () => {
               key={order.id}
               rating={order.collection.rate}
               image={{uri: order.collection.picturePath}}
-              onPress={() => navigation.navigate('OrderDetail')}
+              onPress={() => navigation.navigate('OrderDetail', order)}
               type="in-progress"
               items={order.quantity}
               price={order.total}

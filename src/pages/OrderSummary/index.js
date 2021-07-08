@@ -27,6 +27,7 @@ const OrderSummary = ({navigation, route}) => {
     console.log(transaksi);
   };
 
+
   const onCheckout = () => {
     const data = {
       collection_id: item.id,
@@ -36,20 +37,32 @@ const OrderSummary = ({navigation, route}) => {
       status: 'PENDING',
     };
 
-    axios
-      .post('http://ecommerce.iottelnet.com/api/checkout', data, {
+    const updateStock = {
+      stock : item.stock - transaction.totalItem,
+    }
+    
+    // console.log(updateStock);
+    axios.all([
+      axios.post('http://ecommerce.iottelnet.com/api/checkout', data, {
         headers: {
           Authorization: token,
         },
-      })
-      .then(res => {
-        console.log('Data Checkout', res);
-      })
-      .catch(err => {
-        console.log('err ', err);
-      });
+      }),
+      axios.post(`http://ecommerce.iottelnet.com/api/collection/${item.id}`, updateStock, {
+        headers: {
+          Authorization: token,
+        },
+      }),
+    ]).then(axios.spread((res1, res2) => {
+      console.log('checkout', res1)
+      console.log('update', res2)
+    })).catch(err => {
+      console.log(err)
+    })
 
-    console.log(data);
+
+    
+    // console.log(data);
 
     navigation.replace('SuccessOrder');
   };
@@ -71,7 +84,7 @@ const OrderSummary = ({navigation, route}) => {
             items={transaction.totalItem}
             image={{uri: item.picturePath}}
           />
-          <Text style={styles.label}>Informasi Transaksi</Text>
+          <Text style={styles.label}>Informasi Pembelian</Text>
           <ItemValue
             label={item.name}
             value={transaction.totalPrice}

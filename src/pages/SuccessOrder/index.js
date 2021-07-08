@@ -18,7 +18,7 @@ const SuccessOrder = ({navigation}) => {
           onPress={() => navigation.replace('MainApp')}
         />
         <Gap height={12} />
-        <Button text="Lihat Pesananku" color="#8D92A3" textColor="white" />
+        <Button text="Lihat Pesananku" color="#8D92A3" textColor="white" onPress={() => navigation.navigate('Keranjang')} />
       </View>
     </View>
   );

@@ -34,6 +34,7 @@ const ItemDetail = ({navigation, route}) => {
         id: id,
         name: name,
         price: price,
+        stock: stock,
         picturePath: picturePath,
       },
       transaction: {

@@ -3,59 +3,94 @@ import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {DummyImg1} from '../../assets';
 import {Headers, ItemListFood, ItemValue} from '../../components/molecules';
 import {Button} from '../../components/atoms';
+import axios from 'axios';
+import { getData } from '../../utils';
 
-const OrderDetail = () => {
+const OrderDetail = ({route, navigation}) => {
+
+  const order = route.params;
+  
+  const onCancel = () => {
+
+    const data = {
+      status: 'CANCELLED'
+    }
+
+    getData('token').then(resToken => {
+      axios.post(`http://ecommerce.iottelnet.com/api/transaction/${order.id}`, data, {
+      headers: {
+        'Authorization' : resToken.value
+      }
+    }).then(res => {
+      console.log('success cancel order');
+      navigation.reset({
+        index: 0,
+        routes: [
+          {name: 'MainApp', screen: 'Keranjang'}
+        ]
+      })
+    }).catch(err => {
+      console.log('err: ', err)
+    })
+    })
+
+    
+  }
   return (
     <View style={styles.container}>
       <Headers
         title="Pembayaran"
         subTitle="Silahkan cek pembayaran pesananmu"
-        onBack={() => {}}
+        onBack={() => navigation.goBack()}
       />
       <ScrollView>
         <View style={styles.content}>
           <Text style={styles.label}>Order Barang</Text>
           <ItemListFood
             type="order-summary"
-            name="Sepatu HnM"
-            price="1.000.000"
-            items={4}
-            image={DummyImg1}
-            items={14}
+            name={order.collection.name}
+            price={order.collection.price}
+            items={order.quantity}
+            image={{ uri: order.collection.picturePath }}
           />
           <Text style={styles.label}>Informasi Transaksi</Text>
-          <ItemValue label="Sepatu HnM" value="IDR 2.000.000" />
+          <ItemValue label={order.collection.name} value={order.collection.price} type="currency"/>
           <ItemValue label="Kurir Pengiriman" value="SiCepat-BEST" />
           <ItemValue label="No. Transaksi" value="022303004185806" />
           <ItemValue
             label="Total Harga"
-            value="IDR 23.000.000"
+            value={order.total}
+            type="currency"
             valueColor="#1ABC9C"
           />
         </View>
 
         <View style={styles.content}>
           <Text style={styles.label}>Informasi Pembeli:</Text>
-          <ItemValue label="Nama" value="Muhammad Fajar" />
-          <ItemValue label="No. Handphone" value="0822 8332 8833" />
-          <ItemValue label="Alamat" value="Komp Permata Cimahi Raya Cimahi" />
-          <ItemValue label="No Rumah" value="N16 no 7" />
-          <ItemValue label="Kota" value="Cimahi" />
-          <ItemValue label="Kode Pos" value="40288" />
+          <ItemValue label="Nama" value={order.user.name} />
+          <ItemValue label="No. Handphone" value={order.user.phoneNumber} />
+          <ItemValue label="Alamat" value={order.user.address} />
+          <ItemValue label="No Rumah" value={order.user.houseNumber} />
+          <ItemValue label="Kota/Kab" value={order.user.city} />
+          <ItemValue label="Kecamatan" value={order.user.kecamatan} />
+          <ItemValue label="Kode Pos" value={order.user.postal_code} />
         </View>
 
         <View style={styles.content}>
           <Text style={styles.label}>Order Status:</Text>
-          <ItemValue label="#FM2091023" value="Terbayar" valueColor="#1ABC9C" />
+          <ItemValue label={`HSND${order.id}`} value={order.status} valueColor={order.status === 'CANCELLED' ? 'red' : '#1ABC9C'} />
         </View>
       </ScrollView>
       <View style={styles.button}>
-        <Button
+        {order.status === 'PENDING' && (
+          <Button
           text="Cancel My Order"
-          onPress={() => navigation.replace('SuccessOrder')}
+          onPress={onCancel}
           color="#D9435E"
           textColor="white"
         />
+        )}
+        
       </View>
     </View>
   );
