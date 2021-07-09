@@ -34,6 +34,8 @@ import Ic_terms from './ic_terms.svg';
 import Ic_beauty_care from './ic_beauty_care.svg';
 import Ic_messages_off from './ic_messages_off';
 import Ic_messages_on from './ic_messages_on';
+import Ic_send from './ic_send.svg';
+import Ic_admin from './ic_admin.svg'
 
 export {
   Ic_arrow_back,
@@ -71,5 +73,7 @@ export {
   Ic_help_center,
   Ic_beauty_care,
   Ic_messages_off,
-  Ic_messages_on
+  Ic_messages_on,
+  Ic_send,
+  Ic_admin
 };

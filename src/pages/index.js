@@ -19,6 +19,7 @@ import CategoryTas from './CategoryTas';
 import CategoryBeauty from './CategoryBeauty';
 import Pembelian from './Pembelian';
 import Messages from './Messages';
+import Chatting from './Chatting';
 
 export {
   SplashScreen,
@@ -41,5 +42,6 @@ export {
   CategoryTas,
   CategoryBeauty,
   Pembelian,
-  Messages
+  Messages,
+  Chatting
 };

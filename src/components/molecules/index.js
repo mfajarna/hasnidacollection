@@ -17,6 +17,10 @@ import HeelsTabSection from './HeelsTabSection';
 import HijabTabSection from './HijabTabSection';
 import BeautyTabSection from './BeautyTabSection';
 import TasTabSection from './TasTabSection';
+import ListAdmin from './ListAdmin';
+import InputChat from './InputChat';
+import AdminSection from './AdminSection';
+import ChatItem from './ChatItem';
 
 export {
   Headers,
@@ -37,5 +41,9 @@ export {
   HeelsTabSection,
   HijabTabSection,
   BeautyTabSection,
-  TasTabSection
+  TasTabSection,
+  ListAdmin,
+  InputChat,
+  AdminSection,
+  ChatItem
 };

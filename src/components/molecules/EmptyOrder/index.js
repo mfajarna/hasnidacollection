@@ -17,7 +17,7 @@ const EmptyOrder = () => {
       <View style={styles.buttonContainer}>
         <Button
           text="Belanja Sekarang"
-          onPress={() => navigation.replace('MainApp')}
+          onPress={() => navigation.replace('Pembelian')}
         />
       </View>
     </View>

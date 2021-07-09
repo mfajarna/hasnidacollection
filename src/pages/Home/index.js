@@ -2,9 +2,50 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 
 import {Fitur, Gap, Kategori, SearchInput} from '../../components/atoms';
-import {HomeTabSection, WelcomeUser} from '../../components/molecules';
+import {AdminSection, HomeTabSection, WelcomeUser} from '../../components/molecules';
+import firebase from '../../config/Fire'
+import { getData } from '../../utils';
 
 const Home = ({onPress, navigation}) => {
+  const [admin, setAdmin] = useState([]);
+
+  useEffect(() =>{
+    getAdmin();
+    getUserData();
+    navigation.addListener('focus', () => {
+      getUserData();
+    });
+  }, [navigation]);
+
+  const getUserData = () => {
+    getData('user').then(res => {
+      const data = res;
+    });
+  };
+
+  const getAdmin = () => {
+    firebase.database()
+      .ref('admin/')
+      .limitToLast(3)
+      .once('value')
+      .then(res => {
+        if (res.val()) {
+          const oldData = res.val();
+          const data = [];
+          Object.keys(oldData).map(key => {
+            data.push({
+              id: key,
+              data: oldData[key],
+            });
+          });
+          setAdmin(data);
+        }
+      })
+      .catch(err => {
+        showError(err.message);
+      });
+  }
+
   return (
     <View style={styles.pages}>
       <View style={styles.nav}>
@@ -62,6 +103,21 @@ const Home = ({onPress, navigation}) => {
               </View>
             </ScrollView>
           </View>
+          <View style={styles.adminSection}>
+            <Text style={styles.textFitur}>Kontak Admin</Text>
+              <View style={styles.admin}>
+                {admin.map(admin => {
+                  return(
+                      <AdminSection
+                      key={admin.id} 
+                      name={admin.data.name}
+                      onPress={() => navigation.navigate('Chatting', admin)}
+                      />
+                    )
+                })}
+              
+              </View>
+          </View>
         </View>
 
       </ScrollView>
@@ -86,6 +142,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FAFAFC',
   },
+  adminSection:{
+    marginBottom: 15,
+  },    
   text: {
     fontSize: 18,
     fontFamily: 'Nunito-SemiBold',
@@ -121,4 +180,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingBottom: 5,
   },
+  admin:{
+    marginTop: 15,
+  }
 });

@@ -5,5 +5,6 @@ import Select from './Select';
 import SearchInput from './SearchInput';
 import Fitur from './Fitur';
 import Kategori from './Kategori';
+import ButtonIconSend from './ButtonIconSend';
 
-export {TextInput, Button, Gap, Select, SearchInput, Fitur, Kategori};
+export {TextInput, Button, Gap, Select, SearchInput, Fitur, Kategori, ButtonIconSend};
