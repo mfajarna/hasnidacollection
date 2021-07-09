@@ -22,6 +22,7 @@ import {
   CategoryTas,
   CategoryBeauty,
   Pembelian,
+  Messages,
 } from '../pages';
 import {BottomNavigator} from '../components';
 
@@ -34,7 +35,9 @@ const MainApp = () => {
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Keranjang" component={Keranjang} />
       <Tab.Screen name="Scan" component={Scan} />
+      <Tab.Screen name="Messages" component={Messages} />
       <Tab.Screen name="Akun" component={Akun} />
+
     </Tab.Navigator>
   );
 };

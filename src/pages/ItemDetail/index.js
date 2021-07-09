@@ -76,7 +76,9 @@ const ItemDetail = ({navigation, route}) => {
             <Number number={totalItem * price} style={styles.priceTotal} />
           </View>
           <View style={styles.button}>
+          {stock > 1 && (
             <Button text="Order Now" onPress={onOrder} />
+          )}
           </View>
         </View>
       </View>

@@ -18,6 +18,7 @@ import CategoryHijab from './CategoryHijab';
 import CategoryTas from './CategoryTas';
 import CategoryBeauty from './CategoryBeauty';
 import Pembelian from './Pembelian';
+import Messages from './Messages';
 
 export {
   SplashScreen,
@@ -39,5 +40,6 @@ export {
   CategoryHijab,
   CategoryTas,
   CategoryBeauty,
-  Pembelian
+  Pembelian,
+  Messages
 };

@@ -3,7 +3,8 @@ import {StyleSheet, Text, View} from 'react-native';
 import { useDispatch } from 'react-redux';
 import {Button, Gap, Headers, TextInput} from '../../components';
 import { signInAction } from '../../redux/action/auth';
-import {getData, useForm} from '../../utils';
+import {getData, storeData, useForm} from '../../utils';
+import firebase from '../../config/Fire'
 
 const Signin = ({navigation}) => {
   const [form, setForm] = useForm({
@@ -14,6 +15,19 @@ const Signin = ({navigation}) => {
   const dispatch = useDispatch();
 
   const onSubmit = () => {
+    firebase.auth().signInWithEmailAndPassword(form.email, form.password)
+    .then(res => {
+      firebase.database()
+      .ref(`users/${res.user.uid}/`)
+      .once('value')
+      .then(resDB => {
+        if(resDB.val()){
+          storeData('user', resDB.val())
+        }
+      })
+    }).catch(err => {
+      console.log('err', err)
+    })
     dispatch(signInAction(form, navigation))
   };
 

@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import {StyleSheet, Text, View, ScrollView, Image} from 'react-native';
 import {Button, Gap, Headers, TextInput} from '../../components';
 import {useSelector, useDispatch} from 'react-redux';
-import {showMessage, useForm} from '../../utils';
+import {showMessage, storeData, useForm} from '../../utils';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import ImagePicker from 'react-native-image-picker';
+
+import firebase from '../../config/Fire'
+
 
 
 const Signup = ({navigation}) => {
@@ -18,7 +21,27 @@ const Signup = ({navigation}) => {
   const dispatch = useDispatch();
 
   const onSubmit = () => {
-    console.log(form);
+
+  
+
+  firebase.auth().createUserWithEmailAndPassword(form.email, form.password)
+  .then(res => {
+    const data = {
+      name: form.name,
+      email: form.email,
+      password: form.password,
+      uid: res.user.uid
+    }
+
+    console.log("status fbase", res);
+    firebase.database()
+          .ref('users/' + res.user.uid + '/')
+          .set(data);
+      
+    storeData('user', data)
+  }).catch(err => {
+    console.log(err)
+  })
     dispatch({
       type: 'SET_REGISTER',
       value: form

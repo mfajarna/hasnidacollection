@@ -7,6 +7,8 @@ import {
   Ic_home_on,
   Ic_keranjang_off,
   Ic_keranjang_on,
+  Ic_messages_off,
+  Ic_messages_on,
   Ic_scan_off,
   Ic_scan_on,
 } from '../../../assets';
@@ -21,6 +23,8 @@ const Icon = ({label, focus}) => {
       return focus ? <Ic_scan_on /> : <Ic_scan_off />;
     case 'Akun':
       return focus ? <Ic_akun_on /> : <Ic_akun_off />;
+    case 'Messages':
+      return focus ? <Ic_messages_on /> : <Ic_messages_off />
   }
 };
 
