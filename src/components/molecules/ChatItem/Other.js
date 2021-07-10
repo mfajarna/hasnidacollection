@@ -29,7 +29,7 @@ container: {
   chatContent: {
     padding: 12,
     paddingRight: 18,
-    maxWidth: '80%',
+    backgroundColor: 'grey',
     borderRadius: 10,
     borderBottomLeftRadius: 0,
   },
