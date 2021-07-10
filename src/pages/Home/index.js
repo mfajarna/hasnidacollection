@@ -174,7 +174,9 @@ const styles = StyleSheet.create({
   },
   kategoriItem: {
     paddingRight: 5,
+    marginLeft: 5,
     width: 77,
+    paddingVertical: 10,
   },
   tabContainer: {
     flex: 1,
