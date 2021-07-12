@@ -8,6 +8,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useEffect} from 'react';
 import {
   getConfirmation,
+  getDelivery,
   getInProgress,
   getPastOrders,
 } from '../../../redux/action/order';
@@ -70,6 +71,37 @@ const InProgress = () => {
         })}
       </View>
     </ScrollView>
+  );
+};
+
+
+const Delivery = () => {
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const {delivery} = useSelector(state => state.orderReducer);
+  useEffect(() => {
+    dispatch(getDelivery());
+  }, []);
+
+  return (
+    <View style={{paddingTop: 8, paddingHorizontal: 24}}>
+      {delivery.map(order => {
+        return (
+          <ItemListFood
+            key={order.id}
+            rating={order.collection.rate}
+            image={{uri: order.collection.picturePath}}
+            onPress={() => navigation.navigate('OrderDetail', order)}
+            type="past-orders"
+            items={order.quantity}
+            price={order.total}
+            name={order.collection.name}
+            date={order.created_at}
+            status={order.status}
+          />
+        );
+      })}
+    </View>
   );
 };
 
@@ -140,13 +172,15 @@ const OrderTabSection = () => {
   const [routes] = React.useState([
     {key: 'first', title: 'In Progress'},
     {key: 'second', title: 'Confirmation'},
-    {key: 'third', title: 'Past Orders'},
+    {key: 'third', title: 'Delivery'},
+    {key: 'fourth', title: 'Past Orders'}
   ]);
 
   const renderScene = SceneMap({
     first: InProgress,
     second: Konfirmation,
-    third: PastOrders,
+    third: Delivery,
+    fourth: PastOrders,
   });
   return (
     <TabView

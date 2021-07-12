@@ -75,3 +75,24 @@ export const getConfirmation = () => dispatch => {
       });
   });
 };
+
+export const getDelivery = () => dispatch => {
+  getData('token').then(resToken => {
+    axios
+      .get(
+        'http://ecommerce.iottelnet.com/api/transaction?status=DELIVERY',
+        {
+          headers: {
+            Authorization: resToken.value,
+          },
+        },
+      )
+      .then(res => {
+        console.log('get Confirmation Orders: ', res);
+        dispatch({type: 'SET_DELIVERY', value: res.data.data.data});
+      })
+      .catch(err => {
+        console.log('err', err);
+      });
+  });
+};

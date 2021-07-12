@@ -4,37 +4,49 @@ import {DummyImg1} from '../../assets';
 import {Headers, ItemListFood, ItemValue} from '../../components/molecules';
 import {Button} from '../../components/atoms';
 import axios from 'axios';
-import { getData } from '../../utils';
+import { getData, showMessage } from '../../utils';
 
 const OrderDetail = ({route, navigation}) => {
 
   const order = route.params;
-  
+
+  console.log(order)
   const onCancel = () => {
 
     const data = {
       status: 'CANCELLED'
     }
 
+    const updateStock = {
+      stock: order.collection.stock + order.quantity,
+    };
+
     getData('token').then(resToken => {
-      axios.post(`http://ecommerce.iottelnet.com/api/transaction/${order.id}`, data, {
-      headers: {
-        'Authorization' : resToken.value
-      }
-    }).then(res => {
-      console.log('success cancel order');
-      navigation.reset({
+
+      axios.all([
+          axios.post(`http://ecommerce.iottelnet.com/api/transaction/${order.id}`, data, {
+          headers: {
+            'Authorization' : resToken.value
+          }
+        }),
+        axios.post(`http://ecommerce.iottelnet.com/api/collection/${order.collection.id}`, updateStock, {
+        headers: {
+          'Authorization' : resToken.value
+        },
+      }),
+      ]).then(axios.spread((res1, res2) => {
+        showMessage('Berhasil cancel order', success);
+    })).catch(err => {
+      console.log(err)
+    })
+    })
+
+    navigation.reset({
         index: 0,
         routes: [
           {name: 'MainApp', screen: 'Keranjang'}
         ]
       })
-    }).catch(err => {
-      console.log('err: ', err)
-    })
-    })
-
-    
   }
   return (
     <View style={styles.container}>

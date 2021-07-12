@@ -3,6 +3,7 @@ const initOrder = {
   inProgress: [],
   pastOrders: [],
   confirmation: [],
+  delivery: []
 };
 
 export const orderReducer = (state = initOrder, action) => {
@@ -31,6 +32,13 @@ export const orderReducer = (state = initOrder, action) => {
     return {
       ...state,
       pastOrders: action.value,
+    };
+  }
+
+    if (action.type === 'SET_DELIVERY') {
+    return {
+      ...state,
+      delivery: action.value,
     };
   }
 
