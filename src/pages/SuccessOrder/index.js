@@ -9,8 +9,8 @@ const SuccessOrder = ({navigation}) => {
       <Il_success_order />
       <Gap height={10} />
       <Text style={styles.title}>Pesanan Berhasil!</Text>
-      <Text style={styles.subTitle}>Mohon ditunggu ya sembari kita</Text>
-      <Text style={styles.subTitle}>memproses orderannya</Text>
+      <Text style={styles.subTitle}>Silahkan untuk menyelesaikan</Text>
+      <Text style={styles.subTitle}>pembayaran yang telah kamu pesan ya!</Text>
       <Gap height={25} />
       <View style={styles.buttonContainer}>
         <Button

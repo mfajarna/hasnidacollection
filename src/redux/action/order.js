@@ -29,13 +29,71 @@ export const getInProgress = () => dispatch => {
       })
       .then(res => {
         console.log('get In Progress: ', res);
-        dispatch({type: 'SET_IN_PROGRESS', value: res.data.data.data});
+        dispatch({type: 'SET_PROCESS', value: res.data.data.data});
       })
       .catch(err => {
         console.log('err', err);
       });
   });
 };
+
+export const getConfirmation = () => dispatch => {
+  getData('token').then(resToken => {
+    axios
+      .get(
+        'http://ecommerce.iottelnet.com/api/transaction?status=CONFIRMATION',
+        {
+          headers: {
+            Authorization: resToken.value,
+          },
+        },
+      )
+      .then(res => {
+        console.log('get Confirmation Orders: ', res);
+        dispatch({type: 'SET_CONFIRMATION', value: res.data.data.data});
+      })
+      .catch(err => {
+        console.log('err', err);
+      });
+  });
+};
+
+
+export const getDelivery = () => dispatch => {
+  getData('token').then(resToken => {
+    axios
+      .get(
+        'http://ecommerce.iottelnet.com/api/transaction?status=DELIVERED',
+        {
+          headers: {
+            Authorization: resToken.value,
+          },
+        },
+      )
+      .then(res => {
+        console.log('get Confirmation Orders: ', res);
+        dispatch({type: 'SET_DELIVERY', value: res.data.data.data});
+      })
+      .catch(err => {
+        console.log('err', err);
+      });
+  });
+};
+
+export const getDone = () => dispatch => {
+  getData('token').then(resToken => {
+    axios.get('http://ecommerce.iottelnet.com/api/transaction?status=DONE', {
+      headers: {
+        Authorization: resToken.value
+      },
+    }).then(res => {
+      console.log('Get Done Project: ', res);
+      dispatch({type: 'SET_DONE', value: res.data.data.data})
+    }).catch(err => {
+      console.log('err', err)
+    })
+  })
+}
 
 export const getPastOrders = () => dispatch => {
   getData('token').then(resToken => {
@@ -55,44 +113,6 @@ export const getPastOrders = () => dispatch => {
   });
 };
 
-export const getConfirmation = () => dispatch => {
-  getData('token').then(resToken => {
-    axios
-      .get(
-        'http://ecommerce.iottelnet.com/api/transaction?status=ON_DELIVERY',
-        {
-          headers: {
-            Authorization: resToken.value,
-          },
-        },
-      )
-      .then(res => {
-        console.log('get Confirmation Orders: ', res);
-        dispatch({type: 'SET_CONFIRMATION', value: res.data.data.data});
-      })
-      .catch(err => {
-        console.log('err', err);
-      });
-  });
-};
 
-export const getDelivery = () => dispatch => {
-  getData('token').then(resToken => {
-    axios
-      .get(
-        'http://ecommerce.iottelnet.com/api/transaction?status=DELIVERY',
-        {
-          headers: {
-            Authorization: resToken.value,
-          },
-        },
-      )
-      .then(res => {
-        console.log('get Confirmation Orders: ', res);
-        dispatch({type: 'SET_DELIVERY', value: res.data.data.data});
-      })
-      .catch(err => {
-        console.log('err', err);
-      });
-  });
-};
+
+

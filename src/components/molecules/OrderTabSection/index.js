@@ -9,6 +9,7 @@ import {useEffect} from 'react';
 import {
   getConfirmation,
   getDelivery,
+  getDone,
   getInProgress,
   getPastOrders,
 } from '../../../redux/action/order';
@@ -91,8 +92,8 @@ const Delivery = () => {
             key={order.id}
             rating={order.collection.rate}
             image={{uri: order.collection.picturePath}}
-            onPress={() => navigation.navigate('OrderDetail', order)}
-            type="past-orders"
+            onPress={() => navigation.navigate('orderDelivery', order)}
+            type="on-delivered"
             items={order.quantity}
             price={order.total}
             name={order.collection.name}
@@ -108,14 +109,14 @@ const Delivery = () => {
 const PastOrders = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const {pastOrders} = useSelector(state => state.orderReducer);
+  const {done} = useSelector(state => state.orderReducer);
   useEffect(() => {
-    dispatch(getPastOrders());
+    dispatch(getDone());
   }, []);
 
   return (
     <View style={{paddingTop: 8, paddingHorizontal: 24}}>
-      {pastOrders.map(order => {
+      {done.map(order => {
         return (
           <ItemListFood
             key={order.id}

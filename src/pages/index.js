@@ -20,6 +20,7 @@ import CategoryBeauty from './CategoryBeauty';
 import Pembelian from './Pembelian';
 import Messages from './Messages';
 import Chatting from './Chatting';
+import OrderDelivery from './OrderDelivery';
 
 export {
   SplashScreen,
@@ -43,5 +44,6 @@ export {
   CategoryBeauty,
   Pembelian,
   Messages,
-  Chatting
+  Chatting,
+  OrderDelivery
 };

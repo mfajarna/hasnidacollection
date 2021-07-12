@@ -69,6 +69,22 @@ const ItemListFood = ({
             </View>
           </>
         );
+        case 'on-delivered':
+          const x = new Date(date).toDateString();
+        return (
+          <>
+            <View style={{flex: 1}}>
+              <Text style={styles.title}>{name}</Text>
+              <Text style={styles.desc}>
+                {items} items . <Number number={price} />
+              </Text>
+            </View>
+            <View>
+              <Text style={styles.date}>{x}</Text>
+              <Text style={styles.statusDelivery}>{status}</Text>
+            </View>
+          </>
+        );
       default:
         return (
           <>
@@ -132,5 +148,10 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: 'Nunito-Regular',
     color: '#D9435E',
+  },
+  statusDelivery: {
+    fontSize: 12,
+    fontFamily: 'Nunito-Regular',
+    color: '#1ABC9C',
   },
 });
