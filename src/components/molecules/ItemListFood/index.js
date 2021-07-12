@@ -65,7 +65,7 @@ const ItemListFood = ({
             </View>
             <View>
               <Text style={styles.date}>{formatedDate}</Text>
-              <Text style={styles.status}>{status}</Text>
+              <Text style={styles.status(status)}>{status}</Text>
             </View>
           </>
         );
@@ -144,11 +144,11 @@ const styles = StyleSheet.create({
     fontFamily: 'Nunito-Regular',
     color: '#8D92A3',
   },
-  status: {
+  status : (status) => ({
     fontSize: 12,
     fontFamily: 'Nunito-Regular',
-    color: '#D9435E',
-  },
+    color: status === 'CANCELLED' ? '#D9435E' : '#1ABC9C',
+  }),
   statusDelivery: {
     fontSize: 12,
     fontFamily: 'Nunito-Regular',
