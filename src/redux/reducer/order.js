@@ -38,13 +38,14 @@ export const orderReducer = (state = initOrder, action) => {
     }
   }
 
-  if(action.type === 'SET_DONE')
+  if(action.type === 'SET_PAST_ORDERS')
   {
     return{
       ...state,
-      done: action.value
+      pastOrders: action.value
     }
   }
+  
 
 
   return state;

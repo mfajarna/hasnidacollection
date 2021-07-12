@@ -64,7 +64,9 @@ const ItemDetail = ({navigation, route}) => {
               <Text style={styles.title}>{name}</Text>
               <Rating number={rate} />
             </View>
-            <Counter onValueChange={onCounterChange} />
+            {stock > 1 && (
+              <Counter onValueChange={onCounterChange} />
+            )}
           </View>
           <Text style={styles.desc}>{description}</Text>
           <Text style={styles.label}>Stok:</Text>

@@ -35,7 +35,7 @@ const OrderDetail = ({route, navigation}) => {
         },
       }),
       ]).then(axios.spread((res1, res2) => {
-        showMessage('Berhasil cancel order', success);
+      
     })).catch(err => {
       console.log(err)
     })

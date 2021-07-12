@@ -13,6 +13,7 @@ import {
   getInProgress,
   getPastOrders,
 } from '../../../redux/action/order';
+import { Button } from '../../atoms';
 
 const renderTabBar = props => (
   <TabBar
@@ -55,6 +56,7 @@ const InProgress = () => {
 
   return (
     <ScrollView>
+     
       <View style={{paddingTop: 8, paddingHorizontal: 24}}>
         {inProgress.map(order => {
           return (
@@ -85,6 +87,7 @@ const Delivery = () => {
   }, []);
 
   return (
+    <ScrollView>
     <View style={{paddingTop: 8, paddingHorizontal: 24}}>
       {delivery.map(order => {
         return (
@@ -103,20 +106,22 @@ const Delivery = () => {
         );
       })}
     </View>
+    </ScrollView>
   );
 };
 
 const PastOrders = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const {done} = useSelector(state => state.orderReducer);
+  const {pastOrders} = useSelector(state => state.orderReducer);
   useEffect(() => {
-    dispatch(getDone());
+    dispatch(getPastOrders());
   }, []);
 
   return (
+    <ScrollView>
     <View style={{paddingTop: 8, paddingHorizontal: 24}}>
-      {done.map(order => {
+      {pastOrders.map(order => {
         return (
           <ItemListFood
             key={order.id}
@@ -133,6 +138,7 @@ const PastOrders = () => {
         );
       })}
     </View>
+    </ScrollView>
   );
 };
 
