@@ -35,7 +35,7 @@ const OrderDetail = ({route, navigation}) => {
         },
       }),
       ]).then(axios.spread((res1, res2) => {
-      
+        showMessage('Sukes Batal Order!','success');
     })).catch(err => {
       console.log(err)
     })
@@ -44,7 +44,7 @@ const OrderDetail = ({route, navigation}) => {
     navigation.reset({
         index: 0,
         routes: [
-          {name: 'MainApp', screen: 'Keranjang'}
+          {name: 'MainApp'}
         ]
       })
   }

@@ -24,7 +24,7 @@ const OrderDelivery = ({route, navigation}) => {
           }
         })
       .then(res => {
-        showMessage('Berhasil !', success);
+        console.log('Berhasil Diterima')
     }).catch(err => {
       console.log(err)
     })

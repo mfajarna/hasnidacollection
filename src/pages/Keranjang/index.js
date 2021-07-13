@@ -34,7 +34,9 @@ const Keranjang = ({navigation}) => {
                   <ContentKeranjang type="Dikirim" onPress={() => navigation.navigate('OrderTab')} />
                   <ContentKeranjang type="Selesai" onPress={() => navigation.navigate('OrderTab')} />
               </View>
-         
+              <View>
+                
+              </View>
             </View>
             <View style={styles.additional}>
 
@@ -64,7 +66,8 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 40,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    borderBottomWidth: 0.5
   },
   pesanan: {
     paddingTop: 10,

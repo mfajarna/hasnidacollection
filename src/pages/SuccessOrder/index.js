@@ -15,7 +15,7 @@ const SuccessOrder = ({navigation}) => {
       <View style={styles.buttonContainer}>
         <Button
           text="Buat Pesanan Lainnya"
-          onPress={() => navigation.replace('MainApp')}
+          onPress={() => navigation.reset({index: 0, routes:[{name:'Pembelian'}]})}
         />
         <Gap height={12} />
         <Button text="Lihat Pesananku" color="#8D92A3" textColor="white" onPress={() => navigation.navigate('Keranjang')} />

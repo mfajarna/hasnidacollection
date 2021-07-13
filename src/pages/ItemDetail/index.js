@@ -79,7 +79,7 @@ const ItemDetail = ({navigation, route}) => {
           </View>
           <View style={styles.button}>
           {stock > 1 && (
-            <Button text="Order Now" onPress={onOrder} />
+            <Button text="Pesan Sekarang" onPress={onOrder} />
           )}
           </View>
         </View>

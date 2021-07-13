@@ -21,7 +21,8 @@ import Pembelian from './Pembelian';
 import Messages from './Messages';
 import Chatting from './Chatting';
 import OrderDelivery from './OrderDelivery';
-import OrderTab from './OrderTab'
+import OrderTab from './OrderTab';
+import UploadBuktiBayar from './UploadBuktiBayar';
 
 export {
   SplashScreen,
@@ -47,5 +48,6 @@ export {
   Messages,
   Chatting,
   OrderDelivery,
-  OrderTab
+  OrderTab,
+  UploadBuktiBayar
 };

@@ -7,6 +7,7 @@ import {getData} from '../../utils/storage';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setLoading } from '../../redux/action';
+import { showMessage } from '../../utils';
 
 const OrderSummary = ({navigation, route}) => {
   const {item, transaction, userProfile} = route.params;
@@ -58,17 +59,11 @@ const OrderSummary = ({navigation, route}) => {
         },
       }),
     ]).then(axios.spread((res1, res2) => {
-      console.log('checkout', res1)
-      console.log('update', res2)
-
       dispatch(setLoading(false));
+      showMessage('Berhasil Memesan Barang', 'success');
     })).catch(err => {
       console.log(err)
     })
-
-
-    
-    // console.log(data);
 
     navigation.replace('SuccessOrder');
   };
@@ -118,7 +113,7 @@ const OrderSummary = ({navigation, route}) => {
         </View>
       </ScrollView>
       <View style={styles.button}>
-        <Button text="Bayar Sekarang" onPress={onCheckout} />
+        <Button text="Pesan Sekarang" onPress={onCheckout} />
       </View>
     </View>
   );

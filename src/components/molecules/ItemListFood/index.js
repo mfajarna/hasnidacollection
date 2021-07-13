@@ -5,6 +5,7 @@ import {Number, Rating} from '..';
 const ItemListFood = ({
   image,
   onPress,
+  onPressBayar,
   items,
   stock,
   rating,
@@ -14,6 +15,7 @@ const ItemListFood = ({
   date,
   status,
   number,
+  onPress2,
 }) => {
   const renderContent = () => {
     switch (type) {
@@ -43,6 +45,18 @@ const ItemListFood = ({
           </>
         );
       case 'in-progress':
+        return (
+          <>
+            <View style={{flex: 1}}>
+              <Text style={styles.title}>{name}</Text>
+              <Text style={styles.desc}>
+                {items} items . <Number number={price} />
+              </Text>
+            </View>
+      
+          </>
+        );
+        case 'confirmation':
         return (
           <>
             <View style={{flex: 1}}>
@@ -103,6 +117,11 @@ const ItemListFood = ({
       <View style={styles.container}>
         <Image source={image} style={styles.image} />
         {renderContent()}
+        {type === 'in-progress' && (
+        <TouchableOpacity style={styles.buttonBayar} activeOpacity={0.6} onPress={onPressBayar}>
+                <Text style={styles.textBayar}>Bayar</Text>
+        </TouchableOpacity>
+        )}
       </View>
     </TouchableOpacity>
   );
@@ -154,4 +173,14 @@ const styles = StyleSheet.create({
     fontFamily: 'Nunito-Regular',
     color: '#1ABC9C',
   },
+  buttonBayar: {
+    backgroundColor: '#26B99A',
+    padding: 6,
+    borderRadius: 3,
+  },
+  textBayar:{
+    fontSize: 14,
+    fontFamily: 'Nunito-SemiBold',
+    color: 'white'
+  }
 });
