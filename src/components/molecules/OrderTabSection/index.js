@@ -177,10 +177,10 @@ const initialLayout = {width: Dimensions.get('window').width};
 const OrderTabSection = () => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    {key: 'first', title: 'In Progress'},
-    {key: 'second', title: 'Confirmation'},
-    {key: 'third', title: 'Delivery'},
-    {key: 'fourth', title: 'History'}
+    {key: 'first', title: 'Belum Bayar'},
+    {key: 'second', title: 'Dikemas'},
+    {key: 'third', title: 'Dikirim'},
+    {key: 'fourth', title: 'Selesai'}
   ]);
 
   const renderScene = SceneMap({

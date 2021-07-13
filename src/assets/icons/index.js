@@ -35,9 +35,18 @@ import Ic_beauty_care from './ic_beauty_care.svg';
 import Ic_messages_off from './ic_messages_off';
 import Ic_messages_on from './ic_messages_on';
 import Ic_send from './ic_send.svg';
-import Ic_admin from './ic_admin.svg'
+import Ic_admin from './ic_admin.svg';
+import Ic_checklist from './ic_checklist.svg';
+import Ic_belum_bayar from './ic_belum_bayar.svg';
+import Ic_dikemas from './ic_dikemas.svg';
+import Ic_dikirim from './ic_dikirim.svg';
+import Ic_selesai from './ic_selesai.svg';
 
 export {
+  Ic_belum_bayar,
+  Ic_dikemas,
+  Ic_dikirim,
+  Ic_selesai,
   Ic_arrow_back,
   Ic_home_off,
   Ic_home_on,
@@ -75,5 +84,6 @@ export {
   Ic_messages_off,
   Ic_messages_on,
   Ic_send,
-  Ic_admin
+  Ic_admin,
+  Ic_checklist
 };

@@ -25,6 +25,7 @@ import {
   Messages,
   Chatting,
   OrderDelivery,
+  OrderTab,
 } from '../pages';
 import {BottomNavigator} from '../components';
 
@@ -145,6 +146,11 @@ const Router = () => {
       <Stack.Screen
         name="KeranjangOrder"
         component={Keranjang}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="OrderTab"
+        component={OrderTab}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
