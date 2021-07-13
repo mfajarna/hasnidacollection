@@ -180,7 +180,7 @@ const OrderTabSection = () => {
     {key: 'first', title: 'In Progress'},
     {key: 'second', title: 'Confirmation'},
     {key: 'third', title: 'Delivery'},
-    {key: 'fourth', title: 'Past Orders'}
+    {key: 'fourth', title: 'History'}
   ]);
 
   const renderScene = SceneMap({

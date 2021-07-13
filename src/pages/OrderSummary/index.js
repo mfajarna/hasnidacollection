@@ -5,10 +5,13 @@ import {Headers, ItemListFood, ItemValue} from '../../components/molecules';
 import {Button} from '../../components/atoms';
 import {getData} from '../../utils/storage';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { setLoading } from '../../redux/action';
 
 const OrderSummary = ({navigation, route}) => {
   const {item, transaction, userProfile} = route.params;
   const [token, setToken] = useState('');
+   const dispatch = useDispatch();
 
   useEffect(() => {
     getData('token').then(res => {
@@ -29,6 +32,7 @@ const OrderSummary = ({navigation, route}) => {
 
 
   const onCheckout = () => {
+    dispatch(setLoading(true));
     const data = {
       collection_id: item.id,
       user_id: userProfile.id,
@@ -56,6 +60,8 @@ const OrderSummary = ({navigation, route}) => {
     ]).then(axios.spread((res1, res2) => {
       console.log('checkout', res1)
       console.log('update', res2)
+
+      dispatch(setLoading(false));
     })).catch(err => {
       console.log(err)
     })

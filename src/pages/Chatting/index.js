@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import { ChatItem, Headers, InputChat, ListAdmin } from '../../components'
 import firebase from '../../config/Fire'
@@ -10,7 +10,7 @@ const Chatting = ({navigation, route}) => {
     const [chatContent, setChatContent] = useState('');
     const [user, setUser] = useState({});
     const [chatData, setChatData] = useState([]);
-
+    const scrollView= useRef();
 
     useEffect(() =>{
         getDataUserFromLocal();
@@ -99,6 +99,8 @@ const Chatting = ({navigation, route}) => {
       });
     }
 
+    
+
     return (
         <View style={styles.pages}>
             <View>
@@ -107,7 +109,10 @@ const Chatting = ({navigation, route}) => {
             
             <View style={styles.wrapperMessage}>
         <ScrollView
-          showsVerticalScrollIndicator={false}>
+          showsVerticalScrollIndicator={false}
+          ref={scrollView}
+          onContentSizeChange={() => scrollView.current.scrollToEnd({ animated: false })}
+          >
           {chatData.map(chat => {
             return (
               <View key={chat.id}>
