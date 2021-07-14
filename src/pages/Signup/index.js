@@ -21,9 +21,6 @@ const Signup = ({navigation}) => {
   const dispatch = useDispatch();
 
   const onSubmit = () => {
-
-  
-
   firebase.auth().createUserWithEmailAndPassword(form.email, form.password)
   .then(res => {
     const data = {

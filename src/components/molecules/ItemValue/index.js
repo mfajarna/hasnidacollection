@@ -8,7 +8,6 @@ const ItemValue = ({label, value, valueColor = '#020202', type}) => {
       <Text style={styles.label}>{label}</Text>
       {type === 'currency' ? <Number number={value} style={styles.value(valueColor)} /> :
       <Text style={styles.value(valueColor)}>{value}</Text> }
-      
     </View>
   );
 };

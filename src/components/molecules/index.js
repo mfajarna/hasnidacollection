@@ -22,6 +22,7 @@ import InputChat from './InputChat';
 import AdminSection from './AdminSection';
 import ChatItem from './ChatItem';
 import ContentKeranjang from './ContentKeranjang';
+import ItemValueCopy from './ItemValueCopy';
 
 export {
   Headers,
@@ -47,5 +48,6 @@ export {
   InputChat,
   AdminSection,
   ChatItem,
-  ContentKeranjang
+  ContentKeranjang,
+  ItemValueCopy
 };

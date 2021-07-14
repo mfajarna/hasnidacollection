@@ -65,7 +65,7 @@ const InProgress = () => {
               rating={order.collection.rate}
               image={{uri: order.collection.picturePath}}
               onPress={() => navigation.navigate('OrderDetail', order)}
-              onPressBayar={() => navigation.navigate('UploadBuktiBayar')}
+              onPressBayar={() => navigation.navigate('UploadBuktiBayar', order)}
               type="in-progress"
               items={order.quantity}
               price={order.total}

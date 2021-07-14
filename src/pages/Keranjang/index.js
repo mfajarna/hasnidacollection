@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import { Ic_checklist } from '../../assets';
-import {ContentKeranjang, EmptyOrder, Headers, OrderTabSection} from '../../components/molecules';
+import { Ic_bank_account, Ic_checklist } from '../../assets';
+import { Gap } from '../../components';
+import {ContentKeranjang, EmptyOrder, Headers, ItemValue, ItemValueCopy, OrderTabSection} from '../../components/molecules';
 import {getOrders} from '../../redux/action/order';
 
 const Keranjang = ({navigation}) => {
@@ -34,12 +35,17 @@ const Keranjang = ({navigation}) => {
                   <ContentKeranjang type="Dikirim" onPress={() => navigation.navigate('OrderTab')} />
                   <ContentKeranjang type="Selesai" onPress={() => navigation.navigate('OrderTab')} />
               </View>
-              <View>
-                
+              <View style={styles.transfer}>
+                <Ic_bank_account />
+                <Text style={styles.textBank}>Informasi Transfer Bank</Text>
               </View>
-            </View>
-            <View style={styles.additional}>
-
+              <View style={styles.informasiBank}>
+                   <ItemValueCopy label="A.N Nabila salsa hasnida (BNI)" value="0984003477" />
+                   <ItemValueCopy label="A.N Nabila salsa hasnida(BCA)" value="1330349278" />
+                   <ItemValueCopy label="DANA" value="081393211636" />
+                   <Gap height={10} />
+                   <Text style={styles.textBank}>*Note: Klik nomor pin ATM untuk copy </Text>
+              </View>
             </View>
           </View>
         </View>
@@ -67,16 +73,24 @@ const styles = StyleSheet.create({
     paddingHorizontal: 40,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderBottomWidth: 0.5
+    borderBottomWidth: 0.2,
+    borderColor: '#373737'
   },
   pesanan: {
     paddingTop: 10,
     paddingHorizontal: 20,
     flexDirection: 'row',
     alignItems: 'center',
-    borderBottomWidth: 0.5,
+    borderBottomWidth: 0.3,
+    borderColor: '#373737',
     paddingBottom: 5,
-    
+  },
+  transfer: {
+    paddingTop: 10,
+    paddingHorizontal: 15,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingBottom: 5,
   },
   checklist:{
     backgroundColor: 'white',
@@ -89,5 +103,14 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily:'Nunito-Regular',
     marginLeft: 10,
+  },
+  textBank:{
+  fontSize: 14,
+  fontFamily:'Nunito-Regular',
+  marginLeft: 10,
+  },
+  informasiBank: {
+    paddingTop: 10,
+    paddingHorizontal: 13,
   }
 });
