@@ -1,20 +1,24 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View, Image, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from 'react-native'
 import { Headers, ItemValue } from '../../components/molecules'
 import ImagePicker from 'react-native-image-picker';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { showMessage } from '../../utils';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Gap, Button } from '../../components';
 import DashedLine from 'react-native-dashed-line';
+import { uploadPhotoPembayaranAction } from '../../redux/action';
 
 
 const UploadBuktiBayar = ({route,navigation}) => {
     const [photo,setPhoto] = useState('');
     const dispatch = useDispatch();
+    const {uploadPhotoPembayaranReducer} = useSelector(state => state)
+    const order = route.params;
+    console.log('orderdetail: ',order)
 
     const onSubmit = () => {
-        alert('AHAHA')
+        dispatch(uploadPhotoPembayaranAction(uploadPhotoPembayaranReducer,order,navigation))
+
     }
 
     const addPhoto = () =>{
@@ -38,15 +42,14 @@ const UploadBuktiBayar = ({route,navigation}) => {
                         name: response.name
                     };
                     setPhoto(source);
-                    dispatch({type: 'SET_PHOTO', value: dataImage});
-                    dispatch({type:'SET_UPLOAD_STATUS', value: true})
+                    dispatch({type: 'SET_UPLOAD_PHOTO', value: dataImage});
+                    dispatch({type:'SET_STATUS_UPLOAD', value: true})
                 }
             }
         )
     }
 
-    const order = route.params;
-    console.log('orderdetail: ',order)
+
 
     return (
         <View style={styles.page}>
