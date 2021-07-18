@@ -16,35 +16,45 @@ const UploadBuktiBayar = ({route,navigation}) => {
     const {uploadPhotoPembayaranReducer} = useSelector(state => state)
     const order = route.params;
 
+    const data = {
+        status: 'Sudah Bayar'
+    }
+    
     useEffect(() =>{
         getData("token").then(res => {
             setToken(res.value)
         })
     },[])
 
+    
 
     const onSubmit = () => {
         if(uploadPhotoPembayaranReducer.isUploadPhoto)
         {
             const photoForUpload = new FormData();
             photoForUpload.append('file', uploadPhotoPembayaranReducer);
+
+           axios.all([
             axios.post(`http://ecommerce.iottelnet.com/api/pembayaranPhoto/${order.id}`, photoForUpload, {
               headers: {
                 'Authorization': token,
                 'Content-Type':'multipart/form-data',
                 },
-            }).then(resUpload => {
-                order.pembayaranPath = `ecommerce.iottelnet.com/storage/${resUpload.data.data[0]}`;
-                showMessage('Berhasil input bukti bayar!', 'success');
-                navigation.navigate('Keranjang');
-                
-            }).catch(resErr => {
+            }),
+            axios.post(`http://ecommerce.iottelnet.com/api/transaction/${order.id}`, data, {
+                headers: {
+            'Authorization' : token
+                }
+            })
+           ]).then(axios.spread((resUpload, res) => {
+                    order.pembayaranPath = `ecommerce.iottelnet.com/storage/${resUpload.data.data[0]}`;
+                    showMessage('Berhasil input bukti bayar!', 'success');
+                    navigation.navigate('Keranjang');
+           })).catch(resErr => {
                 console.log(resErr.message)
             }) 
-        }
-        
+        } 
     }
-
     const addPhoto = () =>{
         ImagePicker.launchImageLibrary(
             {
