@@ -1,24 +1,48 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from 'react-native'
 import { Headers, ItemValue } from '../../components/molecules'
 import ImagePicker from 'react-native-image-picker';
-import { showMessage } from '../../utils';
+import { getData, showMessage } from '../../utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { Gap, Button } from '../../components';
 import DashedLine from 'react-native-dashed-line';
-import { uploadPhotoPembayaranAction } from '../../redux/action';
+import axios from 'axios';
 
 
 const UploadBuktiBayar = ({route,navigation}) => {
     const [photo,setPhoto] = useState('');
     const dispatch = useDispatch();
+    const [token, setToken] = useState('');
     const {uploadPhotoPembayaranReducer} = useSelector(state => state)
     const order = route.params;
-    console.log('orderdetail: ',order)
+
+    useEffect(() =>{
+        getData("token").then(res => {
+            setToken(res.value)
+        })
+    },[])
+
 
     const onSubmit = () => {
-        dispatch(uploadPhotoPembayaranAction(uploadPhotoPembayaranReducer,order,navigation))
-
+        if(uploadPhotoPembayaranReducer.isUploadPhoto)
+        {
+            const photoForUpload = new FormData();
+            photoForUpload.append('file', uploadPhotoPembayaranReducer);
+            axios.post(`http://ecommerce.iottelnet.com/api/pembayaranPhoto/${order.id}`, photoForUpload, {
+              headers: {
+                'Authorization': token,
+                'Content-Type':'multipart/form-data',
+                },
+            }).then(resUpload => {
+                order.pembayaranPath = `ecommerce.iottelnet.com/storage/${resUpload.data.data[0]}`;
+                showMessage('Berhasil input bukti bayar!', 'success');
+                navigation.navigate('Keranjang');
+                
+            }).catch(resErr => {
+                console.log(resErr.message)
+            }) 
+        }
+        
     }
 
     const addPhoto = () =>{
@@ -39,7 +63,7 @@ const UploadBuktiBayar = ({route,navigation}) => {
                     const dataImage = {
                         uri: response.uri,
                         type: response.type,
-                        name: response.name
+                        name: response.fileName
                     };
                     setPhoto(source);
                     dispatch({type: 'SET_UPLOAD_PHOTO', value: dataImage});
