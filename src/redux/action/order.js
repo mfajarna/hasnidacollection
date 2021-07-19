@@ -63,7 +63,7 @@ export const getDelivery = () => dispatch => {
   getData('token').then(resToken => {
     axios
       .get(
-        'http://ecommerce.iottelnet.com/api/transaction?status=DELIVERED',
+        'http://ecommerce.iottelnet.com/api/transaction?status=ON_DELIVERY',
         {
           headers: {
             Authorization: resToken.value,
