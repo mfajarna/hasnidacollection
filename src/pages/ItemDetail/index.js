@@ -5,15 +5,24 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Image,
+  Linking,
+  ScrollView
 } from 'react-native';
-import {Ic_back_white} from '../../assets';
-import {Button, Counter, Number, Rating} from '../../components';
+import {DummyImg3, Ic_back_white} from '../../assets';
+import {Button, Counter, Gap, Number, Rating} from '../../components';
 import {getData} from '../../utils/storage';
 
 const ItemDetail = ({navigation, route}) => {
-  const {id, name, picturePath, description, stock, rate, price} = route.params;
+  const {id, name, picturePath, description, stock, rate, price, url_barcode, photoBarcode} = route.params;
   const [totalItem, setTotalItem] = useState(1);
   const [userProfile, setUserProfile] = useState({});
+
+    const scanMe = () => {
+        Linking.openURL(url_barcode)
+    }
+
+
 
   useEffect(() => {
     getData('userProfile').then(res => {
@@ -23,6 +32,7 @@ const ItemDetail = ({navigation, route}) => {
   const onCounterChange = value => {
     setTotalItem(value);
   };
+
 
   const onOrder = () => {
     const totalPrice = totalItem * price;
@@ -58,6 +68,7 @@ const ItemDetail = ({navigation, route}) => {
         </TouchableOpacity>
       </ImageBackground>
       <View style={styles.content}>
+        <ScrollView>
         <View style={styles.mainContent}>
           <View style={styles.productContainer}>
             <View>
@@ -71,7 +82,14 @@ const ItemDetail = ({navigation, route}) => {
           <Text style={styles.desc}>{description}</Text>
           <Text style={styles.label}>Stok:</Text>
           <Text style={styles.desc}>{stock}</Text>
+          <Image style={styles.image} source={{ uri: photoBarcode }} />
+          <TouchableOpacity style={styles.buttonScan} onPress={scanMe}>
+              <Text style={styles.textScanMe}>Scan Me</Text>
+          </TouchableOpacity>
+          <Gap height={5} />
+          <Text style={styles.labelNote}>*Note: Klik scan me untuk melihat informasi barang</Text>          
         </View>
+        </ScrollView>
         <View style={styles.footer}>
           <View style={styles.priceContainer}>
             <Text style={styles.labelTotal}>Total Harga:</Text>
@@ -161,4 +179,25 @@ const styles = StyleSheet.create({
     fontFamily: 'Nunito-Regular',
     color: '#020202',
   },
+  image:{
+    width: 100,
+    height: 100,
+    borderRadius: 8,
+  },
+  buttonScan: {
+    backgroundColor: '#50CB93',
+    width: 80,
+    alignItems: 'center',
+    borderRadius: 5,
+  },
+  textScanMe : {
+    fontSize: 15,
+    fontFamily: 'Nunito-Regular',
+    color: 'white',
+  },
+  labelNote: {
+    fontSize: 13,
+    fontFamily: 'Nunito-SemiBold',
+    color: 'black',
+  }
 });

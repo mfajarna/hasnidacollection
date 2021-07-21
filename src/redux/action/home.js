@@ -18,6 +18,7 @@ export const getCollectionDataByTypes = (types) => (dispatch) => {
         } if(types === 'popular')
         {
             dispatch({type: 'SET_POPULAR', value: res.data.data.data})
+            console.log('API Popular',res)
         }   if(types === 'recommended')
         {
             dispatch({type: 'SET_RECOMMENDED', value: res.data.data.data})
