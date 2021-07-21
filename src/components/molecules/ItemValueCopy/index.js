@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Nunito-Regular',
     color: '#8D92A3',
     marginBottom: 3,
+    maxWidth: 130
   },
   value: color => ({
     fontSize: 13,

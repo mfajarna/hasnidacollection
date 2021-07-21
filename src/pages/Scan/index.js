@@ -1,16 +1,24 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, Linking, TouchableOpacity} from 'react-native';
 import {Headers} from '../../components';
+import QRCodeScanner from 'react-native-qrcode-scanner';
+import { RNCamera } from 'react-native-camera';
 
 const Scan = ({navigation}) => {
+
+  const onSuccess = (e) => {
+      Linking.openURL(e.data).catch(err =>
+      console.error('An error occured', err)
+    );
+  }
   return (
     <View style={styles.container}>
       <Headers title="Scan Barcode" subTitle="Scan barcode disini" />
       <View style={styles.camera}>
-       <Text>Camera Box</Text>
-      </View>
-      <View style={styles.data}>
-        <Text>Data</Text>
+        <QRCodeScanner
+        onRead={onSuccess}
+        flashMode={RNCamera.Constants.FlashMode.torch}
+      />
       </View>
     </View>
   );
@@ -21,7 +29,6 @@ export default Scan;
 const styles = StyleSheet.create({
   camera:{
       flex: 1,
-      paddingBottom: 100
   },
   container:{
     flex: 1,

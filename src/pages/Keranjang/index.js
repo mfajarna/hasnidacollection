@@ -14,8 +14,6 @@ const Keranjang = ({navigation}) => {
   useEffect(() => {
     dispatch(getOrders());
   }, []);
-
-  console.log('list orders: ', orders);
   return (
     <View style={styles.page}>
       {orders.length < 1 ? (

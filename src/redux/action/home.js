@@ -13,7 +13,7 @@ export const getCollectionDataByTypes = (types) => (dispatch) => {
     axios.get(`http://ecommerce.iottelnet.com/api/collection?types=${types}`)
     .then(res => {
         if(types === 'new_collection')
-        {
+        {   
             dispatch({type: 'SET_NEW_COLLECTION', value: res.data.data.data})
         } if(types === 'popular')
         {

@@ -10,19 +10,17 @@ import {
   ScrollView
 } from 'react-native';
 import {DummyImg3, Ic_back_white} from '../../assets';
-import {Button, Counter, Gap, Number, Rating} from '../../components';
+import {Button, Counter, Gap, Number, Rating, SizeItem} from '../../components';
 import {getData} from '../../utils/storage';
 
 const ItemDetail = ({navigation, route}) => {
-  const {id, name, picturePath, description, stock, rate, price, url_barcode, photoBarcode} = route.params;
+  const {id, name, picturePath, description, stock, rate, price, url_barcode, photoBarcode, category} = route.params;
   const [totalItem, setTotalItem] = useState(1);
   const [userProfile, setUserProfile] = useState({});
 
     const scanMe = () => {
         Linking.openURL(url_barcode)
     }
-
-
 
   useEffect(() => {
     getData('userProfile').then(res => {
@@ -32,6 +30,11 @@ const ItemDetail = ({navigation, route}) => {
   const onCounterChange = value => {
     setTotalItem(value);
   };
+
+  const[result,setResult] = useState('');
+  const testResult = () => {
+    alert(result)
+  }
 
 
   const onOrder = () => {
@@ -80,13 +83,15 @@ const ItemDetail = ({navigation, route}) => {
             )}
           </View>
           <Text style={styles.desc}>{description}</Text>
+          <SizeItem category={category} result={setResult} />
+          <Gap height={8} />
           <Text style={styles.label}>Stok:</Text>
           <Text style={styles.desc}>{stock}</Text>
           <Image style={styles.image} source={{ uri: photoBarcode }} />
           <TouchableOpacity style={styles.buttonScan} onPress={scanMe}>
               <Text style={styles.textScanMe}>Scan Me</Text>
           </TouchableOpacity>
-          <Gap height={5} />
+          <Gap height={8} />
           <Text style={styles.labelNote}>*Note: Klik scan me untuk melihat informasi barang</Text>          
         </View>
         </ScrollView>

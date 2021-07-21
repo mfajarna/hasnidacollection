@@ -10,7 +10,6 @@ export const getOrders = () => dispatch => {
         },
       })
       .then(res => {
-        console.log('get orders: ', res);
         dispatch({type: 'SET_ORDER', value: res.data.data.data});
       })
       .catch(err => {
@@ -28,7 +27,6 @@ export const getInProgress = () => dispatch => {
         },
       })
       .then(res => {
-        console.log('get In Progress: ', res);
         dispatch({type: 'SET_PROCESS', value: res.data.data.data});
       })
       .catch(err => {
@@ -49,7 +47,6 @@ export const getConfirmation = () => dispatch => {
         },
       )
       .then(res => {
-        console.log('get Confirmation Orders: ', res);
         dispatch({type: 'SET_CONFIRMATION', value: res.data.data.data});
       })
       .catch(err => {
@@ -71,7 +68,6 @@ export const getDelivery = () => dispatch => {
         },
       )
       .then(res => {
-        console.log('get Confirmation Orders: ', res);
         dispatch({type: 'SET_DELIVERY', value: res.data.data.data});
       })
       .catch(err => {
@@ -87,7 +83,6 @@ export const getDone = () => dispatch => {
         Authorization: resToken.value
       },
     }).then(res => {
-      console.log('Get Done Project: ', res);
       dispatch({type: 'SET_DONE', value: res.data.data.data})
     }).catch(err => {
       console.log('err', err)
@@ -104,7 +99,6 @@ export const getPastOrders = () => dispatch => {
         },
       })
       .then(res => {
-        console.log('get Past Orders: ', res);
         dispatch({type: 'SET_PAST_ORDERS', value: res.data.data.data});
       })
       .catch(err => {

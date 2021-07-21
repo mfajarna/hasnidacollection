@@ -44,7 +44,6 @@ const Chatting = ({navigation, route}) => {
       })
     }, [dataAdmin.data.uid, user.uid])
 
-
       const getDataUserFromLocal = () => {
         getData('user').then(res => {
         setUser(res);
