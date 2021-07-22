@@ -83,7 +83,7 @@ const ItemDetail = ({navigation, route}) => {
             )}
           </View>
           <Text style={styles.desc}>{description}</Text>
-          <SizeItem category={category} result={setResult} />
+          <SizeItem category={category} />
           <Gap height={8} />
           <Text style={styles.label}>Stok:</Text>
           <Text style={styles.desc}>{stock}</Text>

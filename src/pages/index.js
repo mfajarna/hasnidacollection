@@ -23,6 +23,7 @@ import Chatting from './Chatting';
 import OrderDelivery from './OrderDelivery';
 import OrderTab from './OrderTab';
 import UploadBuktiBayar from './UploadBuktiBayar';
+import LelangBarang from './LelangBarang';
 
 export {
   SplashScreen,
@@ -49,5 +50,6 @@ export {
   Chatting,
   OrderDelivery,
   OrderTab,
-  UploadBuktiBayar
+  UploadBuktiBayar,
+  LelangBarang
 };

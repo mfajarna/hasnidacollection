@@ -54,17 +54,17 @@ const Home = ({onPress, navigation}) => {
         </View>
       </View>
       <Gap height={10} />
-      <ScrollView contentContainerStyle={{flexGrow: 1}}>
+      
         <Text style={styles.text}>Mau belanja apa</Text>
         <Text style={styles.text}>hari ini ?</Text>
         <Gap height={30} />
-
+  <ScrollView contentContainerStyle={{flexGrow: 1}}>
         <View style={styles.page}>
           <Text style={styles.textFitur}>Fitur Kami</Text>
           <Gap height={12} />
           <View style={styles.fitur}>
             <View style={styles.content}>
-              <Fitur label="Lelang Barang" />
+              <Fitur label="Lelang Barang" onPress={() => navigation.navigate('LelangBarang')} />
             </View>
             <View style={styles.content}>
               <Fitur label="Pembelian" onPress={() => navigation.navigate('Pembelian')} />
@@ -119,7 +119,6 @@ const Home = ({onPress, navigation}) => {
               </View>
           </View>
         </View>
-
       </ScrollView>
     </View>
   );
