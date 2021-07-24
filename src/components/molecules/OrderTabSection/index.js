@@ -149,6 +149,7 @@ const Konfirmation = () => {
   const {confirmation} = useSelector(state => state.orderReducer);
   useEffect(() => {
     dispatch(getConfirmation());
+    console.log(confirmation)
   }, []);
 
   return (

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from 'react-native'
 import { Headers, ItemValue } from '../../components/molecules'
 import ImagePicker from 'react-native-image-picker';
-import { getData, showMessage } from '../../utils';
+import { API_HOST, getData, showMessage } from '../../utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { Gap, Button } from '../../components';
 import DashedLine from 'react-native-dashed-line';
@@ -34,20 +34,22 @@ const UploadBuktiBayar = ({route,navigation}) => {
             const photoForUpload = new FormData();
             photoForUpload.append('file', uploadPhotoPembayaranReducer);
 
+            console.log("photo for upload",photoForUpload)
+
            axios.all([
-            axios.post(`http://ecommerce.iottelnet.com/api/pembayaranPhoto/${order.id}`, photoForUpload, {
+            axios.post(`${API_HOST.url}/pembayaranPhoto/${order.id}`, photoForUpload, {
               headers: {
                 'Authorization': token,
                 'Content-Type':'multipart/form-data',
                 },
             }),
-            axios.post(`http://ecommerce.iottelnet.com/api/transaction/${order.id}`, data, {
+            axios.post(`${API_HOST.url}/transaction/${order.id}`, data, {
                 headers: {
             'Authorization' : token
                 }
             })
            ]).then(axios.spread((resUpload, res) => {
-                    order.pembayaranPath = `ecommerce.iottelnet.com/storage/${resUpload.data.data[0]}`;
+                    order.pembayaranPath = `http://27.112.78.10/storage/${resUpload.data.data[0]}`;
                     showMessage('Berhasil input bukti bayar!', 'success');
                     navigation.navigate('Keranjang');
            })).catch(resErr => {

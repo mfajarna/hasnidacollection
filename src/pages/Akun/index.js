@@ -9,6 +9,7 @@ const Akun = () => {
   const [userProfile,setUserProfile] = useState({});
     useEffect(() =>  {
         getData('userProfile').then(res => {
+            console.log(userProfile)
             setUserProfile(res);
         })
     }, []);
@@ -18,7 +19,7 @@ const Akun = () => {
       <View style={styles.profileDetail}>
         <View style={styles.photo}>
           <View style={styles.borderPhoto}>
-            <Image source={{ uri: userProfile.profile_photo_path }} style={styles.photoContainer} />
+            <Image source={{ uri: userProfile.profile_photo_url }} style={styles.photoContainer} />
           </View>
         </View>
         <Text style={styles.name}>{userProfile.name}</Text>

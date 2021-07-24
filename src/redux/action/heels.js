@@ -1,4 +1,7 @@
 import axios from "axios"
+import { API_HOST } from "../../utils"
+
+
 
 export const getHeelsData = () => (dispatch) => {
     axios.get('http://ecommerce.iottelnet.com/api/collection?category=HEELS')
@@ -10,7 +13,7 @@ export const getHeelsData = () => (dispatch) => {
 }
 
 export const getHeelsDataByTypes = (types) => (dispatch) => {
-    axios.get(`http://ecommerce.iottelnet.com/api/collection?category=HEELS&types=${types}`)
+    axios.get(`${API_HOST.url}/collection?category=HEELS&types=${types}`)
     .then(res => {
         if(types === 'New Collection')
         {

@@ -1,10 +1,10 @@
 import axios from 'axios';
-import {getData} from '../../utils';
+import {API_HOST, getData} from '../../utils';
 
 export const getOrders = () => dispatch => {
   getData('token').then(resToken => {
     axios
-      .get('http://ecommerce.iottelnet.com/api/transaction', {
+      .get(`${API_HOST.url}/transaction`, {
         headers: {
           Authorization: resToken.value,
         },
@@ -21,7 +21,7 @@ export const getOrders = () => dispatch => {
 export const getInProgress = () => dispatch => {
   getData('token').then(resToken => {
     axios
-      .get('http://ecommerce.iottelnet.com/api/transaction?status=PENDING', {
+      .get(`${API_HOST.url}/transaction?status=PENDING`, {
         headers: {
           Authorization: resToken.value,
         },
@@ -39,7 +39,7 @@ export const getConfirmation = () => dispatch => {
   getData('token').then(resToken => {
     axios
       .get(
-        'http://ecommerce.iottelnet.com/api/transaction?status=CONFIRMATION',
+        `${API_HOST.url}/transaction?status=CONFIRMATION`,
         {
           headers: {
             Authorization: resToken.value,
@@ -60,7 +60,7 @@ export const getDelivery = () => dispatch => {
   getData('token').then(resToken => {
     axios
       .get(
-        'http://ecommerce.iottelnet.com/api/transaction?status=ON_DELIVERY',
+        `${API_HOST.url}/transaction?status=ON_DELIVERY`,
         {
           headers: {
             Authorization: resToken.value,
@@ -78,7 +78,7 @@ export const getDelivery = () => dispatch => {
 
 export const getDone = () => dispatch => {
   getData('token').then(resToken => {
-    axios.get('http://ecommerce.iottelnet.com/api/transaction?status=DONE', {
+    axios.get(`${API_HOST.url}/transaction?status=DONE`, {
       headers: {
         Authorization: resToken.value
       },
@@ -93,7 +93,7 @@ export const getDone = () => dispatch => {
 export const getPastOrders = () => dispatch => {
   getData('token').then(resToken => {
     axios
-      .get('http://ecommerce.iottelnet.com/api/pastorders', {
+      .get(`${API_HOST.url}/pastorders`, {
         headers: {
           Authorization: resToken.value,
         },

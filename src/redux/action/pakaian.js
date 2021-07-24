@@ -1,4 +1,5 @@
 import axios from "axios"
+import { API_HOST } from "../../utils"
 
 export const getPakaianData = () => (dispatch) => {
     axios.get('http://ecommerce.iottelnet.com/api/collection?category=PAKAIAN')
@@ -10,7 +11,7 @@ export const getPakaianData = () => (dispatch) => {
 }
 
 export const getPakaianDataByTypes = (types) => (dispatch) => {
-    axios.get(`http://ecommerce.iottelnet.com/api/collection?category=PAKAIAN&types=${types}`)
+    axios.get(`${API_HOST.url}/collection?category=PAKAIAN&types=${types}`)
     .then(res => {
         if(types === 'New Collection')
         {

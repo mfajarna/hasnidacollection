@@ -4,7 +4,7 @@ import {DummyImg1} from '../../assets';
 import {Headers, ItemListFood, ItemValue} from '../../components/molecules';
 import {Button} from '../../components/atoms';
 import axios from 'axios';
-import { getData, showMessage } from '../../utils';
+import { API_HOST, getData, showMessage } from '../../utils';
 
 const OrderDelivery = ({route, navigation}) => {
 
@@ -18,7 +18,7 @@ const OrderDelivery = ({route, navigation}) => {
     }
 
     getData('token').then(resToken => {
-        axios.post(`http://ecommerce.iottelnet.com/api/transaction/${order.id}`, data, {
+        axios.post(`${API_HOST.url}/transaction/${order.id}`, data, {
         headers: {
             'Authorization' : resToken.value
           }

@@ -1,4 +1,5 @@
 import axios from "axios"
+import { API_HOST } from "../../utils"
 
 export const getCollectionData = () => (dispatch) => {
     axios.get('http://ecommerce.iottelnet.com/api/collection')
@@ -10,7 +11,7 @@ export const getCollectionData = () => (dispatch) => {
 }
 
 export const getCollectionDataByTypes = (types) => (dispatch) => {
-    axios.get(`http://ecommerce.iottelnet.com/api/collection?types=${types}`)
+    axios.get(`${API_HOST.url}/collection?types=${types}`)
     .then(res => {
         if(types === 'new_collection')
         {   

@@ -1,10 +1,6 @@
 import axios from "axios";
-import { getData } from "../../utils";
+import { API_HOST, getData } from "../../utils";
 
-
-const API_HOST = {
-    url: 'http://ecommerce.iottelnet.com/api'
-}
 
 export const uploadPhotoPembayaranAction = (uploadPhotoPembayaranReducer,order,navigation) => dispatch => {
 
@@ -15,7 +11,7 @@ export const uploadPhotoPembayaranAction = (uploadPhotoPembayaranReducer,order,n
         photoForUpload.append('file', uploadPhotoPembayaranReducer);
         
         getData('token').then(res => {
-        axios.post(`http://ecommerce.iottelnet.com/api/pembayaranPhoto/${order.id}`, photoForUpload, {
+        axios.post(`${API_HOST.url}/pembayaranPhoto/${order.id}`, photoForUpload, {
               headers: {
                 Authorization: res.value,
                 'Content-Type': 'multipart/form-data',

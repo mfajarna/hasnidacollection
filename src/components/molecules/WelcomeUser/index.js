@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Image } from 'react-native'
-import { DummyImg1, DummyImg3 } from '../../../assets'
+
 import { getData } from '../../../utils/storage';
 
 const WelcomeUser = () => {
     const [userProfile,setUserProfile] = useState({});
     useEffect(() =>  {
         getData('userProfile').then(res => {
+            console.log();
             setUserProfile(res);
         })
     }, []);
@@ -17,7 +18,7 @@ const WelcomeUser = () => {
                    <Text style={styles.nameCard}>Hello! {userProfile.name}</Text>
                    <Text style={styles.desc}>Ayo belanja sekarang!</Text>
                </View>
-               <Image source={{ uri: userProfile.profile_photo_path }} style={styles.profile}/>
+               <Image source={{ uri: userProfile.profile_photo_url }} style={styles.profile}/>
            </View>
         </View>
     )

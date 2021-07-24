@@ -14,3 +14,4 @@ const LelangBarang = ({navigation}) => {
 export default LelangBarang
 
 const styles = StyleSheet.create({})
+    

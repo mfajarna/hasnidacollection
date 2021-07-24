@@ -7,7 +7,7 @@ import {getData} from '../../utils/storage';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setLoading } from '../../redux/action';
-import { showMessage } from '../../utils';
+import { API_HOST, showMessage } from '../../utils';
 
 const OrderSummary = ({navigation, route}) => {
   const {item, transaction, userProfile} = route.params;
@@ -48,12 +48,12 @@ const OrderSummary = ({navigation, route}) => {
     
     // console.log(updateStock);
     axios.all([
-      axios.post('http://ecommerce.iottelnet.com/api/checkout', data, {
+      axios.post(`${API_HOST.url}/checkout`, data, {
         headers: {
           Authorization: token,
         },
       }),
-      axios.post(`http://ecommerce.iottelnet.com/api/collection/${item.id}`, updateStock, {
+      axios.post(`${API_HOST.url}/collection/${item.id}`, updateStock, {
         headers: {
           Authorization: token,
         },

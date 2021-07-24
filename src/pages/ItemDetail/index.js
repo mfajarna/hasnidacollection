@@ -185,9 +185,11 @@ const styles = StyleSheet.create({
     color: '#020202',
   },
   image:{
+    marginTop: 5,
     width: 100,
     height: 100,
     borderRadius: 8,
+    marginBottom : 5
   },
   buttonScan: {
     backgroundColor: '#50CB93',

@@ -4,7 +4,7 @@ import {DummyImg1} from '../../assets';
 import {Headers, ItemListFood, ItemValue} from '../../components/molecules';
 import {Button} from '../../components/atoms';
 import axios from 'axios';
-import { getData, showMessage } from '../../utils';
+import { API_HOST, getData, showMessage } from '../../utils';
 
 const OrderDetail = ({route, navigation}) => {
 
@@ -24,12 +24,12 @@ const OrderDetail = ({route, navigation}) => {
     getData('token').then(resToken => {
 
       axios.all([
-          axios.post(`http://ecommerce.iottelnet.com/api/transaction/${order.id}`, data, {
+          axios.post(`${API_HOST.url}/transaction/${order.id}`, data, {
           headers: {
             'Authorization' : resToken.value
           }
         }),
-        axios.post(`http://ecommerce.iottelnet.com/api/collection/${order.collection.id}`, updateStock, {
+        axios.post(`${API_HOST.url}/collection/${order.collection.id}`, updateStock, {
         headers: {
           'Authorization' : resToken.value
         },

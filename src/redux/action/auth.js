@@ -3,7 +3,7 @@ import {showMessage, storeData} from '../../utils';
 import {setLoading} from './global';
 
 const API_HOST = {
-  url: 'http://ecommerce.iottelnet.com/api',
+  url: 'http://27.112.78.10/api',
 };
 
 export const signUpAction =
@@ -28,7 +28,7 @@ export const signUpAction =
               },
             })
             .then(resUpload => {
-              profile.profile_photo_url = `ecommerce.iottelnet.com/storage/${resUpload.data.data[0]}`;
+              profile.profile_photo_url = `http://27.112.78.10/storage/${resUpload.data.data[0]}`;
               storeData('userProfile', profile);
               navigation.reset({index: 0, routes: [{name: 'SuccessSignup'}]});
             })
