@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, Modal } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity, Modal , ScrollView} from 'react-native'
 import { useDispatch, useSelector } from 'react-redux';
 import {Headers, Number, Gap, SimpleModal, UserLelang} from '../../components';
 import { getListLelangUser } from '../../redux/action/listuserlelang';
@@ -17,7 +17,7 @@ const LelangProses = ({route,navigation}) => {
     const{dataUserLelang} = useSelector(state => state.listUserLelangReducer);
 
     useEffect(() => {
-        dispatch(getListLelangUser());
+        dispatch(getListLelangUser(id));
     },[])
 
     const changeModalVisible = (bool) => {
@@ -66,17 +66,20 @@ const LelangProses = ({route,navigation}) => {
                 </View>
   
                 <Gap height={10} />
-                <Text style={styles.text}>User yang sudah masang bid : </Text> 
+                <Text style={styles.text}>User yang sudah masang bid </Text> 
+                <Gap height={8} />
                 <View style={styles.users}>
+                    <ScrollView>
                     {dataUserLelang.map(data => {
                         return (
-                           <UserLelang
-                            key={data.id}
-                            name={data.user.name}
-                            jumlah_bid={data.jumlah_bid}
-                           />
+                                <UserLelang
+                                    key={data.id}
+                                    name={data.user.name}
+                                    jumlah_bid={data.jumlah_bid}
+                                />
                         )
                     })}
+                    </ScrollView>
                 </View>
             </View> 
         </View>

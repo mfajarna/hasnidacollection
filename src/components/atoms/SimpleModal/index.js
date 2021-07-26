@@ -31,8 +31,10 @@ const SimpleModal = ({changeModalVisible,setData, listData}) => {
         jumlah_bid: ''
     })
 
+    console.log(listData.id)
+
        const data = {
-        id_collection: listData.collection.id,
+        id_lelang: listData.id,
         id_users: user,
         jumlah_bid: form.jumlah_bid
     }

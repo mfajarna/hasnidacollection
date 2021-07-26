@@ -96,9 +96,6 @@ const Home = ({onPress, navigation}) => {
                 <Kategori label="HIJAB" onPress={() => navigation.navigate('CategoryHijab') } />
               </View>
               <View style={styles.kategoriItem}>
-                <Kategori label="TAS" onPress={() => navigation.navigate('CategoryTas') }/>
-              </View>
-              <View style={styles.kategoriItem}>
                 <Kategori label="BEAUTY" onPress={() => navigation.navigate('CategoryBeauty') } />
               </View>
             </ScrollView>

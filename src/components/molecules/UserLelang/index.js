@@ -4,6 +4,7 @@ import {Number} from '../../molecules';
 
 const UserLelang = ({name,jumlah_bid}) => {
     return (
+
         <View style={styles.container}>
             <Text style={styles.text}>Atas Nama: {name}</Text>
             <Text><Number number={jumlah_bid} /></Text>
