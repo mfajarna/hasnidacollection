@@ -24,6 +24,7 @@ import OrderDelivery from './OrderDelivery';
 import OrderTab from './OrderTab';
 import UploadBuktiBayar from './UploadBuktiBayar';
 import LelangBarang from './LelangBarang';
+import LelangProses from './LelangProses';
 
 export {
   SplashScreen,
@@ -51,5 +52,6 @@ export {
   OrderDelivery,
   OrderTab,
   UploadBuktiBayar,
-  LelangBarang
+  LelangBarang,
+  LelangProses
 };

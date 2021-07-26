@@ -7,7 +7,7 @@ const WelcomeUser = () => {
     const [userProfile,setUserProfile] = useState({});
     useEffect(() =>  {
         getData('userProfile').then(res => {
-            console.log();
+            console.log(res);
             setUserProfile(res);
         })
     }, []);

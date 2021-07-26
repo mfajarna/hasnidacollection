@@ -42,7 +42,9 @@ import Ic_dikemas from './ic_dikemas.svg';
 import Ic_dikirim from './ic_dikirim.svg';
 import Ic_selesai from './ic_selesai.svg';
 import Ic_bank_account from './ic_bank_account.svg';
-import Ic_copy from './ic_copy.svg'
+import Ic_copy from './ic_copy.svg';
+import Ic_gagal from './ic_gagal.svg';
+import Ic_arrow_next from './ic_arrow_next.svg'
 
 export {
   Ic_belum_bayar,
@@ -89,5 +91,7 @@ export {
   Ic_admin,
   Ic_checklist,
   Ic_bank_account,
-  Ic_copy
+  Ic_copy,
+  Ic_gagal,
+  Ic_arrow_next
 };

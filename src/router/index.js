@@ -28,6 +28,7 @@ import {
   OrderTab,
   UploadBuktiBayar,
   LelangBarang,
+  LelangProses,
 } from '../pages';
 import {BottomNavigator} from '../components';
 
@@ -163,6 +164,11 @@ const Router = () => {
       <Stack.Screen
         name="LelangBarang"
         component={LelangBarang}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="LelangProses"
+        component={LelangProses}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

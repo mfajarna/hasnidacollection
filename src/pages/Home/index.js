@@ -103,21 +103,7 @@ const Home = ({onPress, navigation}) => {
               </View>
             </ScrollView>
           </View>
-          <View style={styles.adminSection}>
-            <Text style={styles.textFitur}>Kontak Admin</Text>
-              <View style={styles.admin}>
-                {admin.map(admin => {
-                  return(
-                      <AdminSection
-                      key={admin.id} 
-                      name={admin.data.name}
-                      onPress={() => navigation.navigate('Chatting', admin)}
-                      />
-                    )
-                })}
-              
-              </View>
-          </View>
+  
         </View>
       </ScrollView>
     </View>

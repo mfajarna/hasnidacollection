@@ -7,6 +7,8 @@ import {pakaianReducer} from './pakaian';
 import {heelsReducer} from './heels';
 import {categoryReducer} from './category';
 import {uploadPhotoPembayaranReducer} from './pembayaran';
+import {lelangReducer} from './lelang';
+import { listUserLelangReducer } from './listuserlelang';
 
 
 const reducer = combineReducers({
@@ -19,6 +21,8 @@ const reducer = combineReducers({
   heelsReducer,
   categoryReducer,
   uploadPhotoPembayaranReducer,
+  lelangReducer,
+  listUserLelangReducer
 });
 
 export default reducer;

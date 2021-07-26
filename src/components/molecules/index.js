@@ -24,6 +24,8 @@ import ChatItem from './ChatItem';
 import ContentKeranjang from './ContentKeranjang';
 import ItemValueCopy from './ItemValueCopy';
 import SizeItem from './SizeItem';
+import LelangItem from './LelangItem';
+import UserLelang from './UserLelang';
 
 export {
   Headers,
@@ -51,5 +53,7 @@ export {
   ChatItem,
   ContentKeranjang,
   ItemValueCopy,
-  SizeItem
+  SizeItem,
+  LelangItem,
+  UserLelang
 };

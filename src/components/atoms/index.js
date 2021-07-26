@@ -6,5 +6,7 @@ import SearchInput from './SearchInput';
 import Fitur from './Fitur';
 import Kategori from './Kategori';
 import ButtonIconSend from './ButtonIconSend';
+import SimpleModal from './SimpleModal';
+import BidInput from './BidInput';
 
-export {TextInput, Button, Gap, Select, SearchInput, Fitur, Kategori, ButtonIconSend};
+export {TextInput, BidInput,Button, Gap, Select, SearchInput, Fitur, Kategori, ButtonIconSend,SimpleModal};
