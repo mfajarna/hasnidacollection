@@ -63,6 +63,6 @@ export const signInAction = (form, navigation) => dispatch => {
     .catch(err => {
       console.log('error', err);
       dispatch(setLoading(false));
-      showMessage(err.message);
+      showMessage('Username atau Password Salah!');
     });
 };

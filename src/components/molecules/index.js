@@ -26,6 +26,8 @@ import ItemValueCopy from './ItemValueCopy';
 import SizeItem from './SizeItem';
 import LelangItem from './LelangItem';
 import UserLelang from './UserLelang';
+import TukarbarangItem from './TukarbarangItem';
+import TukarBarangTab from './TukarbarangTab';
 
 export {
   Headers,
@@ -55,5 +57,7 @@ export {
   ItemValueCopy,
   SizeItem,
   LelangItem,
-  UserLelang
+  UserLelang,
+  TukarbarangItem,
+  TukarBarangTab
 };

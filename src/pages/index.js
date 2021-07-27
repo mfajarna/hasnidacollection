@@ -25,6 +25,10 @@ import OrderTab from './OrderTab';
 import UploadBuktiBayar from './UploadBuktiBayar';
 import LelangBarang from './LelangBarang';
 import LelangProses from './LelangProses';
+import TukarBarang from './TukarBarang';
+import TukarbarangDetail from './TukarbarangDetail';
+import TentangKami from './TentangKami';
+import UpdateBuktiPhoto from './UpdateBuktiPhoto';
 
 export {
   SplashScreen,
@@ -53,5 +57,9 @@ export {
   OrderTab,
   UploadBuktiBayar,
   LelangBarang,
-  LelangProses
+  LelangProses,
+  TukarBarang,
+  TukarbarangDetail,
+  TentangKami,
+  UpdateBuktiPhoto
 };

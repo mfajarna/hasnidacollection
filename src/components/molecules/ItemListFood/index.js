@@ -14,6 +14,7 @@ const ItemListFood = ({
   name,
   date,
   status,
+  desc,
   number,
   onPress2,
 }) => {
@@ -83,6 +84,27 @@ const ItemListFood = ({
             </View>
           </>
         );
+
+        case 'tukar-barang':
+          const formatedDatex = new Date(date).toDateString();
+          return (
+            <>
+            <View style={{flex: 1}}>
+              <Text style={styles.title}>{name}</Text>
+              <Text style={styles.desc}>
+                {desc}
+              </Text>
+            </View>
+            <View>
+              <Text style={styles.date}>{formatedDatex}</Text>
+              <Text style={styles.status(status)}>{status}</Text>
+            </View>
+          </>
+        );
+
+
+
+        
         case 'on-delivered':
           const x = new Date(date).toDateString();
         return (

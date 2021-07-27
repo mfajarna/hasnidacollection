@@ -100,6 +100,7 @@ export const getPastOrders = () => dispatch => {
       })
       .then(res => {
         dispatch({type: 'SET_PAST_ORDERS', value: res.data.data.data});
+        console.log(res)
       })
       .catch(err => {
         console.log('err', err);

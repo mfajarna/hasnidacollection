@@ -72,10 +72,10 @@ const Home = ({onPress, navigation}) => {
           </View>
           <View style={styles.fitur}>
             <View style={styles.content}>
-              <Fitur label="Tukar Barang" />
+              <Fitur label="Tukar Barang" onPress={() => navigation.navigate('TukarBarang')}/>
             </View>
             <View style={styles.content}>
-              <Fitur label="Tentang Kami" />
+              <Fitur label="Tentang Kami" onPress={() => navigation.navigate('TentangKami')} />
             </View>
           </View>
           <Gap height={10} />
@@ -143,6 +143,7 @@ const styles = StyleSheet.create({
   },
   fitur: {
     flexDirection: 'row',
+    justifyContent: 'center',
   },
   content: {
     flex: 1,
@@ -157,7 +158,7 @@ const styles = StyleSheet.create({
   kategoriItem: {
     paddingRight: 5,
     marginLeft: 5,
-    width: 77,
+    width: 85,
     paddingVertical: 10,
   },
   tabContainer: {

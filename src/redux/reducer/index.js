@@ -9,6 +9,7 @@ import {categoryReducer} from './category';
 import {uploadPhotoPembayaranReducer} from './pembayaran';
 import {lelangReducer} from './lelang';
 import { listUserLelangReducer } from './listuserlelang';
+import { tukarBarangReducer } from './tukarbarang';
 
 
 const reducer = combineReducers({
@@ -22,7 +23,8 @@ const reducer = combineReducers({
   categoryReducer,
   uploadPhotoPembayaranReducer,
   lelangReducer,
-  listUserLelangReducer
+  listUserLelangReducer,
+  tukarBarangReducer
 });
 
 export default reducer;
