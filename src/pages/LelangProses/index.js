@@ -13,6 +13,8 @@ const LelangProses = ({route,navigation}) => {
     const[chooseData,setchooseData] = useState();
     const listData = {id,bid,status,collection};
 
+    console.log(listData)
+
     const dispatch = useDispatch();
     const{dataUserLelang} = useSelector(state => state.listUserLelangReducer);
 

@@ -17,7 +17,7 @@ const Scan = ({navigation}) => {
       <View style={styles.camera}>
         <QRCodeScanner
         onRead={onSuccess}
-        flashMode={RNCamera.Constants.FlashMode.torch}
+        flashMode={RNCamera.Constants.FlashMode.off}
       />
       </View>
     </View>

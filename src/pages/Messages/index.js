@@ -16,7 +16,7 @@ const Messages = ({navigation}) => {
     const getAdmin = () => {
     firebase.database()
       .ref('admin/')
-      .limitToLast(3)
+      // .limitToLast(3)
       .once('value')
       .then(res => {
         if (res.val()) {
@@ -86,7 +86,7 @@ const Messages = ({navigation}) => {
             <View>
                 <Headers title="Messages" subTitle="Cek pesan dari admin disini!" />
                 <View style={styles.chat}>
-                    <View >
+
                 {admin.map(admin => {
                   return(
                     <AdminSection
@@ -112,7 +112,6 @@ const Messages = ({navigation}) => {
                 })} */}
 
 
-                </View>
                 </View>
             </View>
         </View>
