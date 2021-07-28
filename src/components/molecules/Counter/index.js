@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Ic_btn_add, Ic_btn_min} from '../../../assets';
 
-const Counter = ({onValueChange}) => {
+const Counter = ({onValueChange, stock}) => {
   const [value,setValue] = useState(1);
   
   useEffect(() => {
@@ -14,6 +14,11 @@ const Counter = ({onValueChange}) => {
     if(type === 'plus')
     {
       result = value+1;
+      if(result > stock)
+      { 
+        alert('Tidak bisa memesan barang lebih dari jumlah stock!');
+        result = 0
+      }
     }if(type === 'minus')
     {
       if(value > 1){

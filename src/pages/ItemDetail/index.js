@@ -29,13 +29,9 @@ const ItemDetail = ({navigation, route}) => {
   }, []);
   const onCounterChange = value => {
     setTotalItem(value);
+
   };
-
-  const[result,setResult] = useState('');
-  const testResult = () => {
-    alert(result)
-  }
-
+  const totalPrice = totalItem * price;
 
   const onOrder = () => {
     const totalPrice = totalItem * price;
@@ -79,7 +75,7 @@ const ItemDetail = ({navigation, route}) => {
               <Rating number={rate} />
             </View>
             {stock > 1 && (
-              <Counter onValueChange={onCounterChange} />
+              <Counter onValueChange={onCounterChange} stock={stock}/>
             )}
           </View>
           <Text style={styles.desc}>{description}</Text>
@@ -101,7 +97,7 @@ const ItemDetail = ({navigation, route}) => {
             <Number number={totalItem * price} style={styles.priceTotal} />
           </View>
           <View style={styles.button}>
-          {stock > 1 && (
+          {stock > 1 && totalPrice > 0 && (
             <Button text="Pesan Sekarang" onPress={onOrder} />
           )}
           </View>

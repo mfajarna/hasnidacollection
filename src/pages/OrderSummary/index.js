@@ -40,6 +40,7 @@ const OrderSummary = ({navigation, route}) => {
       quantity: transaction.totalItem,
       total: transaction.total,
       status: 'PENDING',
+      status_tukar_barang: 'NONE'
     };
 
     const updateStock = {

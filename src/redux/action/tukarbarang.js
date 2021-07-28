@@ -31,3 +31,18 @@ export const getTukarBarangKonfirmasi = () => dispatch => {
         })
     })
 }
+
+export const getBarang = () => dispatch => {
+    getData('token').then(res => {
+        axios.get(`${API_HOST.url}/statusTukar`, {
+            headers: {
+                Authorization: res.value
+            }
+        }).then(res => {
+            dispatch({type : "SET_BARANG", value: res.data.data.data})
+            console.log('status tukar',res);
+        }).catch(err => {
+            console.log(err.message);
+        })
+    })
+}

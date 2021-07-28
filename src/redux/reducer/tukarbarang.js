@@ -1,6 +1,7 @@
 const initTukarBarang = {
     dataTukarBarang: [],
-    dataKonfirmasi: []
+    dataKonfirmasi: [],
+    dataBarang: []
 }
 
 export const tukarBarangReducer = (state = initTukarBarang, action) => {
@@ -16,6 +17,13 @@ export const tukarBarangReducer = (state = initTukarBarang, action) => {
         return {
             ...state,
             dataKonfirmasi : action.value
+        }
+    }
+    if(action.type === "SET_BARANG")
+    {
+        return {
+            ...state,
+            dataBarang: action.value
         }
     }
 

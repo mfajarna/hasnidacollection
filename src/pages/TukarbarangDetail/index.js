@@ -8,7 +8,7 @@ import ImagePicker from 'react-native-image-picker';
 import axios from 'axios';
 
 const TukarbarangDetail = ({route,navigation}) => {
-    const{collection,quantity,total,user_id} = route.params;
+    const{collection,quantity,total,user_id,id} = route.params;
     const dispatch = useDispatch();
     const [token, setToken] = useState('');
     const[form,setForm] = useForm({
@@ -23,19 +23,31 @@ const TukarbarangDetail = ({route,navigation}) => {
         })
     },[])
 
-    const onSubmit = () =>{    
+    const id_transaksi = id;
+    const status = {
+        status_tukar_barang: 'ON_CONFIRMATION'
+    }
+
+    const onSubmit = () =>{ 
+        
+        axios.all([
             axios.post('http://27.112.78.10/api/tukarBarang', form , {
                 headers:{
                     Authorization: token
                 }
-            }).then(res => {
-                console.log(res)
-                navigation.navigate('UpdateBuktiPhoto',res)
-            }).catch(err => {
-                console.log(err.message);
-            })
+            }),
+            axios.post(`http://27.112.78.10/api/updateStatus/${id_transaksi}`, status , {
+                headers:{
+                    Authorization: token
+                }
+            }),
+        ]).then(axios.spread((res1,res2) => {
+             navigation.navigate('UpdateBuktiPhoto',res1)
+             console.log('update status',res2)
+        })).catch(err => {
+            console.log(err.message)
+        })
         
-
     }
 
     return (

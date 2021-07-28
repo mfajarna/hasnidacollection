@@ -2,24 +2,24 @@ import React, { useEffect } from 'react'
 import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { Headers,Gap, TukarbarangItem, TukarBarangTab } from '../../components'
-import { getPastOrders } from '../../redux/action'
+import { getBarang, getPastOrders } from '../../redux/action'
 
 const TukarBarang = ({navigation}) => {
     const dispatch = useDispatch();
-    const{pastOrders} = useSelector(state => state.orderReducer);
+    const{dataBarang} = useSelector(state => state.tukarBarangReducer);
     useEffect(() => {
-        dispatch(getPastOrders())
+        dispatch(getBarang())
     },[])
 
     return (
         <View style={styles.container}>
-            <Headers title="Tukar Barang" subTitle="Tukar barang orderan disini" onBack={() => navigation.goBack()} />
+            <Headers title="Tukar Barang" subTitle="Tukar barang orderan disini" onBack={() => navigation.navigate('MainApp')} />
             <View style={styles.content}>
                 <Text style={styles.header}>Pilih barang yang ingin ditukar!</Text>
                 <Gap height={10} />
                     <View style={styles.contentBarang}>
                         <ScrollView>
-                    {pastOrders.map(item => {
+                    {dataBarang.map(item => {
                         return(
                             <TukarbarangItem
                                 key={item.id}
