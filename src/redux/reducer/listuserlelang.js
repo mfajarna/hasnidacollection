@@ -1,5 +1,6 @@
 const initListUserLelang = {
-    dataUserLelang : []
+    dataUserLelang : [],
+    dataLelangTerbesar: []
 }
 
 export const listUserLelangReducer = (state = initListUserLelang, action) =>
@@ -12,5 +13,12 @@ export const listUserLelangReducer = (state = initListUserLelang, action) =>
         }
     }
 
+     if(action.type === "SET_LELANG_TERBESAR")
+    {
+        return {
+            ...state,
+            dataLelangTerbesar: action.value
+        }
+    }
     return state;
 }

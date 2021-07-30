@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, Modal , ScrollView} from 'react-native'
 import { useDispatch, useSelector } from 'react-redux';
 import {Headers, Number, Gap, SimpleModal, UserLelang} from '../../components';
-import { getListLelangUser } from '../../redux/action/listuserlelang';
+import { getDataLelangTerbesar, getListLelangUser } from '../../redux/action/listuserlelang';
 import { getData } from '../../utils';
 
 const LelangProses = ({route,navigation}) => {
@@ -13,14 +13,25 @@ const LelangProses = ({route,navigation}) => {
     const[chooseData,setchooseData] = useState();
     const listData = {id,bid,status,collection};
 
-    console.log(listData)
-
     const dispatch = useDispatch();
     const{dataUserLelang} = useSelector(state => state.listUserLelangReducer);
+    const{dataLelangTerbesar} = useSelector(state => state.listUserLelangReducer);
 
     useEffect(() => {
         dispatch(getListLelangUser(id));
+        dispatch(getDataLelangTerbesar(id));
     },[])
+
+    const lelangTerbesar = () => {
+        var jumlah_bid = 0;
+       dataLelangTerbesar.map(lelang => {
+            jumlah_bid = lelang.jumlah_bid
+        });
+
+        return jumlah_bid;
+    }
+
+    const finalJumlahBid = lelangTerbesar();
 
     const changeModalVisible = (bool) => {
         setisModalVisible(bool)
@@ -60,7 +71,9 @@ const LelangProses = ({route,navigation}) => {
                             <SimpleModal 
                                 changeModalVisible={changeModalVisible}
                                 setData={setData}
-                                listData={listData} 
+                                listData={listData}
+                                dataUserLelang={dataUserLelang} 
+                                dataLelangTerbesar={finalJumlahBid}
                             />
                         </Modal>
                         </View>

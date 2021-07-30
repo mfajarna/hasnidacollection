@@ -9,7 +9,7 @@ import BidInput from '../BidInput';
     const width = Dimensions.get('window').width;
     const height_modal =150;
 
-const SimpleModal = ({changeModalVisible,setData, listData}) => {
+const SimpleModal = ({changeModalVisible,setData, listData,dataUserLelang, dataLelangTerbesar}) => {
     const[user,setUser] = useState();
     const[token,setToken] = useState('');
     const navigation = useNavigation()
@@ -17,7 +17,6 @@ const SimpleModal = ({changeModalVisible,setData, listData}) => {
         changeModalVisible(bool)
         setData(data)
     }
-    
     useEffect(() => {
         getData('userProfile').then(resProfile => {
             setUser(resProfile.id)
@@ -31,9 +30,6 @@ const SimpleModal = ({changeModalVisible,setData, listData}) => {
         jumlah_bid: ''
     })
 
-    console.log(listData.id)
-    console.log(listData.collection.id)
-
        const data = {
         id_lelang: listData.id,
         id_collection: listData.collection.id,
@@ -42,15 +38,31 @@ const SimpleModal = ({changeModalVisible,setData, listData}) => {
     }
 
     const onSubmit = () => {
+        // Kalau jumlah bid kurang dari minimum bid tidak bisa submit
         if(form.jumlah_bid < listData.bid)
         {
             alert('Jumlah Bid tidak boleh kurang dari minimum open bid!')
             return false;
         }
+        // Kalau input jumlah bid kosong tidak bisa submit
         if(form.jumlah_bid === "")
         {
             alert('kosong!')
-        }if(form.jumlah_bid !== ""){
+        }
+        // Kalau Open bid diatas harga asli barang tida bisa submit
+        if(form.jumlah_bid > listData.collection.price)
+        {
+            alert('Tidak bisa input bid diatas harga asli barang!')
+            return false;
+        }
+        // Kalau Open bid dibawah harga terakhir orang masang tidak bisa
+        if(form.jumlah_bid < dataLelangTerbesar )
+        {
+            alert('Tidak bisa input bid dibawah harga penginputan terakhir!')
+            return false;
+        }
+        
+        if(form.jumlah_bid !== ""){
             axios.post(`${API_HOST.url}/prosesLelang`,data, {
                 headers:{
                     Authorization: token
