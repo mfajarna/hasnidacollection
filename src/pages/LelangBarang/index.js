@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Ic_gagal } from '../../assets'
 import {Headers,Gap, LelangItem} from '../../components'
 import { getDataLelang } from '../../redux/action'
+import { pushNotification } from '../../utils'
 
 
 const LelangBarang = ({navigation}) => {
@@ -30,7 +31,7 @@ const LelangBarang = ({navigation}) => {
                 </View>
             )
         }if(dataLelang.length > 0)
-        {   
+        { 
             return(
                 dataLelang.map(lelang => {
                     return(

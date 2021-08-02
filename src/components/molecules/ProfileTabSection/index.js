@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {StyleSheet, Text, View, Dimensions} from 'react-native';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import {ItemListFood, ItemListMenu} from '..';
-import {DummyImg1, DummyImg2, DummyImg3} from '../../../assets';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useDispatch, useSelector } from 'react-redux';
 
 const renderTabBar = props => (
   <TabBar
@@ -38,7 +38,12 @@ const renderTabBar = props => (
 );
 
 const Akun = () => {
+
+
   const navigation = useNavigation();
+  const editProfile = () => {
+    navigation.navigate('EditProfile')
+  }
 
   const signOut = () => {
     AsyncStorage.multiRemove(['userProfile','token']).then(()=> {
@@ -47,10 +52,9 @@ const Akun = () => {
   }
   return (
     <View style={{paddingTop: 8, paddingHorizontal: 24}}>
-      <ItemListMenu text="Edit Profile" />
-      <ItemListMenu text="Home Address" />
-      <ItemListMenu text="Security" />
-      <ItemListMenu text="Payments" />
+      <ItemListMenu text="Edit Profile" onPress={editProfile} />
+      <ItemListMenu text="Home Address" onPress={() => navigation.navigate('EditAddress')}/>
+      <ItemListMenu text="Payments" onPress={() => navigation.navigate('Payments')} />
       <ItemListMenu text="Sign Out" onPress={signOut}/>
     </View>
   );

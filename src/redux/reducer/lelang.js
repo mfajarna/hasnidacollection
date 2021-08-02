@@ -1,5 +1,6 @@
 const initLelang = {
-    dataLelang: []
+    dataLelang: [],
+    dataUser: []
 }
 
 export const lelangReducer = (state = initLelang, action) => {
@@ -10,6 +11,12 @@ export const lelangReducer = (state = initLelang, action) => {
             dataLelang : action.value
         }
     }
-
+    if(action.type === "SET_EDIT_PROFILE")
+    {
+        return {
+            ...state,
+            dataUser : action.value
+        }
+    }
     return state;
 }

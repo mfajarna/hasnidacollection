@@ -33,6 +33,9 @@ import {
   TukarbarangDetail,
   TentangKami,
   UpdateBuktiPhoto,
+  EditProfile,
+  EditAdress,
+  Payments,
 } from '../pages';
 import {BottomNavigator} from '../components';
 
@@ -193,6 +196,21 @@ const Router = () => {
       <Stack.Screen
         name="UpdateBuktiPhoto"
         component={UpdateBuktiPhoto}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="EditProfile"
+        component={EditProfile}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="EditAddress"
+        component={EditAdress}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Payments"
+        component={Payments}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

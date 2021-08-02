@@ -43,14 +43,14 @@ const ItemListMenu = ({text, onPress}) => {
   };
 
   return (
-    <TouchableOpacity onPress={onPress}>
-    <View style={styles.container}>
+    <TouchableOpacity onPress={onPress} style={styles.container}>
+
       <View style={styles.label}>
         <Icon />
         <Text style={styles.text}>{text}</Text>
       </View>
       <Ic_arrow_right />
-    </View>
+ 
     </TouchableOpacity>
   );
 };

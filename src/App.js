@@ -7,9 +7,10 @@ import store from './redux/store';
 import FlashMessage from 'react-native-flash-message';
 import { Loading } from './components';
 import { LogBox } from 'react-native';
+import { pushNotification } from './utils';
 
 const MainApp = () => {
-  const {isLoading} = useSelector((state) => state.globalReducer);
+  const {isLoading,isNotification} = useSelector((state) => state.globalReducer);
   LogBox.ignoreLogs(['Warning: ...']);
   LogBox.ignoreAllLogs();
   return(

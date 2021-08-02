@@ -1,29 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
-import {ImgPhoto} from '../../assets';
+import { useDispatch, useSelector } from 'react-redux';
 import {ProfileTabSection} from '../../components/molecules';
+import { getDataProfile } from '../../redux/action';
 import { getData } from '../../utils/storage';
 
 const Akun = () => {
 
   const [userProfile,setUserProfile] = useState({});
+
+   const dispatch = useDispatch();
+    
+
     useEffect(() =>  {
-        getData('userProfile').then(res => {
-            console.log(userProfile)
-            setUserProfile(res);
-        })
+        dispatch(getDataProfile())
     }, []);
+
+    const{dataUser} = useSelector(state => state.lelangReducer)
+ 
 
   return (
     <View style={styles.page}>
       <View style={styles.profileDetail}>
         <View style={styles.photo}>
           <View style={styles.borderPhoto}>
-            <Image source={{ uri: userProfile.profile_photo_url }} style={styles.photoContainer} />
+            <Image source={{ uri: dataUser.profile_photo_url }} style={styles.photoContainer} />
           </View>
         </View>
-        <Text style={styles.name}>{userProfile.name}</Text>
-        <Text style={styles.email}>{userProfile.email}</Text>
+        <Text style={styles.name}>{dataUser.name}</Text>
+        <Text style={styles.email}>{dataUser.email}</Text>
       </View>
       <View style={styles.content}>
         <ProfileTabSection />

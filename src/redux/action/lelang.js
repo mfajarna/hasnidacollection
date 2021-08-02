@@ -9,6 +9,7 @@ export const getDataLelang = () => dispatch => {
             }
         }).then(res => {
             dispatch({type: "SET_LELANG", value: res.data.data.data});
+            console.log(res)
         }).catch(err => {
             console.log(err.message);
         })

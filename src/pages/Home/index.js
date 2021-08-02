@@ -4,7 +4,7 @@ import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import {Fitur, Gap, Kategori, SearchInput} from '../../components/atoms';
 import {AdminSection, HomeTabSection, WelcomeUser} from '../../components/molecules';
 import firebase from '../../config/Fire'
-import { getData } from '../../utils';
+import { getData, pushNotification, showNotification } from '../../utils';
 
 const Home = ({onPress, navigation}) => {
   const [admin, setAdmin] = useState([]);
@@ -46,6 +46,11 @@ const Home = ({onPress, navigation}) => {
       });
   }
 
+  const klikNotifikasi = () => {
+    pushNotification.kirimNotifikasi('help');
+
+  }
+
   return (
     <View style={styles.pages}>
       <View style={styles.nav}>
@@ -64,7 +69,8 @@ const Home = ({onPress, navigation}) => {
           <Gap height={12} />
           <View style={styles.fitur}>
             <View style={styles.content}>
-              <Fitur label="Lelang Barang" onPress={() => navigation.navigate('LelangBarang')} />
+
+              <Fitur label="Lelang Barang" onPress={() => navigation.navigate('LelangBarang')}  />
             </View>
             <View style={styles.content}>
               <Fitur label="Pembelian" onPress={() => navigation.navigate('Pembelian')} />

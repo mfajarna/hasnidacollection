@@ -10,6 +10,7 @@ import {uploadPhotoPembayaranReducer} from './pembayaran';
 import {lelangReducer} from './lelang';
 import { listUserLelangReducer } from './listuserlelang';
 import { tukarBarangReducer } from './tukarbarang';
+import { profileReducer } from './profile';
 
 
 const reducer = combineReducers({
@@ -24,7 +25,8 @@ const reducer = combineReducers({
   uploadPhotoPembayaranReducer,
   lelangReducer,
   listUserLelangReducer,
-  tukarBarangReducer
+  tukarBarangReducer,
+  profileReducer
 });
 
 export default reducer;

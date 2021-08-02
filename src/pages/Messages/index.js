@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, ScrollView } from 'react-native'
+import { useDispatch } from 'react-redux'
 import { Headers, InputChat, ListAdmin, AdminSection } from '../../components'
 import firebase from '../../config/Fire'
-import { getData } from '../../utils'
+import { setNotification } from '../../redux/action'
+import { getData, pushNotification } from '../../utils'
 
 const Messages = ({navigation}) => {
     const [admin, setAdmin] = useState([]);
-    
+    const dispatch = useDispatch();
+
   const getUserData = () => {
     getData('user').then(res => {
       const data = res;
@@ -28,6 +31,7 @@ const Messages = ({navigation}) => {
               data: oldData[key],
             });
           });
+         
           setAdmin(data);
         }
       })
@@ -64,8 +68,8 @@ const Messages = ({navigation}) => {
             detailAdmin: detailAdmin.val(),
             ...oldData[key],
           });
-
-          console.log(data)
+          pushNotification.kirimNotifikasi(`Ada Pesan Baru Dari Admin ${data[1].detailAdmin.name}`)
+          console.log(data[1].detailAdmin.email)
         });
 
         await Promise.all(promises);

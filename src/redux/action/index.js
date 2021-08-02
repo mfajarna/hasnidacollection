@@ -7,4 +7,5 @@ export * from './heels';
 export * from './category';
 export * from './pembayaran';
 export * from './lelang';
-export * from './tukarbarang'
+export * from './tukarbarang';
+export * from './profile';

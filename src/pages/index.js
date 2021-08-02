@@ -29,6 +29,9 @@ import TukarBarang from './TukarBarang';
 import TukarbarangDetail from './TukarbarangDetail';
 import TentangKami from './TentangKami';
 import UpdateBuktiPhoto from './UpdateBuktiPhoto';
+import EditProfile from './EditProfile';
+import EditAdress from './EditAdress';
+import Payments from './Payments';
 
 export {
   SplashScreen,
@@ -61,5 +64,8 @@ export {
   TukarBarang,
   TukarbarangDetail,
   TentangKami,
-  UpdateBuktiPhoto
+  UpdateBuktiPhoto,
+  EditProfile,
+  EditAdress,
+  Payments
 };
