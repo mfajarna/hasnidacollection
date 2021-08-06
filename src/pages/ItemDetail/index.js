@@ -74,7 +74,7 @@ const ItemDetail = ({navigation, route}) => {
               <Text style={styles.title}>{name}</Text>
               <Rating number={rate} />
             </View>
-            {stock > 1 && (
+            {stock > 0 && (
               <Counter onValueChange={onCounterChange} stock={stock}/>
             )}
           </View>
@@ -83,12 +83,12 @@ const ItemDetail = ({navigation, route}) => {
           <Gap height={8} />
           <Text style={styles.label}>Stok:</Text>
           <Text style={styles.desc}>{stock}</Text>
-          <Image style={styles.image} source={{ uri: photoBarcode }} />
+          
           <TouchableOpacity style={styles.buttonScan} onPress={scanMe}>
-              <Text style={styles.textScanMe}>Scan Me</Text>
+              <Image style={styles.image} source={{ uri: photoBarcode }} />
           </TouchableOpacity>
           <Gap height={8} />
-          <Text style={styles.labelNote}>*Note: Klik scan me untuk melihat informasi barang</Text>          
+          <Text style={styles.labelNote}>*Note: Klik barcode untuk melihat informasi barang</Text>          
         </View>
         </ScrollView>
         <View style={styles.footer}>
@@ -97,7 +97,7 @@ const ItemDetail = ({navigation, route}) => {
             <Number number={totalItem * price} style={styles.priceTotal} />
           </View>
           <View style={styles.button}>
-          {stock > 1 && totalPrice > 0 && (
+          {stock > 0 && totalPrice > 0 && (
             <Button text="Pesan Sekarang" onPress={onOrder} />
           )}
           </View>
@@ -188,9 +188,7 @@ const styles = StyleSheet.create({
     marginBottom : 5
   },
   buttonScan: {
-    backgroundColor: '#50CB93',
-    width: 80,
-    alignItems: 'center',
+
     borderRadius: 5,
   },
   textScanMe : {

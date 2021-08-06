@@ -26,6 +26,17 @@ const UploadBuktiBayar = ({route,navigation}) => {
         })
     },[])
 
+    // const dataJson = JSON.stringify({
+    //     "to": `${device_token}`,
+    //     "priority": "high",
+    //     "soundName": "default",
+    //     "notification": {
+    //         "title": "Admin Hasnida",
+    //         "body": `Ada pesanan baru mohon segera di konfirmasi`
+        
+    //         }
+    //   });
+
     
 
     const onSubmit = () => {

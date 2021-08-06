@@ -68,7 +68,6 @@ const Messages = ({navigation}) => {
             detailAdmin: detailAdmin.val(),
             ...oldData[key],
           });
-          pushNotification.kirimNotifikasi(`Ada Pesan Baru Dari Admin ${data[1].detailAdmin.name}`)
           console.log(data[1].detailAdmin.email)
         });
 

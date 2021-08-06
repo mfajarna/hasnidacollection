@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useEffect, useRef, useState } from 'react'
 import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import { ChatItem, Headers, InputChat, ListAdmin } from '../../components'
@@ -7,10 +8,12 @@ import { getData,getChatTime,setDateChat } from '../../utils'
 const Chatting = ({navigation, route}) => {
 
     const dataAdmin = route.params;
+    const device_token = dataAdmin.data.device_token;
     const [chatContent, setChatContent] = useState('');
     const [user, setUser] = useState({});
     const [chatData, setChatData] = useState([]);
     const scrollView= useRef();
+    const [namaUser,setNamaUser] = useState('');
 
     useEffect(() =>{
         getDataUserFromLocal();
@@ -47,9 +50,9 @@ const Chatting = ({navigation, route}) => {
       const getDataUserFromLocal = () => {
         getData('user').then(res => {
         setUser(res);
+        setNamaUser(res.email)
         });
      };
-
 
     const chatSend = () =>{
          const today = new Date();
@@ -96,6 +99,28 @@ const Chatting = ({navigation, route}) => {
       .catch(err => {
         showError(err.message);
       });
+
+      const dataJson = JSON.stringify({
+        "to": `${device_token}`,
+        "priority": "high",
+        "soundName": "default",
+        "notification": {
+            "title": "Admin Hasnida",
+            "body": `Ada pesan baru dari ${namaUser}`
+        
+            }
+      });
+
+      axios.post('https://fcm.googleapis.com/fcm/send', dataJson,{
+        headers:{
+          Authorization: 'key=AAAAMn40zS0:APA91bG50ySLS-gl3e0KKQbKB51F01Q2x70opMDt6X1Se0l6zZ0oaaUvTDZ2Nj8240pFfKHBmB9Pe-BKSHM05hkC1hvbH6hkmEYLZ6m0MDoXZY7hM1WM0T0hn1elhdz0s-NzXPv-76PN',
+          "content-type": "application/json",
+        }
+      }).then(res => {
+        console.log(res);
+      }).catch(err =>{
+        console.log(err.message)
+      })
     }
 
     

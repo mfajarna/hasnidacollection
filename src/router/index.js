@@ -36,6 +36,7 @@ import {
   EditProfile,
   EditAdress,
   Payments,
+  TestNotif,
 } from '../pages';
 import {BottomNavigator} from '../components';
 
@@ -211,6 +212,11 @@ const Router = () => {
       <Stack.Screen
         name="Payments"
         component={Payments}
+        options={{headerShown: false}}
+      />
+            <Stack.Screen
+        name="TestNotif"
+        component={TestNotif}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

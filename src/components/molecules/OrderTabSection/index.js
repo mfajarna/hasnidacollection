@@ -124,6 +124,7 @@ const PastOrders = () => {
     <View style={{paddingTop: 8, paddingHorizontal: 24}}>
       {pastOrders.map(order => {
         return (
+
           <ItemListFood
             key={order.id}
             rating={order.collection.rate}

@@ -32,6 +32,7 @@ import UpdateBuktiPhoto from './UpdateBuktiPhoto';
 import EditProfile from './EditProfile';
 import EditAdress from './EditAdress';
 import Payments from './Payments';
+import TestNotif from './TestNotif';
 
 export {
   SplashScreen,
@@ -67,5 +68,6 @@ export {
   UpdateBuktiPhoto,
   EditProfile,
   EditAdress,
-  Payments
+  Payments,
+  TestNotif
 };

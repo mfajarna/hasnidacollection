@@ -1,13 +1,37 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
+import {StyleSheet, Text, View, ScrollView, Alert} from 'react-native';
 
 import {Fitur, Gap, Kategori, SearchInput} from '../../components/atoms';
 import {AdminSection, HomeTabSection, WelcomeUser} from '../../components/molecules';
 import firebase from '../../config/Fire'
-import { getData, pushNotification, showNotification } from '../../utils';
+import { getData, showNotification } from '../../utils';
+import NotifService from '../../NotifService';
 
 const Home = ({onPress, navigation}) => {
   const [admin, setAdmin] = useState([]);
+  
+    const[registerToken,setRegisterToken] = useState('');
+    const[fcmRegistered,setFcmRegistered] = useState(false);
+
+    const onRegister = (token) => {
+        setRegisterToken(token.token);
+        setFcmRegistered(true);
+    }
+
+    const onNotif = (notif) => {
+        
+        notifikasi.localNotif(notif.message)
+    }
+
+    const notifikasi = new NotifService(onRegister,onNotif);
+
+    const handlePerm = (perms) => {
+        Alert.alert('Permission',  JSON.stringify(perms));
+    }
+
+    notifikasi.requestPermissions();
+
+    
 
   useEffect(() =>{
     getAdmin();
@@ -47,7 +71,7 @@ const Home = ({onPress, navigation}) => {
   }
 
   const klikNotifikasi = () => {
-    pushNotification.kirimNotifikasi('help');
+
 
   }
 

@@ -9,8 +9,6 @@ import { API_HOST, getData, showMessage } from '../../utils';
 const OrderDetail = ({route, navigation}) => {
 
   const order = route.params;
-
-  console.log(order)
   const onCancel = () => {
 
     const data = {
@@ -47,7 +45,35 @@ const OrderDetail = ({route, navigation}) => {
           {name: 'MainApp'}
         ]
       })
+
   }
+
+
+   const renderButton = () => {
+        if(order.status === "PENDING")
+        {
+          return (
+            <Button
+                text="Cancel My Order"
+                onPress={onCancel}
+                color="#D9435E"
+                textColor="white"
+            />
+          )
+        }
+        if(order.status === "ON_DELIVERY")
+        {
+          return(
+            <Button
+                text="Selesai"
+                onPress={onCancel}
+                color="#1ABC9C"
+                textColor="white"
+          />
+          )
+          
+        }
+      }
   return (
     <View style={styles.container}>
       <Headers
@@ -94,15 +120,7 @@ const OrderDetail = ({route, navigation}) => {
         </View>
       </ScrollView>
       <View style={styles.button}>
-        {order.status === 'PENDING' && (
-          <Button
-          text="Cancel My Order"
-          onPress={onCancel}
-          color="#D9435E"
-          textColor="white"
-        />
-        )}
-        
+        {renderButton()}
       </View>
     </View>
   );

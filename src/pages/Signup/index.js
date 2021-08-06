@@ -5,10 +5,9 @@ import {useSelector, useDispatch} from 'react-redux';
 import {showMessage, storeData, useForm} from '../../utils';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import ImagePicker from 'react-native-image-picker';
+import NotifService from '../../NotifService';
 
 import firebase from '../../config/Fire'
-
-
 
 const Signup = ({navigation}) => {
   const[form, setForm] = useForm({
@@ -16,6 +15,20 @@ const Signup = ({navigation}) => {
     email: '',
     password: '',
   });
+
+    const[registerToken,setRegisterToken] = useState('');
+    const[fcmRegistered,setFcmRegistered] = useState(false);
+    
+
+    const onRegister = (token) => {
+        setRegisterToken(token.token);
+        setFcmRegistered(true);
+    }
+
+    const notifikasi = new NotifService(onRegister);
+    notifikasi.requestPermissions();
+    
+
 
   const [photo, setPhoto] = useState('');
   const dispatch = useDispatch();
@@ -27,7 +40,8 @@ const Signup = ({navigation}) => {
       name: form.name,
       email: form.email,
       password: form.password,
-      uid: res.user.uid
+      uid: res.user.uid,
+      device_token: registerToken
     }
 
     console.log("status fbase", res);

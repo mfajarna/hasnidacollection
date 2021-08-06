@@ -83,7 +83,7 @@ const OrderDelivery = ({route, navigation}) => {
         </View>
       </ScrollView>
       <View style={styles.button}>
-        {order.status === 'DELIVERED' && (
+        {order.status === 'ON_DELIVERY' && (
           <Button
           text="Paket Diterima"
           onPress={onDelivered}

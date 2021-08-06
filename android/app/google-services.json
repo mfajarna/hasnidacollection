@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "216865754413",
+    "firebase_url": "https://hasnidacollection-default-rtdb.firebaseio.com",
+    "project_id": "hasnidacollection",
+    "storage_bucket": "hasnidacollection.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:216865754413:android:bc29f184cba001f63957a4",
+        "android_client_info": {
+          "package_name": "com.hasnidacollection"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "216865754413-m5tvb0j7c9in13lfucrje5i40flq2rdo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXGOHVsWGFvDvZTqBXznJcqlzH161oAKg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "216865754413-m5tvb0j7c9in13lfucrje5i40flq2rdo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
