@@ -105,7 +105,8 @@ export default LelangProses
 
 const styles = StyleSheet.create({
     container:{
-        flex: 1
+        flex: 1,
+        backgroundColor:'white',
     },
     content:{
         flex: 1,

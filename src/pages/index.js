@@ -33,6 +33,9 @@ import EditProfile from './EditProfile';
 import EditAdress from './EditAdress';
 import Payments from './Payments';
 import TestNotif from './TestNotif';
+import Statuslelang from './Statuslelang';
+import LelangDetail from './LelangDetail';
+import UploadBuktiLelang from './UploadBuktiLelang';
 
 export {
   SplashScreen,
@@ -69,5 +72,8 @@ export {
   EditProfile,
   EditAdress,
   Payments,
-  TestNotif
+  TestNotif,
+  Statuslelang,
+  LelangDetail,
+  UploadBuktiLelang
 };

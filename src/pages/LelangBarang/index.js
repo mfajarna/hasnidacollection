@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { Ic_gagal } from '../../assets'
 import {Headers,Gap, LelangItem} from '../../components'
@@ -61,6 +61,10 @@ const LelangBarang = ({navigation}) => {
                 <Text style={styles.desc}>Lelang barang disini</Text>
                 <Text style={styles.desc}>cek barang sebelum terlambat!</Text>
                 <Gap height={10} />
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('StatusLelang')}>
+                    <Text style={styles.text}>Status menang lelang</Text>
+                </TouchableOpacity>
+                <Gap height={10} />
                 {renderLelang()}
             </View>
         </View>
@@ -77,6 +81,7 @@ const styles = StyleSheet.create({
     content: {
         flex: 1,
         paddingHorizontal: 25,
+        backgroundColor:'white'
     },
     desc:{
         fontFamily: 'Nunito-SemiBold',
@@ -96,6 +101,17 @@ const styles = StyleSheet.create({
   icon:{
       marginTop: -40,
       marginBottom: 10,
+  },button:{
+      padding : 8,
+      marginTop: 10,
+      backgroundColor: '#FFFED8',
+      borderRadius: 9
+  },
+  text:{
+      fontFamily: 'Nunito-SemiBold',
+      color:'black',
+      fontSize: 14,
+      textAlign: 'center'
   }
 })
     

@@ -37,8 +37,12 @@ import {
   EditAdress,
   Payments,
   TestNotif,
+  Statuslelang,
+  LelangDetail,
+  UploadBuktiLelang,
 } from '../pages';
 import {BottomNavigator} from '../components';
+import LelangDelivery from '../pages/LelangDelivery';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -214,9 +218,29 @@ const Router = () => {
         component={Payments}
         options={{headerShown: false}}
       />
-            <Stack.Screen
+      <Stack.Screen
         name="TestNotif"
         component={TestNotif}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="StatusLelang"
+        component={Statuslelang}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="LelangDetail"
+        component={LelangDetail}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="UploadBuktiLelang"
+        component={UploadBuktiLelang}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="LelangDelivery"
+        component={LelangDelivery}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

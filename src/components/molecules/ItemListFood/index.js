@@ -57,6 +57,28 @@ const ItemListFood = ({
       
           </>
         );
+        case 'lelang-confirmation':
+          return(
+            <>
+            <View style={{flex: 1}}>
+              <Text style={styles.title}>{name}</Text>
+              <Text style={styles.desc}>
+                {items}bid lelang <Number number={price} />
+              </Text>
+            </View>
+            </>
+          )
+        case 'lelang-dikemas':
+          return(
+            <>
+            <View style={{flex: 1}}>
+              <Text style={styles.title}>{name}</Text>
+              <Text style={styles.desc}>
+                {items}bid lelang <Number number={price} />
+              </Text>
+            </View>
+            </>
+          )
         case 'confirmation':
         return (
           <>
@@ -139,7 +161,7 @@ const ItemListFood = ({
       <View style={styles.container}>
         <Image source={image} style={styles.image} />
         {renderContent()}
-        {type === 'in-progress' && (
+        {type === 'in-progress' || type === 'lelang-confirmation' && (
         <TouchableOpacity style={styles.buttonBayar} activeOpacity={0.6} onPress={onPressBayar}>
                 <Text style={styles.textBayar}>Bayar</Text>
         </TouchableOpacity>

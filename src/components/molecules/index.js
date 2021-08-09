@@ -28,6 +28,7 @@ import LelangItem from './LelangItem';
 import UserLelang from './UserLelang';
 import TukarbarangItem from './TukarbarangItem';
 import TukarBarangTab from './TukarbarangTab';
+import LelangTabSection from './LelangTabSection';
 
 export {
   Headers,
@@ -59,5 +60,6 @@ export {
   LelangItem,
   UserLelang,
   TukarbarangItem,
-  TukarBarangTab
+  TukarBarangTab,
+  LelangTabSection
 };
