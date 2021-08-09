@@ -95,7 +95,6 @@ const Delivery = () => {
         return (
           <ItemListFood
             key={order.id}
-            rating={order.collection.rate}
             image={{uri: order.collection.picturePath}}
             onPress={() => navigation.navigate('LelangDelivery', order)}
             type="on-delivered"
@@ -128,7 +127,6 @@ const PastOrders = () => {
 
           <ItemListFood
             key={order.id}
-            rating={order.collection.rate}
             image={{uri: order.collection.picturePath}}
             type="past-orders"
             items={order.quantity}
@@ -160,7 +158,6 @@ const Konfirmation = () => {
           return (
             <ItemListFood
               key={order.id}
-              rating={order.collection.rate}
               image={{uri: order.collection.picturePath}}
 
               type="lelang-dikemas"

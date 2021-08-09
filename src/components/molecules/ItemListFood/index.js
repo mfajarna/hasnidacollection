@@ -57,6 +57,7 @@ const ItemListFood = ({
       
           </>
         );
+    
         case 'lelang-confirmation':
           return(
             <>
@@ -124,9 +125,6 @@ const ItemListFood = ({
           </>
         );
 
-
-
-        
         case 'on-delivered':
           const x = new Date(date).toDateString();
         return (
@@ -156,16 +154,33 @@ const ItemListFood = ({
         );
     }
   };
+
+
+  const buttonRender = () =>{
+    if(type === 'in-progress')
+    {
+      return (
+        <TouchableOpacity style={styles.buttonBayar} activeOpacity={0.6} onPress={onPressBayar}>
+                <Text style={styles.textBayar}>Bayar</Text>
+        </TouchableOpacity>
+      )
+    }
+    if(type === 'lelang-confirmation')
+    {
+      return (
+        <TouchableOpacity style={styles.buttonBayar} activeOpacity={0.6} onPress={onPressBayar}>
+                <Text style={styles.textBayar}>Bayar</Text>
+        </TouchableOpacity>
+      )
+    }
+  }
+
   return (
     <TouchableOpacity activeOpacity={0.7} onPress={onPress}>
       <View style={styles.container}>
         <Image source={image} style={styles.image} />
         {renderContent()}
-        {type === 'in-progress' || type === 'lelang-confirmation' && (
-        <TouchableOpacity style={styles.buttonBayar} activeOpacity={0.6} onPress={onPressBayar}>
-                <Text style={styles.textBayar}>Bayar</Text>
-        </TouchableOpacity>
-        )}
+        {buttonRender()}
       </View>
     </TouchableOpacity>
   );
