@@ -46,3 +46,65 @@ export const getBarang = () => dispatch => {
         })
     })
 }
+
+export const getDikirimPembeli = () => dispatch => {
+    getData('token').then(res => {
+        axios.get(`${API_HOST.url}/fetchBarang?status=DIKIRIM_PEMBELI`, {
+            headers: {
+                Authorization: res.value
+            }
+        }).then(res => {
+            dispatch({type : "SET_DIKIRIM_PEMBELI", value: res.data.data.data})
+            console.log(res);
+        }).catch(err => {
+            console.log(err.message);
+        })
+    })
+}
+
+export const getKonfirmasiAdmin = () => dispatch => {
+    getData('token').then(res => {
+        axios.get(`${API_HOST.url}/fetchBarang?status=KONFIRMASI_ADMIN`, {
+            headers: {
+                Authorization: res.value
+            }
+        }).then(res => {
+            dispatch({type : "SET_KONFIRMASI_ADMIN", value: res.data.data.data})
+            console.log(res);
+        }).catch(err => {
+            console.log(err.message);
+        })
+    })
+}
+
+export const getDikirimAdmin = () => dispatch => {
+    getData('token').then(res => {
+        axios.get(`${API_HOST.url}/fetchBarang?status=DIKIRIM_ADMIN`, {
+            headers: {
+                Authorization: res.value
+            }
+        }).then(res => {
+            dispatch({type : "SET_DIKIRIM_ADMIN", value: res.data.data.data})
+            console.log(res);
+        }).catch(err => {
+            console.log(err.message);
+        })
+    })
+}
+
+export const getDataDiterimaPembeli = () => dispatch => {
+    getData('token').then(res => {
+        axios.get(`${API_HOST.url}/fetchBarang?status=DITERIMA_PEMBELI`, {
+            headers: {
+                Authorization: res.value
+            }
+        }).then(res => {
+            dispatch({type : "SET_DITERIIMA_PEMBELI", value: res.data.data.data})
+            console.log(res);
+        }).catch(err => {
+            console.log(err.message);
+        })
+    })
+}
+
+

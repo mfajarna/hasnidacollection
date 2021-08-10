@@ -44,6 +44,12 @@ const SimpleModal = ({changeModalVisible,setData, listData,dataUserLelang, dataL
             alert('Jumlah Bid tidak boleh kurang dari minimum open bid!')
             return false;
         }
+
+        if(form.jumlah_bid = listData.bid)
+        {
+            alert('Jumlah bid tidak boleh sama dengan bid sebelumnya!')
+        }
+
         // Kalau input jumlah bid kosong tidak bisa submit
         if(form.jumlah_bid === "")
         {

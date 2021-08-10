@@ -72,8 +72,8 @@ const UploadBuktiBayar = ({route,navigation}) => {
         ImagePicker.launchImageLibrary(
             {
                 quality: 1,
-                maxWidth: 250,
-                maxHeight: 250
+                width:700,
+                height:500
             },
             (response) => {
                 console.log('Response', response)

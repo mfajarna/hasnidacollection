@@ -56,7 +56,6 @@ const TukarbarangDetail = ({route,navigation}) => {
             <ScrollView>
             <View style={styles.content}>
                 <View style={styles.contentAtas}>  
-                  
                     <Text style={styles.text}>Detail Barang</Text>
                     <Gap height={15}/>
                     <ItemValue label="Nama Barang" value={collection.name} />

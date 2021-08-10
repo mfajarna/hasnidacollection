@@ -1,6 +1,9 @@
+import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 import React from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import {Number, Rating} from '..';
+import { API_HOST, getData, showMessage } from '../../../utils';
 
 const ItemListFood = ({
   image,
@@ -17,6 +20,7 @@ const ItemListFood = ({
   desc,
   number,
   onPress2,
+  id,
 }) => {
   const renderContent = () => {
     switch (type) {
@@ -155,6 +159,44 @@ const ItemListFood = ({
     }
   };
 
+  const dataKonfirmasi = {
+    status: 'DIKIRIM_PEMBELI'
+  }
+
+    const dataDone = {
+    status: 'DITERIMA_PEMBELI'
+  }
+
+  const navigation = useNavigation();
+
+
+  const onKonfirmasi = () => {
+    getData('token').then(resToken => {
+      axios.post(`${API_HOST.url}/statusBarang/${id}`, dataKonfirmasi, {
+                headers : {
+                    Authorization: resToken.value
+              }
+          }).then(res => {
+                console.log(res)
+                showMessage('Berhasil update status', 'success');
+                navigation.reset({index: 0, routes:[{name: 'MainApp'}]})
+        })
+    })
+  }
+
+    const onDone = () => {
+    getData('token').then(resToken => {
+      axios.post(`${API_HOST.url}/statusBarang/${id}`, dataDone, {
+                headers : {
+                    Authorization: resToken.value
+              }
+          }).then(res => {
+                console.log(res)
+                showMessage('Berhasil update status', 'success');
+                navigation.reset({index: 0, routes:[{name: 'MainApp'}]})
+        })
+    })
+  }
 
   const buttonRender = () =>{
     if(type === 'in-progress')
@@ -170,6 +212,22 @@ const ItemListFood = ({
       return (
         <TouchableOpacity style={styles.buttonBayar} activeOpacity={0.6} onPress={onPressBayar}>
                 <Text style={styles.textBayar}>Bayar</Text>
+        </TouchableOpacity>
+      )
+    }
+    if(status === 'KONFIRMASI')
+    {
+      return (
+        <TouchableOpacity style={styles.buttonBayar} activeOpacity={0.6} onPress={onKonfirmasi}>
+                <Text style={styles.textBayar}>DELIVERY</Text>
+        </TouchableOpacity>
+      )
+    }
+    if(status === 'DIKIRIM_ADMIN')
+    {
+      return (
+        <TouchableOpacity style={styles.buttonBayar} activeOpacity={0.6} onPress={onDone}>
+                <Text style={styles.textBayar}>DONE</Text>
         </TouchableOpacity>
       )
     }
@@ -236,6 +294,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#26B99A',
     padding: 6,
     borderRadius: 3,
+    marginLeft: 5
   },
   textBayar:{
     fontSize: 14,

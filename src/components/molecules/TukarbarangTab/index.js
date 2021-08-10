@@ -3,7 +3,7 @@ import { StyleSheet, Text, View , Dimensions, ScrollView} from 'react-native'
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
-import { getPastOrders, getTukarBarang, getTukarBarangKonfirmasi } from '../../../redux/action';
+import { getDataDiterimaPembeli, getDikirimAdmin, getDikirimPembeli, getKonfirmasiAdmin, getPastOrders, getTukarBarang, getTukarBarangKonfirmasi } from '../../../redux/action';
 import ItemListFood from '../ItemListFood';
 
 const renderTabBar = props => (
@@ -89,6 +89,7 @@ const InConfirmation = () => {
             name={order.collection.name}
             date={order.created_at}
             status={order.status}
+            id={order.id}
           />
         );
       })}
@@ -98,6 +99,126 @@ const InConfirmation = () => {
 };
 
 
+const dikirimPembeli = () => {
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const {dataDikirimPembeli} = useSelector(state => state.tukarBarangReducer);
+  useEffect(() => {
+    dispatch(getDikirimPembeli());
+  }, []);
+
+  return (
+    <ScrollView>
+    <View style={{paddingTop: 8, paddingHorizontal: 24}}>
+      {dataDikirimPembeli.map(order => {
+        return (
+          <ItemListFood
+            key={order.id}
+            image={{uri: order.collection.picturePath}}
+            type="tukar-barang"
+            desc={order.alasan_tukar_barang}
+            name={order.collection.name}
+            date={order.created_at}
+            status={order.status}
+            id={order.id}
+          />
+        );
+      })}
+    </View>
+    </ScrollView>
+  );
+};
+
+const konfirmasiAdmin = () => {
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const {dataKonfirmasiAdmin} = useSelector(state => state.tukarBarangReducer);
+  useEffect(() => {
+    dispatch(getKonfirmasiAdmin());
+  }, []);
+
+  return (
+    <ScrollView>
+    <View style={{paddingTop: 8, paddingHorizontal: 24}}>
+      {dataKonfirmasiAdmin.map(order => {
+        return (
+          <ItemListFood
+            key={order.id}
+            image={{uri: order.collection.picturePath}}
+            type="tukar-barang"
+            desc={order.alasan_tukar_barang}
+            name={order.collection.name}
+            date={order.created_at}
+            status={order.status}
+            id={order.id}
+          />
+        );
+      })}
+    </View>
+    </ScrollView>
+  );
+};
+
+const dikirimAdmin = () => {
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const {dataDikirimAdmin} = useSelector(state => state.tukarBarangReducer);
+  useEffect(() => {
+    dispatch(getDikirimAdmin());
+  }, []);
+
+  return (
+    <ScrollView>
+    <View style={{paddingTop: 8, paddingHorizontal: 24}}>
+      {dataDikirimAdmin.map(order => {
+        return (
+          <ItemListFood
+            key={order.id}
+            image={{uri: order.collection.picturePath}}
+            type="tukar-barang"
+            desc={order.alasan_tukar_barang}
+            name={order.collection.name}
+            date={order.created_at}
+            status={order.status}
+            id={order.id}
+          />
+        );
+      })}
+    </View>
+    </ScrollView>
+  );
+};
+
+const diterimaPembeli = () => {
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const {dataDiterimaPembeli} = useSelector(state => state.tukarBarangReducer);
+  useEffect(() => {
+    dispatch(getDataDiterimaPembeli());
+  }, []);
+
+  return (
+    <ScrollView>
+    <View style={{paddingTop: 8, paddingHorizontal: 24}}>
+      {dataDiterimaPembeli.map(order => {
+        return (
+          <ItemListFood
+            key={order.id}
+            image={{uri: order.collection.picturePath}}
+            type="tukar-barang"
+            desc={order.alasan_tukar_barang}
+            name={order.collection.name}
+            date={order.created_at}
+            status={order.status}
+            id={order.id}
+          />
+        );
+      })}
+    </View>
+    </ScrollView>
+  );
+};
+
 const initialLayout = {width: Dimensions.get('window').width};
 
 const TukarBarangTab = () => {
@@ -105,11 +226,19 @@ const TukarBarangTab = () => {
   const [routes] = React.useState([
     {key: 'first', title: 'Pending'},
     {key: 'second', title: 'Konfirmasi'},
+    {key: 'tiga', title: 'Dikirim Pembeli'},
+    {key: 'empat', title: 'Konfirmasi Admin'},
+    {key: 'lima', title: 'Dikirim Admin'},
+    {key: 'enam', title: 'Diterima Pembeli'},
   ]);
 
   const renderScene = SceneMap({
     first: Pending,
-    second: InConfirmation
+    second: InConfirmation,
+    tiga: dikirimPembeli,
+    empat: konfirmasiAdmin,
+    lima: dikirimAdmin,
+    enam: diterimaPembeli,
 
   });
   return (
