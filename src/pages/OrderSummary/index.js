@@ -60,6 +60,7 @@ const OrderSummary = ({navigation, route}) => {
         },
       }),
     ]).then(axios.spread((res1, res2) => {
+      console.log('data checkout : ',res1)
       dispatch(setLoading(false));
       showMessage('Berhasil Memesan Barang', 'success');
     })).catch(err => {
