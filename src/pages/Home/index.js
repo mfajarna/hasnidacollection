@@ -36,6 +36,7 @@ const Home = ({onPress, navigation}) => {
   useEffect(() =>{
     getAdmin();
     getUserData();
+    getStateFirebase();
     navigation.addListener('focus', () => {
       getUserData();
     });
@@ -46,6 +47,27 @@ const Home = ({onPress, navigation}) => {
       const data = res;
     });
   };
+
+  var email_verified
+
+  const getStateFirebase = () => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if(user)
+      {
+        var user = firebase.auth().currentUser;
+
+        if(user != null)
+        {
+          email_verified =  user.emailVerified;
+          return email_verified
+        }
+      }
+    })
+  }
+
+  console.log('user email verified', email_verified)
+
+
 
   const getAdmin = () => {
     firebase.database()
@@ -68,11 +90,6 @@ const Home = ({onPress, navigation}) => {
       .catch(err => {
         showError(err.message);
       });
-  }
-
-  const klikNotifikasi = () => {
-
-
   }
 
   return (

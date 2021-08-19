@@ -4,8 +4,12 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Button, Gap, Headers, TextInput} from '../../components';
 import {setLoading, signUpAction} from '../../redux/action';
 import {useForm} from '../../utils';
+import firebaseSetup from '../../setup'
 
 const SignupAddress = ({navigation}) => {
+
+  const {auth} = firebaseSetup();
+
   const [form, setForm] = useForm({
     phoneNumber: '',
     address: '',

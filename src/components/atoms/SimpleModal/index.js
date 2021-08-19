@@ -45,22 +45,19 @@ const SimpleModal = ({changeModalVisible,setData, listData,dataUserLelang, dataL
             return false;
         }
 
-        if(form.jumlah_bid = listData.bid)
+        if(form.jumlah_bid == dataLelangTerbesar)
         {
-            alert('Jumlah bid tidak boleh sama dengan bid sebelumnya!')
+           alert('Tidak Bisa Memasukan Bid Yang sama')
+           return false;
         }
 
         // Kalau input jumlah bid kosong tidak bisa submit
         if(form.jumlah_bid === "")
         {
             alert('kosong!')
-        }
-        // Kalau Open bid diatas harga asli barang tida bisa submit
-        if(form.jumlah_bid > listData.collection.price)
-        {
-            alert('Tidak bisa input bid diatas harga asli barang!')
             return false;
         }
+
         // Kalau Open bid dibawah harga terakhir orang masang tidak bisa
         if(form.jumlah_bid < dataLelangTerbesar )
         {
@@ -81,8 +78,6 @@ const SimpleModal = ({changeModalVisible,setData, listData,dataUserLelang, dataL
                 console.log(err.message)
             })
         }
-        
-  
     }
 
     return (
