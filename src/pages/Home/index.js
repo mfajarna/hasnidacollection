@@ -8,10 +8,11 @@ import { getData, showNotification } from '../../utils';
 import NotifService from '../../NotifService';
 
 const Home = ({onPress, navigation}) => {
-  const [admin, setAdmin] = useState([]);
+    const [admin, setAdmin] = useState([]);
   
     const[registerToken,setRegisterToken] = useState('');
     const[fcmRegistered,setFcmRegistered] = useState(false);
+    var [emailVerified, setEmailVerified] = useState(Boolean);
 
     const onRegister = (token) => {
         setRegisterToken(token.token);
@@ -48,7 +49,7 @@ const Home = ({onPress, navigation}) => {
     });
   };
 
-  var email_verified
+  
 
   const getStateFirebase = () => {
     firebase.auth().onAuthStateChanged((user) => {
@@ -58,16 +59,14 @@ const Home = ({onPress, navigation}) => {
 
         if(user != null)
         {
-          email_verified =  user.emailVerified;
-          return email_verified
+         var email_verified =  user.emailVerified;
+         setEmailVerified(email_verified)
         }
       }
     })
   }
 
-  console.log('user email verified', email_verified)
-
-
+  console.log(emailVerified)
 
   const getAdmin = () => {
     firebase.database()
@@ -102,6 +101,9 @@ const Home = ({onPress, navigation}) => {
       <Gap height={10} />
       
         <Text style={styles.text}>Mau belanja apa</Text>
+        {emailVerified  == false && (
+          <Text>isFalse</Text>
+        )}
         <Text style={styles.text}>hari ini ?</Text>
         <Gap height={30} />
   <ScrollView contentContainerStyle={{flexGrow: 1}}>
