@@ -36,6 +36,7 @@ import TestNotif from './TestNotif';
 import Statuslelang from './Statuslelang';
 import LelangDetail from './LelangDetail';
 import UploadBuktiLelang from './UploadBuktiLelang';
+import RatingBintang from './RatingBintang';
 
 export {
   SplashScreen,
@@ -75,5 +76,6 @@ export {
   TestNotif,
   Statuslelang,
   LelangDetail,
-  UploadBuktiLelang
+  UploadBuktiLelang,
+  RatingBintang
 };

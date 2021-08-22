@@ -34,25 +34,25 @@ const Signup = ({navigation}) => {
   const dispatch = useDispatch();
 
   const onSubmit = () => {
-  firebase.auth().createUserWithEmailAndPassword(form.email, form.password)
-  .then(res => {
-    const data = {
-      name: form.name,
-      email: form.email,
-      password: form.password,
-      uid: res.user.uid,
-      device_token: registerToken
-    }
+  // firebase.auth().createUserWithEmailAndPassword(form.email, form.password)
+  // .then(res => {
+  //   const data = {
+  //     name: form.name,
+  //     email: form.email,
+  //     password: form.password,
+  //     uid: res.user.uid,
+  //     device_token: registerToken
+  //   }
 
-    console.log("status fbase", res);
-    firebase.database()
-          .ref('users/' + res.user.uid + '/')
-          .set(data);
+  //   console.log("status fbase", res);
+  //   firebase.database()
+  //         .ref('users/' + res.user.uid + '/')
+  //         .set(data);
       
-    storeData('user', data)
-  }).catch(err => {
-    console.log(err)
-  })
+  //   storeData('user', data)
+  // }).catch(err => {
+  //   console.log(err)
+  // })
     dispatch({
       type: 'SET_REGISTER',
       value: form

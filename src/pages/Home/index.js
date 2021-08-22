@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View, ScrollView, Alert} from 'react-native';
+import {StyleSheet, Text, View, ScrollView, Alert, TouchableOpacity} from 'react-native';
 
 import {Fitur, Gap, Kategori, SearchInput} from '../../components/atoms';
 import {AdminSection, HomeTabSection, WelcomeUser} from '../../components/molecules';
@@ -9,10 +9,10 @@ import NotifService from '../../NotifService';
 
 const Home = ({onPress, navigation}) => {
     const [admin, setAdmin] = useState([]);
-  
+    var [emailVerified, setEmailVerified] = useState(false);
     const[registerToken,setRegisterToken] = useState('');
     const[fcmRegistered,setFcmRegistered] = useState(false);
-    var [emailVerified, setEmailVerified] = useState(Boolean);
+    
 
     const onRegister = (token) => {
         setRegisterToken(token.token);
@@ -49,25 +49,6 @@ const Home = ({onPress, navigation}) => {
     });
   };
 
-  
-
-  const getStateFirebase = () => {
-    firebase.auth().onAuthStateChanged((user) => {
-      if(user)
-      {
-        var user = firebase.auth().currentUser;
-
-        if(user != null)
-        {
-         var email_verified =  user.emailVerified;
-         setEmailVerified(email_verified)
-        }
-      }
-    })
-  }
-
-  console.log(emailVerified)
-
   const getAdmin = () => {
     firebase.database()
       .ref('admin/')
@@ -91,6 +72,28 @@ const Home = ({onPress, navigation}) => {
       });
   }
 
+   const getStateFirebase = () => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if(user)
+      {
+        var user = firebase.auth().currentUser;
+
+        if(user != null)
+        {
+         var email_verified =  user.emailVerified;
+
+         console.log('email ver', email_verified)
+         setEmailVerified(email_verified)
+        
+         if(email_verified == false)
+         {
+           navigation.replace('Verified');
+         }
+        }
+      }
+    })
+  }
+
   return (
     <View style={styles.pages}>
       <View style={styles.nav}>
@@ -101,9 +104,6 @@ const Home = ({onPress, navigation}) => {
       <Gap height={10} />
       
         <Text style={styles.text}>Mau belanja apa</Text>
-        {emailVerified  == false && (
-          <Text>isFalse</Text>
-        )}
         <Text style={styles.text}>hari ini ?</Text>
         <Gap height={30} />
   <ScrollView contentContainerStyle={{flexGrow: 1}}>

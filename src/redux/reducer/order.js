@@ -4,7 +4,8 @@ const initOrder = {
   pastOrders: [],
   confirmation: [],
   delivery: [],
-  done: []
+  done: [],
+  perhitunganAkhir: [],
 };
 
 export const orderReducer = (state = initOrder, action) => {
@@ -43,6 +44,14 @@ export const orderReducer = (state = initOrder, action) => {
     return{
       ...state,
       pastOrders: action.value
+    }
+  }
+
+    if(action.type === 'SET_PERHITUNGAN_AKHIR')
+  {
+    return{
+      ...state,
+      perhitunganAkhir: action.value
     }
   }
   

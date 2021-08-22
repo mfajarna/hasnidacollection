@@ -40,9 +40,11 @@ import {
   Statuslelang,
   LelangDetail,
   UploadBuktiLelang,
+  RatingBintang,
 } from '../pages';
 import {BottomNavigator} from '../components';
 import LelangDelivery from '../pages/LelangDelivery';
+import Verified from '../pages/Verified';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -241,6 +243,21 @@ const Router = () => {
       <Stack.Screen
         name="LelangDelivery"
         component={LelangDelivery}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Verified"
+        component={Verified}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="RatingBintang"
+        component={RatingBintang}
+        options={{headerShown: false}}
+      />
+            <Stack.Screen
+        name="TesNotif"
+        component={TestNotif}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

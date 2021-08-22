@@ -2,7 +2,7 @@ const initPakaian = {
     pakaian :[],
     newPakaian: [],
     popular: [],
-    recommended: []
+    recommended: [],
 }
 
 

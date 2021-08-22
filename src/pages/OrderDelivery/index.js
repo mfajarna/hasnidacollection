@@ -14,7 +14,7 @@ const OrderDelivery = ({route, navigation}) => {
   const onDelivered = () => {
 
     const data = {
-      status: 'DONE'
+      status: 'ON_DELIVERY'
     }
 
     getData('token').then(resToken => {
@@ -30,12 +30,7 @@ const OrderDelivery = ({route, navigation}) => {
     })
     })
 
-    navigation.reset({
-        index: 0,
-        routes: [
-          {name: 'MainApp', screen: 'Keranjang'}
-        ]
-      })
+    navigation.navigate('RatingBintang', order)
   }
   return (
     <View style={styles.container}>

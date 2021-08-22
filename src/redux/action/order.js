@@ -109,5 +109,20 @@ export const getPastOrders = () => dispatch => {
 };
 
 
+export const dataPerhitungan =  (id_koleksi) => dispatch => {
+         getData('token').then(resToken => {
+            axios.get(`${API_HOST.url}/collection?id=${id_koleksi}`,{
+                headers: {
+                    Authorization: resToken.value
+                }
+            }).then(res => {
+                dispatch({type: 'SET_PERHITUNGAN_AKHIR', value: res.data.data});
+                console.log('API PERHITUNGAN AKHIR',res)
+            })
+        }).catch(err =>{
+            console.log('err', err.message)
+        })
+    }
+
 
 
