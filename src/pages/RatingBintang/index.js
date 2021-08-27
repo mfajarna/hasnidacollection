@@ -7,7 +7,7 @@ import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { dataPerhitungan } from '../../redux/action'
 
-const RatingBintang = ({route}) => {
+const RatingBintang = ({route, navigation}) => {
     const [rating,setRating] = useState(0);
     const [defaultRating, setDefaultRating] = useState(2);
     const [maxRating,setMaxRating] = useState([1,2,3,4,5]);
@@ -89,6 +89,7 @@ const RatingBintang = ({route}) => {
             })
         ]).then(axios.spread((res1,res2,res3) => {
             console.log('Berhasil')
+            navigation.navigate('Keranjang')
         })).catch(err => {
             console.log('err',err.response.data)
         })

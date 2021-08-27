@@ -14,7 +14,7 @@ const OrderDelivery = ({route, navigation}) => {
   const onDelivered = () => {
 
     const data = {
-      status: 'ON_DELIVERY'
+      status: 'DONE'
     }
 
     getData('token').then(resToken => {

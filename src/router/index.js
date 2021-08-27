@@ -57,7 +57,6 @@ const MainApp = () => {
       <Tab.Screen name="Scan" component={Scan} />
       <Tab.Screen name="Messages" component={Messages} />
       <Tab.Screen name="Akun" component={Akun} />
-
     </Tab.Navigator>
   );
 };
